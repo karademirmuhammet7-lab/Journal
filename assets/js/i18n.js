@@ -28,7 +28,8 @@ window.I18N = (() => {
       offline: 'Hors ligne · dernière édition disponible', weatherOff: 'Météo indisponible', locating: 'Localisation…',
       remove: 'Retirer', install: "Installer l'application", installSub: "Sur iPhone : Partager → « Sur l'écran d'accueil ». Sur Android : menu ⋮ → « Installer ».",
       days: 'Prochains jours', positionDenied: 'Position refusée — météo de Bruxelles affichée.', loading: 'Chargement de l’édition…',
-      sampleWx: "Aperçu : météo d'exemple. Dans l'application installée, c'est la météo réelle de ta position qui s'affiche.", refresh: 'Actualiser', editionOf: 'Édition du {d}',
+      sampleWx: "Aperçu : météo d'exemple. Dans l'application installée, c'est la météo réelle de ta position qui s'affiche.", newsroom: 'La rédaction', basedOn: "d'après {n} médias", basedOnOne: "d'après {s}", readTime: '{n} min de lecture', keyPoints: "L'essentiel", pressReview: "Ce qu'en disent les médias", sourcesTitle: 'Sources', alsoRead: 'À lire aussi', nextArticle: 'Article suivant', back: 'Retour', fresh: 'Nouvelles infos', importance: 'Importance {n}/5', major: 'Info majeure', photo: 'Photo : {s}', updatedAgo: 'mis à jour {t}',
+      refresh: 'Actualiser', editionOf: 'Édition du {d}',
     },
     en: {
       tagline: 'Belgium · World', home: 'Top stories', flux: 'Feed', saved: 'Saved', settings: 'Settings',
@@ -49,7 +50,8 @@ window.I18N = (() => {
       offline: 'Offline · latest edition available', weatherOff: 'Weather unavailable', locating: 'Locating…',
       remove: 'Remove', install: 'Install the app', installSub: 'On iPhone: Share → “Add to Home Screen”. On Android: menu ⋮ → “Install”.',
       days: 'Next days', positionDenied: 'Location denied — showing Brussels weather.', loading: 'Loading the edition…',
-      sampleWx: 'Preview: sample weather. In the installed app, the real weather for your location is shown.', refresh: 'Refresh', editionOf: 'Edition of {d}',
+      sampleWx: 'Preview: sample weather. In the installed app, the real weather for your location is shown.', newsroom: 'Newsroom', basedOn: 'based on {n} outlets', basedOnOne: 'based on {s}', readTime: '{n} min read', keyPoints: 'Key points', pressReview: 'What the press says', sourcesTitle: 'Sources', alsoRead: 'Also read', nextArticle: 'Next story', back: 'Back', fresh: 'New stories', importance: 'Importance {n}/5', major: 'Major story', photo: 'Photo: {s}', updatedAgo: 'updated {t}',
+      refresh: 'Refresh', editionOf: 'Edition of {d}',
     },
     nl: {
       tagline: 'België · Wereld', home: 'Voorpagina', flux: 'Feed', saved: 'Bewaard', settings: 'Instellingen',
@@ -70,7 +72,8 @@ window.I18N = (() => {
       offline: 'Offline · laatste uitgave beschikbaar', weatherOff: 'Weer niet beschikbaar', locating: 'Locatie zoeken…',
       remove: 'Verwijderen', install: 'App installeren', installSub: 'Op iPhone: Deel → “Zet op beginscherm”. Op Android: menu ⋮ → “Installeren”.',
       days: 'Komende dagen', positionDenied: 'Locatie geweigerd — weer in Brussel getoond.', loading: 'Uitgave laden…',
-      sampleWx: 'Voorbeeld: fictief weer. In de geïnstalleerde app zie je het echte weer op je locatie.', refresh: 'Vernieuwen', editionOf: 'Uitgave van {d}',
+      sampleWx: 'Voorbeeld: fictief weer. In de geïnstalleerde app zie je het echte weer op je locatie.', newsroom: 'De redactie', basedOn: 'op basis van {n} media', basedOnOne: 'op basis van {s}', readTime: '{n} min lezen', keyPoints: 'Het belangrijkste', pressReview: 'Wat de media schrijven', sourcesTitle: 'Bronnen', alsoRead: 'Lees ook', nextArticle: 'Volgend artikel', back: 'Terug', fresh: 'Nieuwe berichten', importance: 'Belang {n}/5', major: 'Groot nieuws', photo: 'Foto: {s}', updatedAgo: 'bijgewerkt {t}',
+      refresh: 'Vernieuwen', editionOf: 'Uitgave van {d}',
     },
     tr: {
       tagline: 'Belçika · Dünya', home: 'Manşet', flux: 'Akış', saved: 'Kaydedilenler', settings: 'Ayarlar',
@@ -91,7 +94,8 @@ window.I18N = (() => {
       offline: 'Çevrimdışı · son baskı gösteriliyor', weatherOff: 'Hava durumu alınamadı', locating: 'Konum alınıyor…',
       remove: 'Kaldır', install: 'Uygulamayı yükle', installSub: 'iPhone: Paylaş → “Ana Ekrana Ekle”. Android: menü ⋮ → “Yükle”.',
       days: 'Önümüzdeki günler', positionDenied: 'Konum izni yok — Brüksel hava durumu gösteriliyor.', loading: 'Baskı yükleniyor…',
-      sampleWx: 'Önizleme: örnek hava durumu. Yüklü uygulamada konumunuzun gerçek hava durumu gösterilir.', refresh: 'Yenile', editionOf: '{d} baskısı',
+      sampleWx: 'Önizleme: örnek hava durumu. Yüklü uygulamada konumunuzun gerçek hava durumu gösterilir.', newsroom: 'Haber merkezi', basedOn: '{n} kaynağa göre', basedOnOne: '{s} kaynağına göre', readTime: '{n} dk okuma', keyPoints: 'Öne çıkanlar', pressReview: 'Basında ne yazıldı', sourcesTitle: 'Kaynaklar', alsoRead: 'Bunları da okuyun', nextArticle: 'Sonraki haber', back: 'Geri', fresh: 'Yeni haberler', importance: 'Önem {n}/5', major: 'Önemli haber', photo: 'Fotoğraf: {s}', updatedAgo: '{t} güncellendi',
+      refresh: 'Yenile', editionOf: '{d} baskısı',
     },
     ar: {
       tagline: 'بلجيكا · العالم', home: 'الصفحة الأولى', flux: 'التدفق', saved: 'المحفوظات', settings: 'الإعدادات',
@@ -112,7 +116,8 @@ window.I18N = (() => {
       offline: 'غير متصل · آخر عدد متاح', weatherOff: 'الطقس غير متاح', locating: 'جارٍ تحديد الموقع…',
       remove: 'إزالة', install: 'تثبيت التطبيق', installSub: 'على iPhone: مشاركة ← «إضافة إلى الشاشة الرئيسية». على Android: القائمة ⋮ ← «تثبيت».',
       days: 'الأيام القادمة', positionDenied: 'تم رفض الموقع — يُعرض طقس بروكسل.', loading: 'جارٍ تحميل العدد…',
-      sampleWx: 'معاينة: طقس تجريبي. في التطبيق المثبّت يظهر الطقس الحقيقي لموقعك.', refresh: 'تحديث', editionOf: 'عدد {d}',
+      sampleWx: 'معاينة: طقس تجريبي. في التطبيق المثبّت يظهر الطقس الحقيقي لموقعك.', newsroom: 'هيئة التحرير', basedOn: 'استنادًا إلى {n} وسائل إعلام', basedOnOne: 'استنادًا إلى {s}', readTime: 'قراءة في {n} دقائق', keyPoints: 'أهم النقاط', pressReview: 'ماذا تقول الصحافة', sourcesTitle: 'المصادر', alsoRead: 'اقرأ أيضًا', nextArticle: 'المقال التالي', back: 'رجوع', fresh: 'أخبار جديدة', importance: 'الأهمية {n}/5', major: 'خبر رئيسي', photo: 'صورة: {s}', updatedAgo: 'حُدّث {t}',
+      refresh: 'تحديث', editionOf: 'عدد {d}',
     },
   };
 

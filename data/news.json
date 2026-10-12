@@ -2,78 +2,51 @@
  "generatedAt": "2026-10-12T14:30:00Z",
  "edition": "seed",
  "top": [
-  "nobel",
   "greve",
   "budget",
+  "nobel",
   "ukraine",
-  "riyad",
   "marches",
-  "grippe"
+  "riyad",
+  "coree",
+  "petrole"
  ],
  "markets": [],
  "sources": [
   "Air Journal",
   "BX1",
+  "Belga",
+  "Bourse Direct",
   "BruxellesToday",
   "CNBC",
+  "CNN",
   "Euronews",
   "Europe Says",
   "L'Avenir",
-  "La rédaction",
+  "La DH",
   "MoneyVox",
+  "NBC News",
+  "NPR",
   "SBS News",
   "Scala Patrimoine",
   "Test-Achats",
-  "The Brussels Times"
+  "The Brussels Times",
+  "The Japan Times",
+  "Ville de Bruxelles",
+  "shortnews.be"
  ],
  "articles": [
   {
-   "id": "nobel",
-   "cat": "economie",
-   "source": "CNBC",
-   "url": "https://www.cnbc.com/2026/10/12/nobel-economics-prize-winner-woodford-hall.html",
-   "image": null,
-   "publishedAt": "2026-10-12T10:05:00Z",
-   "lang": "fr",
-   "title": {
-    "fr": "Nobel d'économie : les Américains Robert Hall et Michael Woodford récompensés",
-    "en": "Nobel Prize in Economics: Americans Robert Hall and Michael Woodford rewarded",
-    "nl": "Nobelprijs voor de Economie: Amerikanen Robert Hall en Michael Woodford beloond",
-    "tr": "Nobel Ekonomi Ödülü: Amerikalı Robert Hall ve Michael Woodford ödüllendirildi",
-    "ar": "جائزة نوبل في الاقتصاد: الأمريكيان روبرت هول ومايكل وودفورد"
-   },
-   "summary": {
-    "fr": "L'Académie royale des sciences de Suède distingue l'économiste de Stanford et celui de Columbia « pour les fondements microéconomiques de la stabilisation macroéconomique ». Leurs modèles sont aujourd'hui utilisés par les banques centrales et les gouvernements pour amortir les cycles d'expansion et de récession.",
-    "en": "The Royal Swedish Academy of Sciences distinguishes the Stanford economist and the Columbia economist “for the microeconomic foundations of macroeconomic stabilization”. Their models are used today by central banks and governments to cushion boom-bust cycles.",
-    "nl": "De Koninklijke Zweedse Academie van Wetenschappen onderscheidt de econoom van Stanford en de econoom van Columbia “vanwege de micro-economische grondslagen van macro-economische stabilisatie”. Hun modellen worden vandaag de dag door centrale banken en overheden gebruikt om boom-bust-cycli op te vangen.",
-    "tr": "İsveç Kraliyet Bilimler Akademisi, Stanford ekonomisti ile Columbia ekonomisti arasında \"makroekonomik istikrarın mikroekonomik temelleri\" nedeniyle ayrım yapıyor. Modelleri bugün merkez bankaları ve hükümetler tarafından yükseliş ve düşüş döngülerini hafifletmek için kullanılıyor.",
-    "ar": "تميز الأكاديمية الملكية السويدية للعلوم بين الاقتصاديين في جامعة ستانفورد والاقتصاديين في كولومبيا \"لأسس الاقتصاد الجزئي لاستقرار الاقتصاد الكلي\". وتستخدم البنوك المركزية والحكومات نماذجهم اليوم لتخفيف دورات الازدهار والكساد."
-   },
-   "coverage": 5,
-   "related": [
-    {
-     "source": "NPR",
-     "url": "https://www.npr.org/2026/10/12/nx-s1-5996634/last-nobel-prize-of-the-year-to-be-announced-for-economics"
-    },
-    {
-     "source": "CNN",
-     "url": "https://www.cnn.com/2026/10/12/business/nobel-prize-economics-intl"
-    },
-    {
-     "source": "NBC News",
-     "url": "https://www.nbcnews.com/world/europe/americans-hall-woodford-win-2026-nobel-economics-prize-rcna602928"
-    }
-   ],
-   "score": 0
-  },
-  {
    "id": "greve",
    "cat": "belgique",
+   "importance": 5,
+   "coverage": 4,
    "source": "L'Avenir",
    "url": "https://www.lavenir.net/actu/belgique/2026/10/12/la-contestation-sociale-reprend-ce-lundi-12-octobre-avec-cette-fois-une-greve-dans-les-services-publics-direct-LR3FSMC7M5DQLHRLXSNJP7V6PE/",
    "image": null,
    "publishedAt": "2026-10-12T05:45:00Z",
    "lang": "fr",
+   "written": true,
    "title": {
     "fr": "Grève dans les services publics : la Belgique tourne au ralenti ce lundi",
     "en": "Strike in public services: Belgium is slowing down this Monday",
@@ -82,21 +55,187 @@
     "ar": "إضراب في الخدمات العامة: بلجيكا تتباطأ هذا الاثنين"
    },
    "summary": {
-    "fr": "À l'appel de la CGSP, le rail, la STIB, le TEC, De Lijn, la RTBF et bpost sont perturbés. La SNCB n'assure qu'un service réduit jusqu'au dernier train. Trois jours après la manifestation nationale à Bruxelles, les syndicats veulent peser sur les choix budgétaires du gouvernement, à la veille du discours du Premier ministre.",
-    "en": "At the call of the CGSP, rail, STIB, TEC, De Lijn, RTBF and bpost are disrupted. SNCB only provides a reduced service until the last train. Three days after the national demonstration in Brussels, the unions want to influence the government's budgetary choices, on the eve of the Prime Minister's speech.",
-    "nl": "Op oproep van het CGSP worden spoor, MIVB, TEC, De Lijn, RTBF en bpost verstoord. NMBS biedt slechts een beperkte dienst aan tot de laatste trein. Drie dagen na de nationale demonstratie in Brussel willen de vakbonden, aan de vooravond van de toespraak van de premier, invloed uitoefenen op de begrotingskeuzes van de regering.",
-    "tr": "CGSP'nin çağrısı üzerine demiryolu, STIB, TEC, De Lijn, RTBF ve bpost kesintiye uğradı. SNCB yalnızca son trene kadar indirimli hizmet sunmaktadır. Brüksel'deki ulusal gösteriden üç gün sonra, Başbakan'ın konuşmasının arifesinde sendikalar hükümetin bütçe tercihlerini etkilemek istiyor.",
-    "ar": "بناءً على دعوة CGSP، تعطلت السكك الحديدية وSTIB وTEC وDe Lijn وRTBF وbpost. تقدم SNCB خدمة مخفضة فقط حتى آخر قطار. بعد ثلاثة أيام من المظاهرة الوطنية في بروكسل، تريد النقابات التأثير على خيارات الحكومة المتعلقة بالميزانية، عشية خطاب رئيس الوزراء."
+    "fr": "À l'appel de la CGSP, le rail, la STIB, le TEC, De Lijn, la RTBF et bpost sont perturbés. Trois jours après la manifestation nationale à Bruxelles, les syndicats veulent peser sur les choix budgétaires du gouvernement, à la veille du discours du Premier ministre.",
+    "en": "At the call of the CGSP, rail, STIB, TEC, De Lijn, RTBF and bpost are disrupted. Three days after the national demonstration in Brussels, the unions want to influence the government's budgetary choices, on the eve of the Prime Minister's speech.",
+    "nl": "Op oproep van het CGSP worden spoor, MIVB, TEC, De Lijn, RTBF en bpost verstoord. Drie dagen na de nationale demonstratie in Brussel willen de vakbonden, aan de vooravond van de toespraak van de premier, invloed uitoefenen op de begrotingskeuzes van de regering.",
+    "tr": "CGSP'nin çağrısı üzerine demiryolu, STIB, TEC, De Lijn, RTBF ve bpost kesintiye uğradı. Brüksel'deki ulusal gösteriden üç gün sonra, Başbakan'ın konuşmasının arifesinde sendikalar hükümetin bütçe tercihlerini etkilemek istiyor.",
+    "ar": "بناءً على دعوة CGSP، تعطلت السكك الحديدية وSTIB وTEC وDe Lijn وRTBF وbpost. بعد ثلاثة أيام من المظاهرة الوطنية في بروكسل، تريد النقابات التأثير على خيارات الحكومة المتعلقة بالميزانية، عشية خطاب رئيس الوزراء."
    },
-   "coverage": 4,
-   "related": [
+   "body": {
+    "fr": {
+     "lede": "À l'appel de la CGSP, le rail, la STIB, le TEC, De Lijn, la RTBF et bpost sont perturbés. Trois jours après la manifestation nationale à Bruxelles, les syndicats veulent peser sur les choix budgétaires du gouvernement, à la veille du discours du Premier ministre.",
+     "keyPoints": [
+      "Rail, STIB, TEC, De Lijn, RTBF et bpost sont perturbés à l’appel de la CGSP.",
+      "La SNCB ne fait rouler qu’une partie de ses trains, de dimanche 22 h au dernier train de lundi.",
+      "Le mouvement vise le budget fédéral, à la veille de la déclaration de Bart De Wever."
+     ],
+     "sections": [
+      {
+       "heading": "Un pays au ralenti",
+       "paragraphs": [
+        "Trois jours après la manifestation nationale qui a rassemblé de nombreux manifestants à Bruxelles vendredi, la contestation sociale se poursuit. La CGSP, la centrale des services publics de la FGTB, appelle à la grève dans l'ensemble des services publics ce lundi 12 octobre.",
+        "Les transports sont les plus touchés : moins de trains circulent depuis dimanche soir, et les réseaux de la STIB à Bruxelles, du TEC en Wallonie et de De Lijn en Flandre sont perturbés. La RTBF et bpost sont également concernés. À Bruxelles-Ville, Bruxelles-Propreté et le centre administratif Brucity fonctionnent au ralenti."
+       ]
+      },
+      {
+       "heading": "Le budget en toile de fond",
+       "paragraphs": [
+        "Les syndicats veulent peser sur les choix budgétaires du gouvernement fédéral. Celui-ci doit transmettre son projet de budget à la Commission européenne, et le Premier ministre Bart De Wever doit prononcer mardi sa déclaration de politique générale devant la Chambre."
+       ]
+      },
+      {
+       "heading": "Ce qu’il faut prévoir",
+       "paragraphs": [
+        "Les voyageurs sont invités à vérifier leur trajet avant de partir. À Brussels Airport, les vols sont maintenus, mais l'accès à l'aéroport est compliqué par la grève."
+       ]
+      }
+     ]
+    },
+    "en": {
+     "lede": "At the call of the CGSP, rail, STIB, TEC, De Lijn, RTBF and bpost are disrupted. Three days after the national demonstration in Brussels, the unions want to influence the government's budgetary choices, on the eve of the Prime Minister's speech.",
+     "keyPoints": [
+      "Rail, STIB, TEC, De Lijn, RTBF and bpost are disrupted at the call of the CGSP.",
+      "SNCB only runs part of its trains, from Sunday 10 p.m. to the last train on Monday.",
+      "The movement targets the federal budget, on the eve of Bart De Wever's declaration."
+     ],
+     "sections": [
+      {
+       "heading": "A country in slow motion",
+       "paragraphs": [
+        "Three days after the national demonstration which brought together numerous demonstrators in Brussels on Friday, the social protest continues. The CGSP, the central public services of the FGTB, is calling for a strike in all public services this Monday, October 12.",
+        "Transport is the most affected: fewer trains have been running since Sunday evening, and the STIB networks in Brussels, TEC in Wallonia and De Lijn in Flanders are disrupted. RTBF and bpost are also concerned. In Brussels City, Bruxelles-Propreté and the Brucity administrative center are operating slowly."
+       ]
+      },
+      {
+       "heading": "The budget in the background",
+       "paragraphs": [
+        "The unions want to influence the budgetary choices of the federal government. He must send his draft budget to the European Commission, and Prime Minister Bart De Wever must deliver his general policy declaration to the Chamber on Tuesday."
+       ]
+      },
+      {
+       "heading": "What to expect",
+       "paragraphs": [
+        "Travelers are advised to check their route before leaving. At Brussels Airport, flights are maintained, but access to the airport is complicated by the strike."
+       ]
+      }
+     ]
+    },
+    "nl": {
+     "lede": "Op oproep van het CGSP worden spoor, MIVB, TEC, De Lijn, RTBF en bpost verstoord. Drie dagen na de nationale demonstratie in Brussel willen de vakbonden, aan de vooravond van de toespraak van de premier, invloed uitoefenen op de begrotingskeuzes van de regering.",
+     "keyPoints": [
+      "Spoor, MIVB, TEC, De Lijn, RTBF en bpost worden verstoord op oproep van de CGSP.",
+      "NMBS laat slechts een deel van haar treinen rijden, vanaf zondag 22.00 uur. naar de laatste trein op maandag.",
+      "De beweging richt zich op de federale begroting, aan de vooravond van de verklaring van Bart De Wever."
+     ],
+     "sections": [
+      {
+       "heading": "Een land in slowmotion",
+       "paragraphs": [
+        "Drie dagen na de nationale demonstratie die vrijdag talrijke demonstranten in Brussel samenbracht, gaat het sociale protest door. De CGSP, de centrale overheidsdiensten van de FGTB, roept op tot een staking in alle openbare diensten op maandag 12 oktober.",
+        "Het vervoer wordt het zwaarst getroffen: er rijden sinds zondagavond minder treinen en de MIVB-netwerken in Brussel, TEC in Wallonië en De Lijn in Vlaanderen zijn verstoord. Ook de RTBF en bpost maken zich zorgen. In Brussel-Stad werken Net Brussel en het administratief centrum van Brucity traag."
+       ]
+      },
+      {
+       "heading": "De begroting op de achtergrond",
+       "paragraphs": [
+        "De vakbonden willen de budgettaire keuzes van de federale overheid beïnvloeden. Hij moet zijn ontwerpbegroting naar de Europese Commissie sturen, en premier Bart De Wever moet dinsdag zijn algemene beleidsverklaring aan de Kamer overhandigen."
+       ]
+      },
+      {
+       "heading": "Wat te verwachten",
+       "paragraphs": [
+        "Reizigers wordt geadviseerd om voor vertrek hun route te controleren. Op Brussels Airport blijven vluchten doorgaan, maar de toegang tot de luchthaven wordt bemoeilijkt door de staking."
+       ]
+      }
+     ]
+    },
+    "tr": {
+     "lede": "CGSP'nin çağrısı üzerine demiryolu, STIB, TEC, De Lijn, RTBF ve bpost kesintiye uğradı. Brüksel'deki ulusal gösteriden üç gün sonra, Başbakan'ın konuşmasının arifesinde sendikalar hükümetin bütçe tercihlerini etkilemek istiyor.",
+     "keyPoints": [
+      "Demiryolu, STIB, TEC, De Lijn, RTBF ve bpost, CGSP'nin çağrısı üzerine kesintiye uğradı.",
+      "SNCB, Pazar günü saat 22.00'den itibaren trenlerinin yalnızca bir kısmını çalıştırıyor. Pazartesi günü son trene.",
+      "Hareket, Bart De Wever'in açıklamasının arifesinde federal bütçeyi hedef alıyor."
+     ],
+     "sections": [
+      {
+       "heading": "Ağır çekimde bir ülke",
+       "paragraphs": [
+        "Cuma günü Brüksel'de çok sayıda göstericiyi bir araya getiren ulusal gösteriden üç gün sonra toplumsal protesto devam ediyor. FGTB'nin merkezi kamu hizmetleri olan CGSP, 12 Ekim Pazartesi günü tüm kamu hizmetlerinde grev çağrısında bulunuyor.",
+        "Bu durumdan en çok ulaşım etkilendi: Pazar akşamından bu yana daha az tren çalışıyor ve Brüksel'deki STIB, Wallonia'daki TEC ve Flanders'daki De Lijn ağları kesintiye uğradı. RTBF ve bpost da endişeli. Brüksel Şehri'nde Bruxelles-Propreté ve Brucity idari merkezi yavaş çalışıyor."
+       ]
+      },
+      {
+       "heading": "Arka planda bütçe",
+       "paragraphs": [
+        "Sendikalar federal hükümetin bütçe seçimlerini etkilemek istiyor. Bütçe taslağını Avrupa Komisyonu'na göndermeli ve Başbakan Bart De Wever de genel politika beyanını Salı günü Meclis'e teslim etmeli."
+       ]
+      },
+      {
+       "heading": "Ne beklenebilir?",
+       "paragraphs": [
+        "Yolcuların ayrılmadan önce rotalarını kontrol etmeleri tavsiye edilir. Brüksel Havalimanı'nda uçuşlar devam ediyor, ancak havalimanına erişim grev nedeniyle karmaşık hale geldi."
+       ]
+      }
+     ]
+    },
+    "ar": {
+     "lede": "بناءً على دعوة CGSP، تعطلت السكك الحديدية وSTIB وTEC وDe Lijn وRTBF وbpost. بعد ثلاثة أيام من المظاهرة الوطنية في بروكسل، تريد النقابات التأثير على خيارات الحكومة المتعلقة بالميزانية، عشية خطاب رئيس الوزراء.",
+     "keyPoints": [
+      "تم تعطيل السكك الحديدية وSTIB وTEC وDe Lijn وRTBF وbpost بناءً على دعوة CGSP.",
+      "تقوم شركة SNCB بتشغيل جزء من قطاراتها فقط، اعتبارًا من يوم الأحد الساعة 10 مساءً. إلى القطار الأخير يوم الاثنين.",
+      "وتستهدف الحركة الميزانية الفيدرالية عشية إعلان بارت دي ويفر."
+     ],
+     "sections": [
+      {
+       "heading": "بلد في حركة بطيئة",
+       "paragraphs": [
+        "بعد ثلاثة أيام من المظاهرة الوطنية التي ضمت العديد من المتظاهرين في بروكسل يوم الجمعة، لا يزال الاحتجاج الاجتماعي مستمرا. تدعو CGSP، الخدمات العامة المركزية لـ FGTB، إلى إضراب في جميع الخدمات العامة يوم الاثنين 12 أكتوبر.",
+        "النقل هو الأكثر تضررا: فقد تم تشغيل عدد أقل من القطارات منذ مساء الأحد، وتعطلت شبكات STIB في بروكسل، وTEC في والونيا، وDe Lijn في فلاندرز. RTBF وbpost معنيون أيضًا. في مدينة بروكسل، تعمل منطقة Bruxelles-Propreté والمركز الإداري Brucity ببطء."
+       ]
+      },
+      {
+       "heading": "الميزانية في الخلفية",
+       "paragraphs": [
+        "تريد النقابات التأثير على خيارات ميزانية الحكومة الفيدرالية. ويتعين عليه أن يرسل مشروع ميزانيته إلى المفوضية الأوروبية، كما يتعين على رئيس الوزراء بارت دي ويفر أن يسلم إعلان سياسته العامة إلى المجلس يوم الثلاثاء."
+       ]
+      },
+      {
+       "heading": "ماذا تتوقع",
+       "paragraphs": [
+        "ويُنصح المسافرون بالتحقق من طريقهم قبل المغادرة. لا تزال الرحلات الجوية مستمرة في مطار بروكسل، لكن الوصول إلى المطار أصبح معقدًا بسبب الإضراب."
+       ]
+      }
+     ]
+    }
+   },
+   "sources": [
+    {
+     "source": "L'Avenir",
+     "url": "https://www.lavenir.net/actu/belgique/2026/10/12/la-contestation-sociale-reprend-ce-lundi-12-octobre-avec-cette-fois-une-greve-dans-les-services-publics-direct-LR3FSMC7M5DQLHRLXSNJP7V6PE/",
+     "title": "Grève dans les services publics ce lundi 12 octobre en Belgique : les transports en commun, la RTBF et Bpost impactés",
+     "summary": "",
+     "lang": "fr"
+    },
     {
      "source": "La DH",
-     "url": "https://www.dhnet.be/actu/belgique/2026/10/02/greve-confirmee-sur-le-rail-le-12-octobre-2026-NVRW2JMK7NB7TLZFIWTPALD7ZM/"
+     "url": "https://www.dhnet.be/actu/belgique/2026/10/02/greve-confirmee-sur-le-rail-le-12-octobre-2026-NVRW2JMK7NB7TLZFIWTPALD7ZM/",
+     "title": "Grève confirmée sur le rail le 12 octobre 2026",
+     "summary": "",
+     "lang": "fr"
+    },
+    {
+     "source": "Ville de Bruxelles",
+     "url": "https://www.bruxelles.be/actualites",
+     "title": "Actualités de la Ville de Bruxelles",
+     "summary": "",
+     "lang": "fr"
     },
     {
      "source": "shortnews.be",
-     "url": "https://shortnews.be/strike/4-public-services-strike-on-12-october-2026-10-12"
+     "url": "https://shortnews.be/strike/4-public-services-strike-on-12-october-2026-10-12",
+     "title": "Grève des services publics du lundi 12 octobre",
+     "summary": "",
+     "lang": "fr"
     }
    ],
    "score": 0
@@ -104,11 +243,14 @@
   {
    "id": "budget",
    "cat": "belgique",
+   "importance": 5,
+   "coverage": 3,
    "source": "The Brussels Times",
    "url": "https://www.brusselstimes.com/2301600/in-search-of-e10-billion-belgian-government-prepares-for-another-major-budget-meeting",
    "image": null,
    "publishedAt": "2026-10-12T08:10:00Z",
    "lang": "fr",
+   "written": true,
    "title": {
     "fr": "Budget fédéral : la coalition Arizona cherche toujours 10 milliards d'euros avant l'échéance européenne",
     "en": "Federal budget: the Arizona coalition is still seeking 10 billion euros before the European deadline",
@@ -117,17 +259,396 @@
     "ar": "الميزانية الفيدرالية: لا يزال ائتلاف أريزونا يسعى للحصول على 10 مليارات يورو قبل الموعد النهائي الأوروبي"
    },
    "summary": {
-    "fr": "La Commission européenne attend le projet de budget belge ce mardi 13 octobre, jour où Bart De Wever doit prononcer sa déclaration de politique générale. L'adaptation des taux de TVA, très sensible pour le MR, et le freinage de la croissance des dépenses de soins de santé bloquent encore un accord. Le Premier ministre dit préférer un bon accord à un accord bâclé.",
-    "en": "The European Commission is awaiting the Belgian draft budget this Tuesday, October 13, the day when Bart De Wever is due to deliver his general policy declaration. The adaptation of VAT rates, very sensitive for the MR, and the slowdown in the growth of health care spending are still blocking an agreement. The Prime Minister says he prefers a good deal to a botched deal.",
-    "nl": "De Europese Commissie wacht op dinsdag 13 oktober op de Belgische ontwerpbegroting, de dag waarop Bart De Wever zijn algemene beleidsverklaring zal afgeven. De aanpassing van de BTW-tarieven, die zeer gevoelig liggen voor de MR, en de vertraging van de groei van de gezondheidszorguitgaven staan ​​nog steeds een akkoord in de weg. De premier zegt dat hij de voorkeur geeft aan een goede deal boven een mislukte deal.",
-    "tr": "Avrupa Komisyonu, Bart De Wever'in genel politika beyanını sunacağı gün olan 13 Ekim Salı günü Belçika bütçe taslağını bekliyor. MR için oldukça hassas olan KDV oranlarının uyarlanması ve sağlık harcamalarındaki artıştaki yavaşlama hâlâ anlaşmaya varılmasını engelliyor. Başbakan, iyi bir anlaşmayı başarısız bir anlaşmaya tercih ettiğini söylüyor.",
-    "ar": "وتنتظر المفوضية الأوروبية مشروع الميزانية البلجيكية يوم الثلاثاء الموافق 13 أكتوبر، وهو اليوم الذي من المقرر أن يقدم فيه بارت دي ويفر إعلان سياسته العامة. ولا يزال تكييف معدلات ضريبة القيمة المضافة، وهو أمر حساس للغاية بالنسبة لـ MR، والتباطؤ في نمو الإنفاق على الرعاية الصحية، يعيق التوصل إلى اتفاق. يقول رئيس الوزراء إنه يفضل صفقة جيدة على صفقة فاشلة."
+    "fr": "La Commission européenne attend le projet de budget belge ce mardi 13 octobre, jour de la déclaration de politique générale de Bart De Wever. La TVA et les dépenses de soins de santé bloquent encore un accord.",
+    "en": "The European Commission is awaiting the Belgian draft budget this Tuesday, October 13, the day of Bart De Wever's general policy declaration. VAT and healthcare spending still block a deal.",
+    "nl": "De Europese Commissie wacht op dinsdag 13 oktober, de dag van de algemene beleidsverklaring van Bart De Wever, de Belgische ontwerpbegroting af. Btw en gezondheidszorguitgaven blokkeren nog steeds een deal.",
+    "tr": "Avrupa Komisyonu, Bart De Wever'in genel politika beyanının yayınlanacağı 13 Ekim Salı günü Belçika bütçe taslağını bekliyor. KDV ve sağlık harcamaları hâlâ anlaşmayı engelliyor.",
+    "ar": "وتنتظر المفوضية الأوروبية مشروع الميزانية البلجيكية يوم الثلاثاء الموافق 13 أكتوبر، وهو يوم إعلان السياسة العامة لبارت دي ويفر. ولا يزال الإنفاق على ضريبة القيمة المضافة والرعاية الصحية يعيق التوصل إلى اتفاق."
    },
-   "coverage": 3,
-   "related": [
+   "body": {
+    "fr": {
+     "lede": "La Commission européenne attend le projet de budget belge ce mardi 13 octobre, jour de la déclaration de politique générale de Bart De Wever. La TVA et les dépenses de soins de santé bloquent encore un accord.",
+     "keyPoints": [
+      "Le gouvernement cherche environ 10 milliards d'euros pour respecter les règles européennes d'ici 2029.",
+      "L’adaptation des taux de TVA, très sensible pour le MR, reste le principal point de blocage.",
+      "Le projet est attendu à Bruxelles le 13 octobre, jour du discours du Premier ministre."
+     ],
+     "sections": [
+      {
+       "heading": "Une échéance serrée",
+       "paragraphs": [
+        "La coalition Arizona — N-VA, MR, Les Engagés, Vooruit et CD&V — reprend ses négociations budgétaires alors que l'échéance approche : la Commission européenne attend le projet de budget belge ce mardi 13 octobre, jour où le Premier ministre Bart De Wever doit présenter sa déclaration de politique générale au Parlement.",
+        "Selon The Brussels Times, l'objectif est de trouver environ 10 milliards d'euros pour remettre les finances publiques en conformité avec les règles budgétaires européennes d'ici 2029. Peu d'observateurs croient toutefois que l'échéance sera tenue."
+       ]
+      },
+      {
+       "heading": "Les points de friction",
+       "paragraphs": [
+        "L'adaptation de certains taux de TVA reste le principal point de blocage, en particulier pour le MR. Le ralentissement de la croissance des dépenses de soins de santé rencontre lui aussi des résistances au sein de la majorité."
+       ]
+      },
+      {
+       "heading": "La ligne du Premier ministre",
+       "paragraphs": [
+        "Bart De Wever répète qu'il préfère un bon accord à un accord conclu dans la précipitation. Pour lui, l'assainissement des finances publiques est la tâche principale de la législature."
+       ]
+      }
+     ]
+    },
+    "en": {
+     "lede": "The European Commission is awaiting the Belgian draft budget this Tuesday, October 13, the day of Bart De Wever's general policy declaration. VAT and healthcare spending still block a deal.",
+     "keyPoints": [
+      "The government is seeking around 10 billion euros to comply with European rules by 2029.",
+      "The adaptation of VAT rates, very sensitive for the MR, remains the main blocking point.",
+      "The project is expected in Brussels on October 13, the day of the Prime Minister's speech."
+     ],
+     "sections": [
+      {
+       "heading": "A tight deadline",
+       "paragraphs": [
+        "The Arizona coalition - N-VA, MR, Les Engagés, Vooruit and CD&V - resumes its budget negotiations as the deadline approaches: the European Commission is awaiting the Belgian draft budget this Tuesday, October 13, the day when Prime Minister Bart De Wever must present his general policy declaration to Parliament.",
+        "According to The Brussels Times, the objective is to find around 10 billion euros to bring public finances into compliance with European budgetary rules by 2029. Few observers, however, believe that the deadline will be met."
+       ]
+      },
+      {
+       "heading": "The sticking points",
+       "paragraphs": [
+        "The adaptation of certain VAT rates remains the main sticking point, in particular for the MR. The slowdown in the growth of health care spending also meets resistance from the majority."
+       ]
+      },
+      {
+       "heading": "The Prime Minister's line",
+       "paragraphs": [
+        "Bart De Wever repeats that he prefers a good agreement to one concluded in haste. For him, the consolidation of public finances is the main task of the legislature."
+       ]
+      }
+     ]
+    },
+    "nl": {
+     "lede": "De Europese Commissie wacht op dinsdag 13 oktober, de dag van de algemene beleidsverklaring van Bart De Wever, de Belgische ontwerpbegroting af. Btw en gezondheidszorguitgaven blokkeren nog steeds een deal.",
+     "keyPoints": [
+      "Het kabinet vraagt zo’n 10 miljard euro om in 2029 aan de Europese regels te voldoen.",
+      "De aanpassing van de BTW-tarieven, die zeer gevoelig ligt voor de MR, blijft het belangrijkste knelpunt.",
+      "Het project wordt op 13 oktober, de dag van de toespraak van de premier, in Brussel verwacht."
+     ],
+     "sections": [
+      {
+       "heading": "Een strakke deadline",
+       "paragraphs": [
+        "De Arizona-coalitie - N-VA, MR, Les Engagés, Vooruit en CD&V - hervat haar begrotingsonderhandelingen nu de deadline nadert: de Europese Commissie wacht op dinsdag 13 oktober op de Belgische ontwerpbegroting, de dag waarop premier Bart De Wever zijn algemene beleidsverklaring aan het parlement moet presenteren.",
+        "Volgens The Brussels Times is het doel om ongeveer 10 miljard euro te vinden om de overheidsfinanciën tegen 2029 in overeenstemming te brengen met de Europese begrotingsregels. Weinig waarnemers geloven echter dat de deadline gehaald zal worden."
+       ]
+      },
+      {
+       "heading": "De knelpunten",
+       "paragraphs": [
+        "De aanpassing van bepaalde BTW-tarieven blijft vooral voor de MR het knelpunt. De vertraging van de groei van de gezondheidszorguitgaven stuit ook op weerstand bij de meerderheid."
+       ]
+      },
+      {
+       "heading": "De lijn van de premier",
+       "paragraphs": [
+        "Bart De Wever herhaalt dat hij de voorkeur geeft aan een goed akkoord boven een overhaast gesloten akkoord. Voor hem is de consolidatie van de overheidsfinanciën de belangrijkste taak van de wetgever."
+       ]
+      }
+     ]
+    },
+    "tr": {
+     "lede": "Avrupa Komisyonu, Bart De Wever'in genel politika beyanının yayınlanacağı 13 Ekim Salı günü Belçika bütçe taslağını bekliyor. KDV ve sağlık harcamaları hâlâ anlaşmayı engelliyor.",
+     "keyPoints": [
+      "Hükümet, 2029 yılına kadar Avrupa kurallarına uymak için yaklaşık 10 milyar avro arıyor.",
+      "MR açısından oldukça hassas olan KDV oranlarının uyarlanması temel engel olmaya devam ediyor.",
+      "Projenin Başbakan'ın konuşması olan 13 Ekim'de Brüksel'de yapılması bekleniyor."
+     ],
+     "sections": [
+      {
+       "heading": "Sıkı bir son tarih",
+       "paragraphs": [
+        "Arizona koalisyonu (N-VA, MR, Les Engagés, Vooruit ve CD&V) son tarih yaklaşırken bütçe müzakerelerine devam ediyor: Avrupa Komisyonu, Başbakan Bart De Wever'in genel politika beyanını Parlamentoya sunması gereken 13 Ekim Salı günü Belçika bütçe taslağını bekliyor.",
+        "Brüksel Times'a göre hedef, 2029 yılına kadar kamu maliyesini Avrupa bütçe kurallarına uygun hale getirmek için yaklaşık 10 milyar avro bulmak. Ancak çok az gözlemci bu sürenin karşılanacağına inanıyor."
+       ]
+      },
+      {
+       "heading": "Sıkışan noktalar",
+       "paragraphs": [
+        "Belirli KDV oranlarının uyarlanması, özellikle MR için temel sorun olmaya devam ediyor. Sağlık harcamalarındaki artıştaki yavaşlama da çoğunluğun direnciyle karşılaşıyor."
+       ]
+      },
+      {
+       "heading": "Başbakan'ın hattı",
+       "paragraphs": [
+        "Bart De Wever, aceleyle yapılan bir anlaşma yerine iyi bir anlaşmayı tercih ettiğini tekrarlıyor. Ona göre kamu maliyesinin konsolidasyonu yasama organının temel görevidir."
+       ]
+      }
+     ]
+    },
+    "ar": {
+     "lede": "وتنتظر المفوضية الأوروبية مشروع الميزانية البلجيكية يوم الثلاثاء الموافق 13 أكتوبر، وهو يوم إعلان السياسة العامة لبارت دي ويفر. ولا يزال الإنفاق على ضريبة القيمة المضافة والرعاية الصحية يعيق التوصل إلى اتفاق.",
+     "keyPoints": [
+      "وتسعى الحكومة للحصول على نحو 10 مليارات يورو للامتثال للقواعد الأوروبية بحلول عام 2029.",
+      "ويظل تكييف معدلات ضريبة القيمة المضافة، وهو أمر حساس للغاية بالنسبة لـ MR، هو نقطة العوائق الرئيسية.",
+      "ومن المتوقع أن يتم تنفيذ المشروع في بروكسل يوم 13 أكتوبر، وهو يوم خطاب رئيس الوزراء."
+     ],
+     "sections": [
+      {
+       "heading": "موعد نهائي ضيق",
+       "paragraphs": [
+        "يستأنف ائتلاف أريزونا المكون من N-VA وMR وLes Engagés وVoruit وCD&V مفاوضات الميزانية مع اقتراب الموعد النهائي: تنتظر المفوضية الأوروبية مشروع الميزانية البلجيكية يوم الثلاثاء 13 أكتوبر، وهو اليوم الذي يتعين فيه على رئيس الوزراء بارت دي ويفر تقديم إعلان سياسته العامة إلى البرلمان.",
+        "ووفقا لصحيفة بروكسل تايمز، فإن الهدف هو إيجاد حوالي 10 مليار يورو لجعل المالية العامة متوافقة مع قواعد الميزانية الأوروبية بحلول عام 2029. ومع ذلك، يعتقد عدد قليل من المراقبين أنه سيتم الوفاء بالموعد النهائي."
+       ]
+      },
+      {
+       "heading": "النقاط الشائكة",
+       "paragraphs": [
+        "ويظل تكييف بعض معدلات ضريبة القيمة المضافة هو النقطة الشائكة الرئيسية، ولا سيما بالنسبة إلى MR. ويواجه التباطؤ في نمو الإنفاق على الرعاية الصحية أيضًا مقاومة من الأغلبية."
+       ]
+      },
+      {
+       "heading": "خط رئيس الوزراء",
+       "paragraphs": [
+        "يكرر بارت دي ويفر أنه يفضل الاتفاق الجيد على الاتفاق المبرم على عجل. بالنسبة له، توحيد المالية العامة هو المهمة الرئيسية للسلطة التشريعية."
+       ]
+      }
+     ]
+    }
+   },
+   "sources": [
+    {
+     "source": "The Brussels Times",
+     "url": "https://www.brusselstimes.com/2301600/in-search-of-e10-billion-belgian-government-prepares-for-another-major-budget-meeting",
+     "title": "À la recherche de 10 milliards : le gouvernement prépare une nouvelle réunion budgétaire",
+     "summary": "",
+     "lang": "fr"
+    },
     {
      "source": "Belga",
-     "url": "https://www.belganewsagency.eu/pm-de-wever-sounds-alarm-on-belgiums-public-finances-amid-budget-negotiations"
+     "url": "https://www.belganewsagency.eu/pm-de-wever-sounds-alarm-on-belgiums-public-finances-amid-budget-negotiations",
+     "title": "Le Premier ministre De Wever tire la sonnette d'alarme sur les finances publiques",
+     "summary": "",
+     "lang": "fr"
+    },
+    {
+     "source": "The Brussels Times",
+     "url": "https://www.brusselstimes.com/2353788/pm-de-wever-continues-bilateral-talks-as-budget-talks-enter-final-stretch",
+     "title": "Bart De Wever poursuit les discussions bilatérales",
+     "summary": "",
+     "lang": "fr"
+    }
+   ],
+   "score": 0
+  },
+  {
+   "id": "nobel",
+   "cat": "economie",
+   "importance": 5,
+   "coverage": 6,
+   "source": "CNBC",
+   "url": "https://www.cnbc.com/2026/10/12/nobel-economics-prize-winner-woodford-hall.html",
+   "image": null,
+   "publishedAt": "2026-10-12T10:05:00Z",
+   "lang": "fr",
+   "written": true,
+   "title": {
+    "fr": "Nobel d'économie : les Américains Robert Hall et Michael Woodford récompensés",
+    "en": "Nobel Prize in Economics: Americans Robert Hall and Michael Woodford rewarded",
+    "nl": "Nobelprijs voor de Economie: Amerikanen Robert Hall en Michael Woodford beloond",
+    "tr": "Nobel Ekonomi Ödülü: Amerikalı Robert Hall ve Michael Woodford ödüllendirildi",
+    "ar": "جائزة نوبل في الاقتصاد: الأمريكيان روبرت هول ومايكل وودفورد"
+   },
+   "summary": {
+    "fr": "L'Académie royale des sciences de Suède distingue l'économiste de Stanford et celui de Columbia pour avoir donné des fondements solides aux modèles qui servent à stabiliser l'économie, aujourd'hui utilisés par les banques centrales.",
+    "en": "The Royal Swedish Academy of Sciences distinguishes the Stanford economist and that of Columbia for having provided solid foundations for the models which serve to stabilize the economy, today used by central banks.",
+    "nl": "De Koninklijke Zweedse Academie van Wetenschappen onderscheidt de econoom van Stanford en die van Columbia omdat ze een solide basis hebben gelegd voor de modellen die dienen om de economie te stabiliseren, die vandaag de dag door centrale banken worden gebruikt.",
+    "tr": "İsveç Kraliyet Bilimler Akademisi, Stanford ekonomistini ve Columbia ekonomistini, bugün merkez bankaları tarafından kullanılan, ekonomiyi istikrara kavuşturmaya hizmet eden modeller için sağlam temeller sağladıkları için ayırıyor.",
+    "ar": "تميز الأكاديمية الملكية السويدية للعلوم بين الاقتصاديين في جامعة ستانفورد والأكاديمية في جامعة كولومبيا لتوفير أسس متينة للنماذج التي تعمل على استقرار الاقتصاد، والتي تستخدمها البنوك المركزية اليوم."
+   },
+   "body": {
+    "fr": {
+     "lede": "L'Académie royale des sciences de Suède distingue l'économiste de Stanford et celui de Columbia pour avoir donné des fondements solides aux modèles qui servent à stabiliser l'économie, aujourd'hui utilisés par les banques centrales.",
+     "keyPoints": [
+      "Robert E. Hall (Stanford) et Michael Woodford (Columbia) reçoivent le prix 2026.",
+      "Ils sont récompensés « pour les fondements microéconomiques de la stabilisation macroéconomique ».",
+      "Leurs modèles aident banques centrales et gouvernements à amortir les cycles économiques."
+     ],
+     "sections": [
+      {
+       "heading": "Le dernier Nobel de la saison",
+       "paragraphs": [
+        "Le prix de la Banque de Suède en sciences économiques, dernier Nobel annoncé cette année, revient à deux économistes américains : Robert E. Hall, professeur à Stanford, et Michael Woodford, de l'université Columbia.",
+        "Selon le comité, leurs travaux ont fourni une base théorique stable aux modèles employés aujourd'hui par les banques centrales et les gouvernements du monde entier."
+       ]
+      },
+      {
+       "heading": "Comprendre les hauts et les bas de l’économie",
+       "paragraphs": [
+        "Leurs recherches portent sur les mécanismes qui font alterner phases d'expansion et de récession, et sur la manière dont la politique économique peut en limiter les dégâts.",
+        "Michael Woodford est connu pour ses travaux sur la politique monétaire et le rôle des anticipations. Robert Hall a consacré une grande partie de sa carrière au marché du travail et aux cycles, et a longtemps présidé le comité américain chargé de dater officiellement les récessions."
+       ]
+      },
+      {
+       "heading": "Pourquoi cela concerne aussi la Belgique",
+       "paragraphs": [
+        "Ces outils sont au cœur des décisions des grandes banques centrales, dont la Banque centrale européenne. Ses choix de taux d'intérêt se répercutent directement sur les crédits hypothécaires et l'épargne des ménages belges."
+       ]
+      }
+     ]
+    },
+    "en": {
+     "lede": "The Royal Swedish Academy of Sciences distinguishes the Stanford economist and that of Columbia for having provided solid foundations for the models which serve to stabilize the economy, today used by central banks.",
+     "keyPoints": [
+      "Robert E. Hall (Stanford) and Michael Woodford (Columbia) receive the 2026 award.",
+      "They are rewarded “for the microeconomic foundations of macroeconomic stabilization”.",
+      "Their models help central banks and governments cushion economic cycles."
+     ],
+     "sections": [
+      {
+       "heading": "The last Nobel of the season",
+       "paragraphs": [
+        "The Bank of Sweden Prize in Economic Sciences, the last Nobel Prize announced this year, goes to two American economists: Robert E. Hall, professor at Stanford, and Michael Woodford, of Columbia University.",
+        "According to the committee, their work provided a stable theoretical basis for the models employed today by central banks and governments around the world."
+       ]
+      },
+      {
+       "heading": "Understanding the ups and downs of the economy",
+       "paragraphs": [
+        "Their research focuses on the mechanisms that cause phases of expansion and recession to alternate, and on how economic policy can limit the damage.",
+        "Michael Woodford is known for his work on monetary policy and the role of expectations. Robert Hall has devoted much of his career to the labor market and cycles, and long chaired the American committee responsible for officially dating recessions."
+       ]
+      },
+      {
+       "heading": "Why does this also concern Belgium",
+       "paragraphs": [
+        "These tools are at the heart of the decisions of major central banks, including the European Central Bank. Its interest rate choices have a direct impact on the mortgage loans and savings of Belgian households."
+       ]
+      }
+     ]
+    },
+    "nl": {
+     "lede": "De Koninklijke Zweedse Academie van Wetenschappen onderscheidt de econoom van Stanford en die van Columbia omdat ze een solide basis hebben gelegd voor de modellen die dienen om de economie te stabiliseren, die vandaag de dag door centrale banken worden gebruikt.",
+     "keyPoints": [
+      "Robert E. Hall (Stanford) en Michael Woodford (Columbia) ontvangen de onderscheiding van 2026.",
+      "Ze worden beloond “voor de micro-economische fundamenten van de macro-economische stabilisatie”.",
+      "Hun modellen helpen centrale banken en overheden de economische cycli op te vangen."
+     ],
+     "sections": [
+      {
+       "heading": "De laatste Nobelprijs van het seizoen",
+       "paragraphs": [
+        "De Bank of Sweden Prize in Economic Sciences, de laatste Nobelprijs die dit jaar werd aangekondigd, gaat naar twee Amerikaanse economen: Robert E. Hall, professor aan Stanford, en Michael Woodford, van Columbia University.",
+        "Volgens de commissie vormde hun werk een stabiele theoretische basis voor de modellen die vandaag de dag door centrale banken en overheden over de hele wereld worden gebruikt."
+       ]
+      },
+      {
+       "heading": "Inzicht in de ups en downs van de economie",
+       "paragraphs": [
+        "Hun onderzoek richt zich op de mechanismen die ervoor zorgen dat fasen van expansie en recessie elkaar afwisselen, en op hoe economisch beleid de schade kan beperken.",
+        "Michael Woodford staat bekend om zijn werk over monetair beleid en de rol van verwachtingen. Robert Hall heeft een groot deel van zijn carrière gewijd aan de arbeidsmarkt en de cycli, en was lange tijd voorzitter van de Amerikaanse commissie die verantwoordelijk was voor het officieel dateren van recessies."
+       ]
+      },
+      {
+       "heading": "Waarom betreft dit ook België",
+       "paragraphs": [
+        "Deze instrumenten vormen de kern van de beslissingen van grote centrale banken, waaronder de Europese Centrale Bank. De rentekeuzes hebben een directe impact op de hypotheekleningen en spaargelden van de Belgische huishoudens."
+       ]
+      }
+     ]
+    },
+    "tr": {
+     "lede": "İsveç Kraliyet Bilimler Akademisi, Stanford ekonomistini ve Columbia ekonomistini, bugün merkez bankaları tarafından kullanılan, ekonomiyi istikrara kavuşturmaya hizmet eden modeller için sağlam temeller sağladıkları için ayırıyor.",
+     "keyPoints": [
+      "Robert E. Hall (Stanford) ve Michael Woodford (Columbia) 2026 ödülünü aldı.",
+      "“Makroekonomik istikrarın mikroekonomik temelleri için” ödüllendiriliyorlar.",
+      "Modelleri merkez bankalarının ve hükümetlerin ekonomik döngüleri yumuşatmasına yardımcı oluyor."
+     ],
+     "sections": [
+      {
+       "heading": "Sezonun son Nobel'i",
+       "paragraphs": [
+        "Bu yıl açıklanan son Nobel Ödülü olan İsveç Bankası İktisadi Bilimler Ödülü, iki Amerikalı ekonomiste verildi: Stanford profesörü Robert E. Hall ve Columbia Üniversitesi'nden Michael Woodford.",
+        "Komiteye göre, onların çalışmaları bugün dünya çapındaki merkez bankaları ve hükümetler tarafından kullanılan modeller için istikrarlı bir teorik temel sağladı."
+       ]
+      },
+      {
+       "heading": "Ekonominin iniş ve çıkışlarını anlamak",
+       "paragraphs": [
+        "Araştırmaları, genişleme ve durgunluk aşamalarının değişmesine neden olan mekanizmalara ve ekonomi politikasının hasarı nasıl sınırlayabileceğine odaklanıyor.",
+        "Michael Woodford para politikası ve beklentilerin rolü üzerine yaptığı çalışmalarla tanınıyor. Robert Hall kariyerinin çoğunu işgücü piyasasına ve döngülere adadı ve durgunlukların resmi olarak tarihlendirilmesinden sorumlu Amerikan komitesine uzun süre başkanlık etti."
+       ]
+      },
+      {
+       "heading": "Bu neden Belçika'yı da ilgilendiriyor?",
+       "paragraphs": [
+        "Bu araçlar, Avrupa Merkez Bankası da dahil olmak üzere büyük merkez bankalarının kararlarının merkezinde yer alıyor. Faiz oranı seçimleri, Belçikalı hanelerin ipotek kredileri ve tasarrufları üzerinde doğrudan etkiye sahiptir."
+       ]
+      }
+     ]
+    },
+    "ar": {
+     "lede": "تميز الأكاديمية الملكية السويدية للعلوم بين الاقتصاديين في جامعة ستانفورد والأكاديمية في جامعة كولومبيا لتوفير أسس متينة للنماذج التي تعمل على استقرار الاقتصاد، والتي تستخدمها البنوك المركزية اليوم.",
+     "keyPoints": [
+      "حصل روبرت إي هول (ستانفورد) ومايكل وودفورد (كولومبيا) على جائزة عام 2026.",
+      "ويتم مكافأتهم \"على أسس الاقتصاد الجزئي لاستقرار الاقتصاد الكلي\".",
+      "وتساعد نماذجهم البنوك المركزية والحكومات على تخفيف حدة الدورات الاقتصادية."
+     ],
+     "sections": [
+      {
+       "heading": "جائزة نوبل الأخيرة لهذا الموسم",
+       "paragraphs": [
+        "جائزة بنك السويد في العلوم الاقتصادية، وهي آخر جائزة نوبل يتم الإعلان عنها هذا العام، تذهب إلى اثنين من الاقتصاديين الأمريكيين: روبرت إي هول، الأستاذ في جامعة ستانفورد، ومايكل وودفورد، من جامعة كولومبيا.",
+        "ووفقاً للجنة، فإن عملهم قدم أساساً نظرياً مستقراً للنماذج المستخدمة اليوم من قبل البنوك المركزية والحكومات في جميع أنحاء العالم."
+       ]
+      },
+      {
+       "heading": "فهم صعود وهبوط الاقتصاد",
+       "paragraphs": [
+        "وتركز أبحاثهم على الآليات التي تتسبب في تناوب مراحل التوسع والركود، وعلى الكيفية التي يمكن بها للسياسة الاقتصادية أن تحد من الضرر.",
+        "يشتهر مايكل وودفورد بعمله في مجال السياسة النقدية ودور التوقعات. كرّس روبرت هول الكثير من حياته المهنية لسوق العمل والدورات الاقتصادية، وترأس لفترة طويلة اللجنة الأمريكية المسؤولة عن تحديد فترات الركود رسميًا."
+       ]
+      },
+      {
+       "heading": "لماذا يتعلق هذا أيضًا ببلجيكا؟",
+       "paragraphs": [
+        "وتقع هذه الأدوات في قلب قرارات البنوك المركزية الكبرى، بما في ذلك البنك المركزي الأوروبي. خيارات أسعار الفائدة لها تأثير مباشر على قروض الرهن العقاري ومدخرات الأسر البلجيكية."
+       ]
+      }
+     ]
+    }
+   },
+   "sources": [
+    {
+     "source": "CNBC",
+     "url": "https://www.cnbc.com/2026/10/12/nobel-economics-prize-winner-woodford-hall.html",
+     "title": "Le Nobel d’économie attribué à Robert E. Hall et Michael Woodford",
+     "summary": "",
+     "lang": "fr"
+    },
+    {
+     "source": "NPR",
+     "url": "https://www.npr.org/2026/10/12/nx-s1-5996634/last-nobel-prize-of-the-year-to-be-announced-for-economics",
+     "title": "Le Nobel d’économie à Hall et Woodford pour leurs travaux sur les cycles",
+     "summary": "",
+     "lang": "fr"
+    },
+    {
+     "source": "CNN",
+     "url": "https://www.cnn.com/2026/10/12/business/nobel-prize-economics-intl",
+     "title": "Deux Américains récompensés pour des modèles contre les récessions",
+     "summary": "",
+     "lang": "fr"
+    },
+    {
+     "source": "NBC News",
+     "url": "https://www.nbcnews.com/world/europe/americans-hall-woodford-win-2026-nobel-economics-prize-rcna602928",
+     "title": "Les Américains Hall et Woodford remportent le Nobel d’économie 2026",
+     "summary": "",
+     "lang": "fr"
+    },
+    {
+     "source": "The Japan Times",
+     "url": "https://www.japantimes.co.jp/business/2026/10/12/nobel-economics-prize/",
+     "title": "Robert Hall et Michael Woodford, Nobel d’économie 2026",
+     "summary": "",
+     "lang": "fr"
     }
    ],
    "score": 0
@@ -135,11 +656,14 @@
   {
    "id": "ukraine",
    "cat": "monde",
+   "importance": 5,
+   "coverage": 4,
    "source": "Euronews",
    "url": "https://www.euronews.com/video/2026/10/12/latest-news-bulletin-october-12th-2026-morning",
    "image": null,
    "publishedAt": "2026-10-12T07:00:00Z",
    "lang": "fr",
+   "written": true,
    "title": {
     "fr": "Ukraine : Trump annonce une trêve sur l'énergie, Kyiv pose ses conditions",
     "en": "Ukraine: Trump announces truce on energy, Kyiv sets conditions",
@@ -148,24 +672,385 @@
     "ar": "أوكرانيا: ترامب يعلن هدنة بشأن الطاقة، وكييف تضع الشروط"
    },
    "summary": {
-    "fr": "Donald Trump affirme que Moscou et Kyiv ont accepté de cesser leurs frappes contre les infrastructures énergétiques, avant que la Maison Blanche ne précise qu'il pourrait ne s'agir que des raffineries. Volodymyr Zelensky se dit prêt à suspendre ces frappes si la Russie fait de même, alors que Kyiv signale une attaque contre une centrale de la région de Kharkiv.",
-    "en": "Donald Trump claims that Moscow and Kyiv have agreed to stop their strikes against energy infrastructure, before the White House specifies that it could only concern refineries. Volodymyr Zelensky says he is ready to suspend these strikes if Russia does the same, while Kyiv reports an attack on a power station in the Kharkiv region.",
-    "nl": "Donald Trump beweert dat Moskou en Kiev zijn overeengekomen hun aanvallen op de energie-infrastructuur stop te zetten, voordat het Witte Huis specificeert dat het alleen om raffinaderijen zou kunnen gaan. Volodymyr Zelenski zegt dat hij bereid is deze aanvallen op te schorten als Rusland hetzelfde doet, terwijl Kiev een aanval op een elektriciteitscentrale in de regio Charkov meldt.",
-    "tr": "Donald Trump, Beyaz Saray bunun yalnızca rafinerileri ilgilendireceğini belirtmeden önce Moskova ve Kiev'in enerji altyapısına yönelik saldırılarını durdurma konusunda anlaştıklarını iddia ediyor. Volodymyr Zelensky, Rusya'nın da aynısını yapması halinde bu saldırıları askıya almaya hazır olduğunu söylerken, Kiev, Kharkiv bölgesindeki bir elektrik santraline saldırı düzenlendiğini bildirdi.",
-    "ar": "يزعم دونالد ترامب أن موسكو وكييف اتفقتا على وقف ضرباتهما ضد البنية التحتية للطاقة، قبل أن يحدد البيت الأبيض أن الأمر يتعلق فقط بمصافي التكرير. ويقول فولوديمير زيلينسكي إنه مستعد لتعليق هذه الضربات إذا فعلت روسيا الشيء نفسه، في حين أبلغت كييف عن هجوم على محطة كهرباء في منطقة خاركيف."
+    "fr": "Donald Trump affirme que Moscou et Kyiv ont accepté de cesser leurs frappes contre les infrastructures énergétiques. La Maison Blanche nuance, et l'Ukraine signale une nouvelle attaque près de Kharkiv.",
+    "en": "Donald Trump says Moscow and Kyiv have agreed to stop their strikes against energy infrastructure. The White House is nuanced, and Ukraine reports a new attack near Kharkiv.",
+    "nl": "Donald Trump zegt dat Moskou en Kiev zijn overeengekomen hun aanvallen op de energie-infrastructuur te stoppen. Het Witte Huis is genuanceerd en Oekraïne meldt een nieuwe aanval nabij Charkov.",
+    "tr": "Donald Trump, Moskova ve Kiev'in enerji altyapısına yönelik saldırılarını durdurma konusunda anlaştıklarını söyledi. Beyaz Saray'da ince ayrıntılar var ve Ukrayna, Kharkiv yakınlarında yeni bir saldırı olduğunu bildirdi.",
+    "ar": "قال دونالد ترامب إن موسكو وكييف اتفقتا على وقف ضرباتهما ضد البنية التحتية للطاقة. البيت الأبيض في موقف دقيق، وأوكرانيا تعلن عن هجوم جديد بالقرب من خاركيف."
    },
-   "coverage": 4,
-   "related": [],
+   "body": {
+    "fr": {
+     "lede": "Donald Trump affirme que Moscou et Kyiv ont accepté de cesser leurs frappes contre les infrastructures énergétiques. La Maison Blanche nuance, et l'Ukraine signale une nouvelle attaque près de Kharkiv.",
+     "keyPoints": [
+      "Donald Trump annonce un cessez-le-feu sur les frappes visant l’énergie.",
+      "La Maison Blanche précise qu’il pourrait ne s’agir que des raffineries de pétrole.",
+      "Kyiv suspendra ses frappes si Moscou fait de même ; une centrale de Kharkiv aurait été visée."
+     ],
+     "sections": [
+      {
+       "heading": "Une annonce aux contours flous",
+       "paragraphs": [
+        "Donald Trump a affirmé que la Russie et l'Ukraine avaient accepté de cesser de frapper leurs infrastructures énergétiques. Peu après, un responsable de la Maison Blanche a nuancé : le président pourrait avoir voulu parler d'un accord limité aux raffineries de pétrole, rapporte Euronews.",
+        "Le président américain a par ailleurs de nouveau pressé les Ukrainiens d’élire un nouveau dirigeant."
+       ]
+      },
+      {
+       "heading": "La réponse de Kyiv",
+       "paragraphs": [
+        "Volodymyr Zelensky assure que l'Ukraine cessera ses frappes contre le secteur énergétique russe si Moscou en fait autant. Mais des responsables ukrainiens ont signalé, après les déclarations de Donald Trump, une frappe russe contre une centrale électrique à Kharkiv.",
+        "À l'approche de l'hiver, les réseaux électriques et de chauffage restent l'un des enjeux les plus sensibles du conflit."
+       ]
+      }
+     ]
+    },
+    "en": {
+     "lede": "Donald Trump says Moscow and Kyiv have agreed to stop their strikes against energy infrastructure. The White House is nuanced, and Ukraine reports a new attack near Kharkiv.",
+     "keyPoints": [
+      "Donald Trump announces a ceasefire on energy strikes.",
+      "The White House specifies that it could only be oil refineries.",
+      "Kyiv will suspend its strikes if Moscow does the same; a power plant in Kharkiv would have been targeted."
+     ],
+     "sections": [
+      {
+       "heading": "An announcement with blurred contours",
+       "paragraphs": [
+        "Donald Trump said Russia and Ukraine had agreed to stop hitting their energy infrastructure. Shortly after, a White House official qualified: the president could have wanted to talk about an agreement limited to oil refineries, reports Euronews.",
+        "The American president also once again urged the Ukrainians to elect a new leader."
+       ]
+      },
+      {
+       "heading": "Kyiv's response",
+       "paragraphs": [
+        "Volodymyr Zelensky assures that Ukraine will stop its strikes against the Russian energy sector if Moscow does the same. But Ukrainian officials reported, after Donald Trump's statements, a Russian strike against a power plant in Kharkiv.",
+        "As winter approaches, electricity and heating networks remain one of the most sensitive issues in the conflict."
+       ]
+      }
+     ]
+    },
+    "nl": {
+     "lede": "Donald Trump zegt dat Moskou en Kiev zijn overeengekomen hun aanvallen op de energie-infrastructuur te stoppen. Het Witte Huis is genuanceerd en Oekraïne meldt een nieuwe aanval nabij Charkov.",
+     "keyPoints": [
+      "Donald Trump kondigt een staakt-het-vuren aan voor energiestakingen.",
+      "Het Witte Huis geeft aan dat het alleen om olieraffinaderijen zou kunnen gaan.",
+      "Kiev zal zijn stakingen opschorten als Moskou hetzelfde doet; een elektriciteitscentrale in Charkov zou het doelwit zijn geweest."
+     ],
+     "sections": [
+      {
+       "heading": "Een aankondiging met vage contouren",
+       "paragraphs": [
+        "Donald Trump zei dat Rusland en Oekraïne hadden afgesproken om te stoppen met het aanvallen van hun energie-infrastructuur. Kort daarna kwalificeerde een functionaris van het Witte Huis zich: de president had willen praten over een overeenkomst die beperkt was tot olieraffinaderijen, meldt Euronews.",
+        "Ook riep de Amerikaanse president de Oekraïners nogmaals op een nieuwe leider te kiezen."
+       ]
+      },
+      {
+       "heading": "Kiev's reactie",
+       "paragraphs": [
+        "Volodymyr Zelenski verzekert dat Oekraïne zijn aanvallen op de Russische energiesector zal stoppen als Moskou hetzelfde doet. Maar Oekraïense functionarissen meldden, na de verklaringen van Donald Trump, een Russische aanval op een energiecentrale in Charkov.",
+        "Nu de winter nadert, blijven elektriciteits- en warmtenetwerken een van de meest gevoelige kwesties in het conflict."
+       ]
+      }
+     ]
+    },
+    "tr": {
+     "lede": "Donald Trump, Moskova ve Kiev'in enerji altyapısına yönelik saldırılarını durdurma konusunda anlaştıklarını söyledi. Beyaz Saray'da ince ayrıntılar var ve Ukrayna, Kharkiv yakınlarında yeni bir saldırı olduğunu bildirdi.",
+     "keyPoints": [
+      "Donald Trump enerji grevlerinde ateşkes ilan etti.",
+      "Beyaz Saray bunun yalnızca petrol rafinerileri olabileceğini belirtiyor.",
+      "Moskova da aynısını yaparsa Kiev grevlerini askıya alacak; Kharkiv'deki bir elektrik santrali hedef alınacaktı."
+     ],
+     "sections": [
+      {
+       "heading": "Bulanık hatları olan bir duyuru",
+       "paragraphs": [
+        "Donald Trump, Rusya ve Ukrayna'nın enerji altyapılarına zarar vermeyi bırakma konusunda anlaştıklarını söyledi. Kısa bir süre sonra bir Beyaz Saray yetkilisi bu durumu değerlendirdi: euronews'in haberine göre, başkan petrol rafinerileriyle sınırlı bir anlaşma hakkında konuşmak isteyebilirdi.",
+        "Amerikan başkanı ayrıca Ukraynalıları bir kez daha yeni bir lider seçmeye çağırdı."
+       ]
+      },
+      {
+       "heading": "Kiev'in yanıtı",
+       "paragraphs": [
+        "Volodymyr Zelensky, Moskova'nın aynısını yapması halinde Ukrayna'nın Rus enerji sektörüne yönelik saldırılarını durduracağına dair güvence verdi. Ancak Ukraynalı yetkililer, Donald Trump'ın açıklamalarının ardından Rusya'nın Kharkiv'deki bir elektrik santraline saldırı düzenlediğini bildirdi.",
+        "Kış yaklaşırken elektrik ve ısıtma şebekeleri çatışmanın en hassas konularından biri olmaya devam ediyor."
+       ]
+      }
+     ]
+    },
+    "ar": {
+     "lede": "قال دونالد ترامب إن موسكو وكييف اتفقتا على وقف ضرباتهما ضد البنية التحتية للطاقة. البيت الأبيض في موقف دقيق، وأوكرانيا تعلن عن هجوم جديد بالقرب من خاركيف.",
+     "keyPoints": [
+      "أعلن دونالد ترامب وقف إطلاق النار بشأن الضربات في مجال الطاقة.",
+      "ويحدد البيت الأبيض أنه لا يمكن أن يكون هناك سوى مصافي النفط.",
+      "وسوف تعلق كييف ضرباتها إذا فعلت موسكو الشيء نفسه؛ كان من الممكن أن تكون محطة توليد الكهرباء في خاركيف قد تم استهدافها."
+     ],
+     "sections": [
+      {
+       "heading": "إعلان مع ملامح غير واضحة",
+       "paragraphs": [
+        "وقال دونالد ترامب إن روسيا وأوكرانيا اتفقتا على وقف ضرب البنية التحتية للطاقة فيهما. بعد فترة وجيزة، تأهل مسؤول في البيت الأبيض: ربما كان الرئيس يريد التحدث عن اتفاق يقتصر على مصافي النفط، حسب يورونيوز.",
+        "كما حث الرئيس الأمريكي مرة أخرى الأوكرانيين على انتخاب زعيم جديد."
+       ]
+      },
+      {
+       "heading": "رد كييف",
+       "paragraphs": [
+        "أكد فولوديمير زيلينسكي أن أوكرانيا ستوقف ضرباتها ضد قطاع الطاقة الروسي إذا فعلت موسكو الشيء نفسه. لكن مسؤولين أوكرانيين أفادوا، بعد تصريحات دونالد ترامب، بضربة روسية استهدفت محطة كهرباء في خاركيف.",
+        "ومع اقتراب فصل الشتاء، تظل شبكات الكهرباء والتدفئة واحدة من أكثر القضايا حساسية في الصراع."
+       ]
+      }
+     ]
+    }
+   },
+   "sources": [
+    {
+     "source": "Euronews",
+     "url": "https://www.euronews.com/video/2026/10/12/latest-news-bulletin-october-12th-2026-morning",
+     "title": "Le bulletin d’information du 12 octobre 2026",
+     "summary": "",
+     "lang": "fr"
+    },
+    {
+     "source": "SBS News",
+     "url": "https://news.sbs.co.kr/english/article.do?news_id=N1008793124",
+     "title": "Les grandes informations du 12 octobre 2026",
+     "summary": "",
+     "lang": "fr"
+    }
+   ],
+   "score": 0
+  },
+  {
+   "id": "marches",
+   "cat": "finance",
+   "importance": 4,
+   "coverage": 3,
+   "source": "MoneyVox",
+   "url": "https://www.moneyvox.fr/bourse/actualites/110681/wall-street-au-sommet-le-journal-de-la-bourse-du-6-octobre-2026",
+   "image": null,
+   "publishedAt": "2026-10-12T07:30:00Z",
+   "lang": "fr",
+   "written": true,
+   "title": {
+    "fr": "Marchés : une semaine sous le regard de la Fed, les taux européens sous tension",
+    "en": "Markets: a week under the watch of the Fed, European rates under pressure",
+    "nl": "Markten: een week onder toezicht van de Fed, Europese rentes onder druk",
+    "tr": "Piyasalar bir haftadır Fed'in gözetiminde, Avrupa faizleri baskı altında",
+    "ar": "الأسواق: أسبوع تحت مراقبة بنك الاحتياطي الفيدرالي، وأسعار الفائدة الأوروبية تحت الضغط"
+   },
+   "summary": {
+    "fr": "Wall Street a terminé en hausse vendredi après une semaine agitée. Les investisseurs guettent la Réserve fédérale, tandis qu'en Europe la remontée des taux français inquiète.",
+    "en": "Wall Street ended higher on Friday after a turbulent week. Investors are watching the Federal Reserve, while in Europe the rise in French rates is worrying.",
+    "nl": "Wall Street eindigde vrijdag hoger na een turbulente week. Beleggers houden de Federal Reserve in de gaten, terwijl in Europa de stijging van de Franse rente zorgwekkend is.",
+    "tr": "Wall Street çalkantılı bir haftanın ardından Cuma gününü yükselişle tamamladı. Yatırımcılar Federal Reserve'ü izlerken, Avrupa'da Fransız faiz oranlarındaki artış endişe verici.",
+    "ar": "أنهت وول ستريت تداولاتها مرتفعة يوم الجمعة بعد أسبوع مضطرب. ويراقب المستثمرون الاحتياطي الفيدرالي، في حين أن ارتفاع أسعار الفائدة الفرنسية في أوروبا مثير للقلق."
+   },
+   "body": {
+    "fr": {
+     "lede": "Wall Street a terminé en hausse vendredi après une semaine agitée. Les investisseurs guettent la Réserve fédérale, tandis qu'en Europe la remontée des taux français inquiète.",
+     "keyPoints": [
+      "Wall Street a fini la semaine dans le vert, portée par quelques géants de la tech.",
+      "En Europe, l’écart entre les taux français et allemands se creuse.",
+      "Le pétrole recule après la promesse du G7 de libérer 100 millions de barils."
+     ],
+     "sections": [
+      {
+       "heading": "Wall Street tient bon, mais pas partout",
+       "paragraphs": [
+        "Les marchés américains ont terminé la semaine dernière en hausse après des séances agitées. Les indices masquent toutefois une réalité contrastée : en septembre, 78 % des valeurs du S&P 500 ont reculé, et la progression a été portée par quelques grandes valeurs technologiques."
+       ]
+      },
+      {
+       "heading": "Les taux, principal point de tension",
+       "paragraphs": [
+        "En Europe, l'attention se porte sur le marché obligataire. Les rendements des emprunts d'État ont nettement progressé ces dernières semaines et l'écart entre les taux français et allemands s'est creusé : les investisseurs exigent une prime plus élevée pour prêter à la France."
+       ]
+      },
+      {
+       "heading": "Le pétrole en repli",
+       "paragraphs": [
+        "Le brut a reculé après l'engagement du G7 de mettre 100 millions de barils sur le marché et la reprise des exportations du Moyen-Orient. Une baisse qui réduit la pression sur l'inflation, et donc sur les taux d'intérêt."
+       ]
+      },
+      {
+       "heading": "À suivre cette semaine",
+       "paragraphs": [
+        "Le calendrier est dominé par les signaux de la Réserve fédérale américaine. Aux États-Unis, la confiance des consommateurs s'est encore dégradée en octobre."
+       ]
+      }
+     ]
+    },
+    "en": {
+     "lede": "Wall Street ended higher on Friday after a turbulent week. Investors are watching the Federal Reserve, while in Europe the rise in French rates is worrying.",
+     "keyPoints": [
+      "Wall Street ended the week in the green, driven by a few tech giants.",
+      "In Europe, the gap between French and German rates is widening.",
+      "Oil falls after G7 promise to release 100 million barrels."
+     ],
+     "sections": [
+      {
+       "heading": "Wall Street is holding up, but not everywhere",
+       "paragraphs": [
+        "American markets ended last week on the rise after choppy sessions. The indices, however, mask a contrasting reality: in September, 78% of S&P 500 stocks fell, and the increase was driven by a few large technology stocks."
+       ]
+      },
+      {
+       "heading": "Rates, main point of tension",
+       "paragraphs": [
+        "In Europe, attention is focused on the bond market. Yields on government bonds have risen sharply in recent weeks and the gap between French and German rates has widened: investors are demanding a higher premium to lend to France."
+       ]
+      },
+      {
+       "heading": "Oil in decline",
+       "paragraphs": [
+        "Crude fell after the G7 commitment to put 100 million barrels on the market and the resumption of exports from the Middle East. A reduction which reduces the pressure on inflation, and therefore on interest rates."
+       ]
+      },
+      {
+       "heading": "To be continued this week",
+       "paragraphs": [
+        "The calendar is dominated by signals from the US Federal Reserve. In the United States, consumer confidence deteriorated further in October."
+       ]
+      }
+     ]
+    },
+    "nl": {
+     "lede": "Wall Street eindigde vrijdag hoger na een turbulente week. Beleggers houden de Federal Reserve in de gaten, terwijl in Europa de stijging van de Franse rente zorgwekkend is.",
+     "keyPoints": [
+      "Wall Street sloot de week positief af, onder impuls van enkele technologiegiganten.",
+      "In Europa wordt de kloof tussen de Franse en de Duitse rente steeds groter.",
+      "De olieprijs daalt nadat de G7 beloofde 100 miljoen vaten vrij te geven."
+     ],
+     "sections": [
+      {
+       "heading": "Wall Street houdt stand, maar niet overal",
+       "paragraphs": [
+        "De Amerikaanse markten sloten vorige week stijgend na schokkerige sessies. De indices maskeren echter een contrasterende realiteit: in september daalde 78% van de S&P 500-aandelen, en de stijging werd veroorzaakt door enkele grote technologieaandelen."
+       ]
+      },
+      {
+       "heading": "Tarieven, belangrijkste spanningspunt",
+       "paragraphs": [
+        "In Europa concentreert de aandacht zich op de obligatiemarkt. De rente op staatsobligaties is de afgelopen weken scherp gestegen en het verschil tussen de Franse en Duitse rente is groter geworden: beleggers eisen een hogere premie om aan Frankrijk te lenen."
+       ]
+      },
+      {
+       "heading": "Olie in verval",
+       "paragraphs": [
+        "Ruwe olie daalde na de toezegging van de G7 om 100 miljoen vaten op de markt te brengen en de hervatting van de export uit het Midden-Oosten. Een verlaging die de druk op de inflatie, en dus op de rente, vermindert."
+       ]
+      },
+      {
+       "heading": "Wordt deze week vervolgd",
+       "paragraphs": [
+        "De kalender wordt gedomineerd door signalen van de Amerikaanse Federal Reserve. In de Verenigde Staten is het consumentenvertrouwen in oktober verder verslechterd."
+       ]
+      }
+     ]
+    },
+    "tr": {
+     "lede": "Wall Street çalkantılı bir haftanın ardından Cuma gününü yükselişle tamamladı. Yatırımcılar Federal Reserve'ü izlerken, Avrupa'da Fransız faiz oranlarındaki artış endişe verici.",
+     "keyPoints": [
+      "Wall Street haftayı birkaç teknoloji devinin desteğiyle olumlu kapattı.",
+      "Avrupa'da Fransız ve Alman oranları arasındaki fark açılıyor.",
+      "Petrol, G7'nin 100 milyon varil çıkarma sözü vermesinin ardından düşüşe geçti."
+     ],
+     "sections": [
+      {
+       "heading": "Wall Street ayakta duruyor ama her yerde değil",
+       "paragraphs": [
+        "Amerikan piyasaları geçen haftayı dalgalı seansların ardından yükselişle kapattı. Ancak endeksler zıt bir gerçeği maskeliyor: Eylül ayında S&P 500 hisselerinin %78'i düştü ve artış birkaç büyük teknoloji hissesinden kaynaklandı."
+       ]
+      },
+      {
+       "heading": "Oranlar, asıl gerilim noktası",
+       "paragraphs": [
+        "Avrupa'da dikkatler tahvil piyasasına odaklanmış durumda. Devlet tahvillerinin getirileri son haftalarda keskin bir şekilde arttı ve Fransız ve Alman faiz oranları arasındaki fark açıldı: yatırımcılar Fransa'ya borç vermek için daha yüksek prim talep ediyor."
+       ]
+      },
+      {
+       "heading": "Petrol düşüşte",
+       "paragraphs": [
+        "Ham petrol, G7'nin piyasaya 100 milyon varil petrol çıkarma taahhüdü ve Orta Doğu'dan ihracatın yeniden başlaması sonrasında düştü. Enflasyon ve dolayısıyla faiz oranları üzerindeki baskıyı azaltacak bir indirim."
+       ]
+      },
+      {
+       "heading": "Bu hafta devam edecek",
+       "paragraphs": [
+        "Takvime ABD Merkez Bankası'ndan gelen sinyaller hakim. ABD'de tüketici güveni Ekim ayında daha da kötüleşti."
+       ]
+      }
+     ]
+    },
+    "ar": {
+     "lede": "أنهت وول ستريت تداولاتها مرتفعة يوم الجمعة بعد أسبوع مضطرب. ويراقب المستثمرون الاحتياطي الفيدرالي، في حين أن ارتفاع أسعار الفائدة الفرنسية في أوروبا مثير للقلق.",
+     "keyPoints": [
+      "أنهت وول ستريت الأسبوع باللون الأخضر، مدفوعة بعدد قليل من عمالقة التكنولوجيا.",
+      "وفي أوروبا، تتسع الفجوة بين أسعار الفائدة الفرنسية والألمانية.",
+      "النفط يتراجع بعد وعد مجموعة السبع بالإفراج عن 100 مليون برميل."
+     ],
+     "sections": [
+      {
+       "heading": "وول ستريت صامدة، ولكن ليس في كل مكان",
+       "paragraphs": [
+        "أنهت الأسواق الأمريكية الأسبوع الماضي على ارتفاع بعد جلسات متقلبة. لكن المؤشرات تخفي حقيقة متناقضة: ففي سبتمبر/أيلول، انخفضت 78% من أسهم مؤشر ستاندرد آند بورز 500، وكانت الزيادة مدفوعة بعدد قليل من أسهم التكنولوجيا الضخمة."
+       ]
+      },
+      {
+       "heading": "الأسعار هي نقطة التوتر الرئيسية",
+       "paragraphs": [
+        "وفي أوروبا، يتركز الاهتمام على سوق السندات. وارتفعت العائدات على السندات الحكومية بشكل حاد في الأسابيع الأخيرة، واتسعت الفجوة بين أسعار الفائدة الفرنسية والألمانية: ويطالب المستثمرون بعلاوة أعلى لإقراض فرنسا."
+       ]
+      },
+      {
+       "heading": "النفط في تراجع",
+       "paragraphs": [
+        "وانخفض الخام بعد التزام مجموعة السبع بطرح 100 مليون برميل في السوق واستئناف الصادرات من الشرق الأوسط. وهو التخفيض الذي يقلل الضغط على التضخم، وبالتالي على أسعار الفائدة."
+       ]
+      },
+      {
+       "heading": "أن يستمر هذا الأسبوع",
+       "paragraphs": [
+        "ويهيمن على التقويم إشارات من بنك الاحتياطي الفيدرالي الأمريكي. وفي الولايات المتحدة، تدهورت ثقة المستهلك بشكل أكبر في أكتوبر."
+       ]
+      }
+     ]
+    }
+   },
+   "sources": [
+    {
+     "source": "MoneyVox",
+     "url": "https://www.moneyvox.fr/bourse/actualites/110681/wall-street-au-sommet-le-journal-de-la-bourse-du-6-octobre-2026",
+     "title": "Wall Street au sommet… Le journal de la Bourse du 6 octobre 2026",
+     "summary": "",
+     "lang": "fr"
+    },
+    {
+     "source": "Scala Patrimoine",
+     "url": "https://scala-patrimoine.fr/2026/10/01/le-rendez-vous-des-marches-financiers-et-de-leconomie-octobre-2026/",
+     "title": "Le rendez-vous des marchés financiers et de l’économie – octobre 2026",
+     "summary": "",
+     "lang": "fr"
+    },
+    {
+     "source": "Bourse Direct",
+     "url": "https://www.boursedirect.fr/fr/actualites/categorie/calendrier-economique",
+     "title": "Calendrier économique",
+     "summary": "",
+     "lang": "fr"
+    }
+   ],
    "score": 0
   },
   {
    "id": "riyad",
    "cat": "monde",
+   "importance": 4,
+   "coverage": 3,
    "source": "SBS News",
    "url": "https://news.sbs.co.kr/english/article.do?news_id=N1008793124",
    "image": null,
    "publishedAt": "2026-10-12T06:00:00Z",
    "lang": "fr",
+   "written": true,
    "title": {
     "fr": "Arabie saoudite : l'aéroport de Riyad visé pour le deuxième jour consécutif",
     "en": "Saudi Arabia: Riyadh airport targeted for second consecutive day",
@@ -174,50 +1059,158 @@
     "ar": "السعودية: استهداف مطار الرياض لليوم الثاني على التوالي"
    },
    "summary": {
-    "fr": "Une nouvelle attaque attribuée aux rebelles houthis a fait douze victimes supplémentaires selon un premier bilan. La Turquie, le Pakistan, l'Égypte et l'Arabie saoudite condamnent ces frappes ; à Washington, l'administration Trump envisage d'appuyer une riposte saoudienne.",
-    "en": "A new attack attributed to the Houthi rebels caused twelve additional victims according to an initial report. Turkey, Pakistan, Egypt and Saudi Arabia condemn these strikes; in Washington, the Trump administration is considering supporting a Saudi response.",
-    "nl": "Een nieuwe aanval toegeschreven aan de Houthi-rebellen veroorzaakte volgens een eerste rapport twaalf extra slachtoffers. Turkije, Pakistan, Egypte en Saoedi-Arabië veroordelen deze aanvallen; in Washington overweegt de regering-Trump een Saoedische reactie te steunen.",
-    "tr": "İlk rapora göre Husi isyancılarının gerçekleştirdiği yeni bir saldırı on iki kişinin daha hayatını kaybetmesine neden oldu. Türkiye, Pakistan, Mısır ve Suudi Arabistan bu saldırıları kınıyor; Washington'da Trump yönetimi Suudilerin tepkisini desteklemeyi düşünüyor.",
-    "ar": "وتسبب هجوم جديد نسب للمتمردين الحوثيين في اثني عشر ضحية إضافية بحسب تقرير أولي. وتدين تركيا وباكستان ومصر والمملكة العربية السعودية هذه الضربات. وفي واشنطن، تدرس إدارة ترامب دعم الرد السعودي."
+    "fr": "Une nouvelle attaque attribuée aux rebelles houthis a fait douze victimes supplémentaires. Plusieurs pays condamnent ; Washington envisage d'appuyer une riposte saoudienne.",
+    "en": "A new attack attributed to Houthi rebels left twelve additional victims. Several countries condemn; Washington plans to support a Saudi response.",
+    "nl": "Een nieuwe aanval toegeschreven aan Houthi-rebellen veroorzaakte twaalf extra slachtoffers. Verschillende landen veroordelen; Washington is van plan een Saoedische reactie te steunen.",
+    "tr": "Husi isyancılara atfedilen yeni bir saldırı on iki kurban daha bıraktı. Birçok ülke kınıyor; Washington, Suudilerin tepkisini desteklemeyi planlıyor.",
+    "ar": "وأدى هجوم جديد نسب إلى المتمردين الحوثيين إلى اثني عشر ضحية إضافية. عدة دول تدين؛ وتخطط واشنطن لدعم الرد السعودي."
    },
-   "coverage": 3,
-   "related": [],
-   "score": 0
-  },
-  {
-   "id": "greve-aeroport",
-   "cat": "belgique",
-   "source": "Air Journal",
-   "url": "https://www.air-journal.fr/2026-10-12-greve-du-12-octobre-a-bruxelles-des-vols-prevus-normalement-mais-un-acces-a-laeroport-perturbe-ce-lundi-5278150.html",
-   "image": null,
-   "publishedAt": "2026-10-12T06:30:00Z",
-   "lang": "fr",
-   "title": {
-    "fr": "Brussels Airport : les vols maintenus, mais rejoindre l'aéroport reste un casse-tête",
-    "en": "Brussels Airport: flights maintained, but reaching the airport remains a headache",
-    "nl": "Brussels Airport: vluchten blijven doorgaan, maar het bereiken van de luchthaven blijft lastig",
-    "tr": "Brüksel Havaalanı: uçuşlar devam ediyor ancak havaalanına ulaşmak baş ağrısı olmaya devam ediyor",
-    "ar": "مطار بروكسل: استمرت الرحلات الجوية، لكن الوصول إلى المطار لا يزال يمثل صداعًا"
+   "body": {
+    "fr": {
+     "lede": "Une nouvelle attaque attribuée aux rebelles houthis a fait douze victimes supplémentaires. Plusieurs pays condamnent ; Washington envisage d'appuyer une riposte saoudienne.",
+     "keyPoints": [
+      "L’aéroport international de Riyad a été attaqué deux jours de suite.",
+      "Douze victimes supplémentaires sont signalées.",
+      "La Turquie, le Pakistan, l’Égypte et l’Arabie saoudite condamnent les Houthis."
+     ],
+     "sections": [
+      {
+       "heading": "Nouvelle attaque",
+       "paragraphs": [
+        "L'aéroport international de Riyad, la capitale saoudienne, a de nouveau été visé, pour la deuxième journée consécutive, selon la chaîne sud-coréenne SBS. Le bilan fait état de douze victimes supplémentaires."
+       ]
+      },
+      {
+       "heading": "Condamnations et risque d’escalade",
+       "paragraphs": [
+        "Les attaques sont attribuées aux rebelles houthis du Yémen, soutenus par l'Iran. La Turquie, le Pakistan, l'Égypte et l'Arabie saoudite les ont condamnées.",
+        "À Washington, l'administration Trump dit vouloir maintenir la pression sur Téhéran et envisage de s'impliquer dans les frappes saoudiennes contre les Houthis."
+       ]
+      }
+     ]
+    },
+    "en": {
+     "lede": "A new attack attributed to Houthi rebels left twelve additional victims. Several countries condemn; Washington plans to support a Saudi response.",
+     "keyPoints": [
+      "Riyadh international airport was attacked two days in a row.",
+      "Twelve additional victims are reported.",
+      "Turkey, Pakistan, Egypt and Saudi Arabia condemn the Houthis."
+     ],
+     "sections": [
+      {
+       "heading": "New attack",
+       "paragraphs": [
+        "The international airport of Riyadh, the Saudi capital, was targeted again, for the second day in a row, according to the South Korean channel SBS. The report shows twelve additional victims."
+       ]
+      },
+      {
+       "heading": "Convictions and risk of escalation",
+       "paragraphs": [
+        "The attacks are attributed to Yemen's Houthi rebels, supported by Iran. Turkey, Pakistan, Egypt and Saudi Arabia condemned them.",
+        "In Washington, the Trump administration says it wants to maintain pressure on Tehran and is considering getting involved in Saudi strikes against the Houthis."
+       ]
+      }
+     ]
+    },
+    "nl": {
+     "lede": "Een nieuwe aanval toegeschreven aan Houthi-rebellen veroorzaakte twaalf extra slachtoffers. Verschillende landen veroordelen; Washington is van plan een Saoedische reactie te steunen.",
+     "keyPoints": [
+      "De internationale luchthaven van Riyadh werd twee dagen op rij aangevallen.",
+      "Er worden twaalf extra slachtoffers gemeld.",
+      "Turkije, Pakistan, Egypte en Saoedi-Arabië veroordelen de Houthi’s."
+     ],
+     "sections": [
+      {
+       "heading": "Nieuwe aanval",
+       "paragraphs": [
+        "Volgens de Zuid-Koreaanse zender SBS was de internationale luchthaven van Riyadh, de Saoedische hoofdstad, voor de tweede dag op rij opnieuw het doelwit. Het rapport laat twaalf extra slachtoffers zien."
+       ]
+      },
+      {
+       "heading": "Veroordelingen en risico op escalatie",
+       "paragraphs": [
+        "De aanvallen worden toegeschreven aan de Houthi-rebellen in Jemen, gesteund door Iran. Turkije, Pakistan, Egypte en Saoedi-Arabië hebben hen veroordeeld.",
+        "In Washington zegt de regering-Trump de druk op Teheran te willen handhaven en overweegt betrokken te raken bij Saoedische aanvallen op de Houthi’s."
+       ]
+      }
+     ]
+    },
+    "tr": {
+     "lede": "Husi isyancılara atfedilen yeni bir saldırı on iki kurban daha bıraktı. Birçok ülke kınıyor; Washington, Suudilerin tepkisini desteklemeyi planlıyor.",
+     "keyPoints": [
+      "Riyad uluslararası havaalanına iki gün üst üste saldırı düzenlendi.",
+      "On iki kurbanın daha olduğu bildirildi.",
+      "Türkiye, Pakistan, Mısır ve Suudi Arabistan Husileri kınıyor."
+     ],
+     "sections": [
+      {
+       "heading": "Yeni saldırı",
+       "paragraphs": [
+        "Güney Kore kanalı SBS'nin haberine göre, Suudi başkenti Riyad'ın uluslararası havaalanı üst üste ikinci günde de hedef alındı. Raporda on iki kurbanın daha olduğu belirtiliyor."
+       ]
+      },
+      {
+       "heading": "Mahkumiyetler ve tırmanma riski",
+       "paragraphs": [
+        "Saldırıların, İran tarafından desteklenen Yemen'deki Husi isyancılara atfedildiği belirtiliyor. Türkiye, Pakistan, Mısır ve Suudi Arabistan onları kınadı.",
+        "Washington'da Trump yönetimi Tahran üzerindeki baskıyı sürdürmek istediğini ve Suudilerin Husilere yönelik saldırılarına katılmayı düşündüğünü söylüyor."
+       ]
+      }
+     ]
+    },
+    "ar": {
+     "lede": "وأدى هجوم جديد نسب إلى المتمردين الحوثيين إلى اثني عشر ضحية إضافية. عدة دول تدين؛ وتخطط واشنطن لدعم الرد السعودي.",
+     "keyPoints": [
+      "تعرض مطار الرياض الدولي للهجوم لمدة يومين على التوالي.",
+      "وتم الإبلاغ عن اثني عشر ضحية إضافية.",
+      "وتدين تركيا وباكستان ومصر والمملكة العربية السعودية الحوثيين."
+     ],
+     "sections": [
+      {
+       "heading": "هجوم جديد",
+       "paragraphs": [
+        "تعرض مطار الرياض الدولي، العاصمة السعودية، للاستهداف مجددا، لليوم الثاني على التوالي، بحسب قناة \"إس بي إس\" الكورية الجنوبية. ويظهر التقرير اثني عشر ضحية إضافية."
+       ]
+      },
+      {
+       "heading": "القناعات وخطر التصعيد",
+       "paragraphs": [
+        "وتنسب الهجمات إلى المتمردين الحوثيين في اليمن، المدعومين من إيران. وأدانتها تركيا وباكستان ومصر والمملكة العربية السعودية.",
+        "وفي واشنطن، تقول إدارة ترامب إنها تريد مواصلة الضغط على طهران وتدرس المشاركة في الضربات السعودية ضد الحوثيين."
+       ]
+      }
+     ]
+    }
    },
-   "summary": {
-    "fr": "Aucun impact sur le trafic aérien n'est prévu à ce stade, mais la grève des services publics complique l'accès à Zaventem, avec moins de trains et des bus De Lijn perturbés. Les voyageurs sont invités à prévoir une large marge.",
-    "en": "No impact on air traffic is expected at this stage, but the public services strike is making access to Zaventem more difficult, with fewer trains and De Lijn buses disrupted. Travelers are advised to allow plenty of room.",
-    "nl": "Er wordt in dit stadium geen impact op het luchtverkeer verwacht, maar de staking van de openbare diensten bemoeilijkt de toegang tot Zaventem, omdat er minder treinen en bussen van De Lijn verstoord worden. Reizigers wordt geadviseerd voldoende ruimte te voorzien.",
-    "tr": "Bu aşamada hava trafiği üzerinde herhangi bir etki beklenmiyor ancak kamu hizmetleri grevi, daha az tren ve De Lijn otobüsünün aksaması nedeniyle Zaventem'e erişimi daha da zorlaştırıyor. Gezginlere bol miktarda yer bırakmaları tavsiye edilir.",
-    "ar": "ومن غير المتوقع أن يكون هناك أي تأثير على الحركة الجوية في هذه المرحلة، لكن إضراب الخدمات العامة يجعل الوصول إلى زافينتيم أكثر صعوبة، مع تعطل عدد أقل من القطارات وحافلات دي لين. يُنصح المسافرون بإتاحة مساحة كبيرة."
-   },
-   "coverage": 1,
-   "related": [],
+   "sources": [
+    {
+     "source": "SBS News",
+     "url": "https://news.sbs.co.kr/english/article.do?news_id=N1008793124",
+     "title": "Les grandes informations du 12 octobre 2026",
+     "summary": "",
+     "lang": "fr"
+    },
+    {
+     "source": "Euronews",
+     "url": "https://www.euronews.com/video/2026/10/12/latest-news-bulletin-october-12th-2026-morning",
+     "title": "Le bulletin d’information du 12 octobre 2026",
+     "summary": "",
+     "lang": "fr"
+    }
+   ],
    "score": 0
   },
   {
    "id": "coree",
    "cat": "monde",
+   "importance": 4,
+   "coverage": 2,
    "source": "SBS News",
    "url": "https://news.sbs.co.kr/english/article.do?news_id=N1008792331",
    "image": null,
    "publishedAt": "2026-10-11T23:40:00Z",
    "lang": "fr",
+   "written": true,
    "title": {
     "fr": "La Corée du Nord tire plusieurs missiles balistiques vers la mer de l’Est",
     "en": "North Korea fires several ballistic missiles towards the East Sea",
@@ -226,232 +1219,116 @@
     "ar": "كوريا الشمالية تطلق عدة صواريخ باليستية باتجاه البحر الشرقي"
    },
    "summary": {
-    "fr": "La présidence sud-coréenne a convoqué en urgence une réunion consacrée à la sécurité nationale après ces tirs, nouveau signal de tension dans la péninsule.",
-    "en": "The South Korean presidency urgently convened a meeting devoted to national security after these shots, a new signal of tension on the peninsula.",
-    "nl": "Het Zuid-Koreaanse presidentschap belegde na deze schoten dringend een bijeenkomst gewijd aan de nationale veiligheid, een nieuw signaal van spanning op het schiereiland.",
-    "tr": "Bu atışların ardından Güney Kore başkanlığının acilen ulusal güvenliğe yönelik bir toplantı yapması yarımadada yeni bir gerilim sinyali verdi.",
-    "ar": "وعقدت الرئاسة الكورية الجنوبية على وجه السرعة اجتماعا مخصصا للأمن القومي بعد هذه الطلقات، في إشارة جديدة إلى التوتر في شبه الجزيرة."
+    "fr": "La présidence sud-coréenne a convoqué en urgence une réunion consacrée à la sécurité nationale après ces tirs.",
+    "en": "The South Korean presidency urgently convened a meeting devoted to national security following the shootings.",
+    "nl": "Het Zuid-Koreaanse presidentschap belegde na de schietpartij met spoed een bijeenkomst gewijd aan de nationale veiligheid.",
+    "tr": "Güney Kore başkanlığı, silahlı saldırıların ardından acilen ulusal güvenliğe yönelik bir toplantı düzenledi.",
+    "ar": "وعقدت الرئاسة الكورية الجنوبية على وجه السرعة اجتماعا مخصصا للأمن القومي في أعقاب إطلاق النار."
    },
-   "coverage": 2,
-   "related": [],
-   "score": 0
-  },
-  {
-   "id": "france-sondage",
-   "cat": "monde",
-   "source": "Euronews",
-   "url": "https://www.yahoo.com/news/world/articles/latest-news-bulletin-october-12th-050032352.html",
-   "image": null,
-   "publishedAt": "2026-10-12T05:00:00Z",
-   "lang": "fr",
-   "title": {
-    "fr": "Présidentielle française : un sondage annonce un second tour Le Pen – Mélenchon",
-    "en": "French presidential election: a poll announces a second round Le Pen – Mélenchon",
-    "nl": "Franse presidentsverkiezingen: een opiniepeiling kondigt een tweede ronde Le Pen – Mélenchon aan",
-    "tr": "Fransa cumhurbaşkanlığı seçimi: Anket ikinci tura çıkacağını duyurdu Le Pen – Mélenchon",
-    "ar": "الانتخابات الرئاسية الفرنسية: استطلاع للرأي يعلن عن جولة ثانية لوبان – ميلينشون"
+   "body": {
+    "fr": {
+     "lede": "La présidence sud-coréenne a convoqué en urgence une réunion consacrée à la sécurité nationale après ces tirs.",
+     "keyPoints": [
+      "Pyongyang a tiré plusieurs missiles balistiques.",
+      "Séoul a réuni d’urgence ses responsables de la sécurité."
+     ],
+     "sections": [
+      {
+       "heading": "Séoul en alerte",
+       "paragraphs": [
+        "La Corée du Nord a lancé plusieurs missiles balistiques en direction de la mer de l'Est, également appelée mer du Japon, selon la chaîne sud-coréenne SBS. Le bureau présidentiel sud-coréen a aussitôt convoqué une réunion d'urgence sur la sécurité nationale.",
+        "Les premiers comptes rendus ne détaillent ni le type ni la portée des missiles."
+       ]
+      }
+     ]
+    },
+    "en": {
+     "lede": "The South Korean presidency urgently convened a meeting devoted to national security following the shootings.",
+     "keyPoints": [
+      "Pyongyang fired several ballistic missiles.",
+      "Seoul urgently convened its security officials."
+     ],
+     "sections": [
+      {
+       "heading": "Seoul on alert",
+       "paragraphs": [
+        "North Korea launched several ballistic missiles towards the East Sea, also called the Sea of ​​Japan, according to South Korean channel SBS. The South Korean presidential office immediately called an emergency meeting on national security.",
+        "Early accounts do not detail the type or range of the missiles."
+       ]
+      }
+     ]
+    },
+    "nl": {
+     "lede": "Het Zuid-Koreaanse presidentschap belegde na de schietpartij met spoed een bijeenkomst gewijd aan de nationale veiligheid.",
+     "keyPoints": [
+      "Pyongyang vuurde verschillende ballistische raketten af.",
+      "Seoel riep met spoed zijn veiligheidsfunctionarissen bijeen."
+     ],
+     "sections": [
+      {
+       "heading": "Seoel op scherp",
+       "paragraphs": [
+        "Noord-Korea lanceerde volgens de Zuid-Koreaanse zender SBS verschillende ballistische raketten richting de Oostzee, ook wel de Japanse Zee genoemd. Het Zuid-Koreaanse presidentiële kantoor riep onmiddellijk een spoedvergadering over de nationale veiligheid bijeen.",
+        "Vroege verslagen geven geen details over het type of bereik van de raketten."
+       ]
+      }
+     ]
+    },
+    "tr": {
+     "lede": "Güney Kore başkanlığı, silahlı saldırıların ardından acilen ulusal güvenliğe yönelik bir toplantı düzenledi.",
+     "keyPoints": [
+      "Pyongyang birkaç balistik füze ateşledi.",
+      "Seul acilen güvenlik yetkililerini topladı."
+     ],
+     "sections": [
+      {
+       "heading": "Seul alarmda",
+       "paragraphs": [
+        "Güney Kore kanalı SBS'nin haberine göre Kuzey Kore, Japonya Denizi olarak da adlandırılan Doğu Denizi'ne doğru çok sayıda balistik füze fırlattı. Güney Kore başkanlık ofisi derhal ulusal güvenlik konusunda acil toplantı çağrısında bulundu.",
+        "İlk açıklamalar füzelerin türü veya menzili hakkında ayrıntılı bilgi vermiyor."
+       ]
+      }
+     ]
+    },
+    "ar": {
+     "lede": "وعقدت الرئاسة الكورية الجنوبية على وجه السرعة اجتماعا مخصصا للأمن القومي في أعقاب إطلاق النار.",
+     "keyPoints": [
+      "وأطلقت بيونغ يانغ عدة صواريخ باليستية.",
+      "استدعت سيول مسؤوليها الأمنيين على وجه السرعة."
+     ],
+     "sections": [
+      {
+       "heading": "سيول في حالة تأهب",
+       "paragraphs": [
+        "وأطلقت كوريا الشمالية عدة صواريخ باليستية باتجاه البحر الشرقي، الذي يسمى أيضًا بحر اليابان، وفقًا لقناة SBS الكورية الجنوبية. ودعا المكتب الرئاسي في كوريا الجنوبية على الفور إلى اجتماع طارئ بشأن الأمن القومي.",
+        "ولم تذكر التقارير الأولية تفاصيل عن نوع الصواريخ أو مداها."
+       ]
+      }
+     ]
+    }
    },
-   "summary": {
-    "fr": "Selon une enquête d'opinion relayée par Euronews, le Rassemblement national et La France insoumise s'affronteraient au second tour. La campagne est par ailleurs bousculée par la contestation étudiante.",
-    "en": "According to an opinion poll relayed by Euronews, the National Rally and La France insoumise would face each other in the second round. The campaign is also shaken up by student protests.",
-    "nl": "Volgens een opiniepeiling van Euronews zouden de National Rally en La France insoumise in de tweede ronde tegenover elkaar staan. De campagne wordt ook opgeschud door studentenprotesten.",
-    "tr": "Euronews'in aktardığı kamuoyu yoklamasına göre National Rally ve La France insoumise ikinci turda karşı karşıya gelecek. Kampanya aynı zamanda öğrenci protestolarıyla da sarsıldı.",
-    "ar": "وبحسب استطلاع للرأي نقلته يورونيوز، فإن التجمع الوطني وحزب فرنسا الأبية سيواجهان بعضهما البعض في الجولة الثانية. وقد اهتزت الحملة أيضًا بسبب الاحتجاجات الطلابية."
-   },
-   "coverage": 1,
-   "related": [],
-   "score": 0
-  },
-  {
-   "id": "marches",
-   "cat": "finance",
-   "source": "La rédaction",
-   "url": "https://www.boursorama.com/bourse/actualites/",
-   "image": null,
-   "publishedAt": "2026-10-12T07:30:00Z",
-   "lang": "fr",
-   "title": {
-    "fr": "Marchés : une semaine sous le regard de la Fed",
-    "en": "Markets: a week under the gaze of the Fed",
-    "nl": "Markten: een week onder de ogen van de Fed",
-    "tr": "Piyasalar bir hafta Fed gözetiminde",
-    "ar": "الأسواق: أسبوع تحت أنظار بنك الاحتياطي الفيدرالي"
-   },
-   "summary": {
-    "fr": "Wall Street a terminé en hausse vendredi après une semaine agitée. Les investisseurs guettent désormais les signaux de la Réserve fédérale, tandis qu'en Europe la remontée des taux français et l'écart avec l'Allemagne restent sous surveillance. Le pétrole reflue après la promesse du G7 de mettre 100 millions de barils sur le marché.",
-    "en": "Wall Street ended higher on Friday after a turbulent week. Investors are now watching for signals from the Federal Reserve, while in Europe the rise in French rates and the gap with Germany remain under surveillance. Oil is falling after the G7 promise to put 100 million barrels on the market.",
-    "nl": "Wall Street eindigde vrijdag hoger na een turbulente week. Beleggers kijken nu uit naar signalen van de Federal Reserve, terwijl in Europa de stijging van de Franse rente en de kloof met Duitsland in de gaten blijven worden gehouden. De olie daalt nadat de G7 beloofde 100 miljoen vaten op de markt te brengen.",
-    "tr": "Wall Street çalkantılı bir haftanın ardından Cuma gününü yükselişle tamamladı. Yatırımcılar artık Federal Reserve'den gelecek sinyalleri izlerken, Avrupa'da Fransız faiz oranlarındaki artış ve Almanya ile aradaki fark takip altında. Petrol, G7'nin piyasaya 100 milyon varil arz etme vaadinin ardından düşüyor.",
-    "ar": "أنهت وول ستريت تداولاتها مرتفعة يوم الجمعة بعد أسبوع مضطرب. ويترقب المستثمرون الآن إشارات من بنك الاحتياطي الفيدرالي، في حين يظل ارتفاع أسعار الفائدة الفرنسية والفجوة مع ألمانيا تحت المراقبة في أوروبا. النفط يتراجع بعد وعد مجموعة السبع بطرح 100 مليون برميل في السوق."
-   },
-   "coverage": 1,
-   "related": [],
-   "score": 0
-  },
-  {
-   "id": "mineurs",
-   "cat": "faits-divers",
-   "source": "BX1",
-   "url": "https://bx1.be/",
-   "image": null,
-   "publishedAt": "2026-10-11T15:20:00Z",
-   "lang": "fr",
-   "title": {
-    "fr": "Débordements après la manifestation nationale : des mineurs relâchés faute de place en IPPJ",
-    "en": "Overflows after the national demonstration: minors released due to lack of space in IPPJ",
-    "nl": "Overflow na de landelijke demonstratie: minderjarigen vrijgelaten wegens ruimtegebrek in IPPJ",
-    "tr": "Ulusal gösteriden sonra taşkınlar: IPPJ'de yer olmaması nedeniyle reşit olmayanlar serbest bırakıldı",
-    "ar": "الفيضانات بعد المظاهرة الوطنية: إطلاق سراح القُصّر بسبب ضيق المساحة في IPPJ"
-   },
-   "summary": {
-    "fr": "Des mineurs soupçonnés d'avoir pris part aux violences en marge de la manifestation du 9 octobre à Bruxelles ont été remis en liberté, les institutions publiques de protection de la jeunesse étant saturées. Le manque de places revient au cœur du débat.",
-    "en": "Minors suspected of having taken part in the violence on the sidelines of the October 9 demonstration in Brussels were released, as public youth protection institutions were saturated. The lack of places comes back to the heart of the debate.",
-    "nl": "Minderjarigen die ervan verdacht werden deel te hebben genomen aan het geweld aan de zijlijn van de demonstratie van 9 oktober in Brussel werden vrijgelaten omdat de openbare instellingen voor jeugdbescherming verzadigd waren. Het gebrek aan plaatsen komt terug tot de kern van het debat.",
-    "tr": "Brüksel'de 9 Ekim'de düzenlenen gösteri sırasında şiddet olaylarına karıştığından şüphelenilen küçükler, kamu gençlik koruma kurumlarının doyması nedeniyle serbest bırakıldı. Yer eksikliği tartışmanın odağına geri dönüyor.",
-    "ar": "أُطلق سراح القُصَّر المشتبه في مشاركتهم في أعمال العنف على هامش مظاهرة 9 أكتوبر/تشرين الأول في بروكسل، مع امتلاء المؤسسات العامة لحماية الشباب. يعود نقص الأماكن إلى قلب النقاش."
-   },
-   "coverage": 1,
-   "related": [],
-   "score": 0
-  },
-  {
-   "id": "climat",
-   "cat": "belgique",
-   "source": "BX1",
-   "url": "https://bx1.be/",
-   "image": null,
-   "publishedAt": "2026-10-11T13:30:00Z",
-   "lang": "fr",
-   "title": {
-    "fr": "Marche pour le climat : des dizaines de milliers de personnes dans les rues de Bruxelles",
-    "en": "March for the climate: tens of thousands of people in the streets of Brussels",
-    "nl": "Mars voor het klimaat: tienduizenden mensen in de straten van Brussel",
-    "tr": "İklim için yürüyüş: On binlerce insan Brüksel sokaklarında",
-    "ar": "مسيرة من أجل المناخ: عشرات الآلاف من الأشخاص في شوارع بروكسل"
-   },
-   "summary": {
-    "fr": "Les organisateurs revendiquent 60 000 participants, la police en a compté 45 000. Le cortège a réclamé des engagements plus fermes de la Belgique et de l'Union européenne à l'approche de la COP31.",
-    "en": "The organizers claim 60,000 participants, the police counted 45,000. The procession demanded firmer commitments from Belgium and the European Union in the run-up to COP31.",
-    "nl": "De organisatoren spreken van 60.000 deelnemers, de politie telde er 45.000. De stoet eiste in de aanloop naar COP31 stevigere engagementen van België en de Europese Unie.",
-    "tr": "Organizatörler 60.000 katılımcı olduğunu iddia ederken, polis 45.000 kişi saydı. Geçit töreni, COP31 öncesinde Belçika ve Avrupa Birliği'nden daha sıkı taahhütler talep etti.",
-    "ar": "ويزعم المنظمون أن عدد المشاركين بلغ 60 ألفاً، بينما أحصت الشرطة 45 ألفاً. وطالب الموكب بالتزامات أكثر حزما من بلجيكا والاتحاد الأوروبي في الفترة التي سبقت انعقاد مؤتمر الأمم المتحدة المعني بتغير المناخ (COP31)."
-   },
-   "coverage": 1,
-   "related": [],
-   "score": 0
-  },
-  {
-   "id": "grippe",
-   "cat": "sante",
-   "source": "Test-Achats",
-   "url": "https://www.test-achats.be/sante/maladies-et-medicaments/apercus-maladies/news/vaccin-renforce-grippe-belgique-2026",
-   "image": null,
-   "publishedAt": "2026-10-10T08:00:00Z",
-   "lang": "fr",
-   "title": {
-    "fr": "Grippe : la vaccination commence, un vaccin renforcé conseillé aux plus de 65 ans",
-    "en": "Flu: vaccination begins, a reinforced vaccine recommended for over 65s",
-    "nl": "Griep: vaccinatie begint, een versterkt vaccin aanbevolen voor 65-plussers",
-    "tr": "Grip: Aşılama başlıyor, 65 yaş üstü için güçlendirilmiş aşı öneriliyor",
-    "ar": "الأنفلونزا: بدء التطعيم، وهو لقاح معزز يوصى به للأشخاص الذين تزيد أعمارهم عن 65 عامًا"
-   },
-   "summary": {
-    "fr": "La vaccination est recommandée de la mi-octobre à la mi-décembre, en priorité pour les 65 ans et plus, les femmes enceintes et les malades chroniques. Le Conseil supérieur de la santé privilégie désormais un vaccin renforcé pour les seniors, délivré en pharmacie sans ordonnance.",
-    "en": "Vaccination is recommended from mid-October to mid-December, with priority for those aged 65 and over, pregnant women and the chronically ill. The Superior Health Council now favors a reinforced vaccine for seniors, delivered in pharmacies without a prescription.",
-    "nl": "Vaccinatie wordt aanbevolen van half oktober tot half december, met voorrang voor 65-plussers, zwangere vrouwen en chronisch zieken. De Hoge Gezondheidsraad is nu voorstander van een versterkt vaccin voor senioren, dat zonder recept in de apotheek wordt afgeleverd.",
-    "tr": "Aşılamanın Ekim ortasından Aralık ortasına kadar, öncelikli olarak 65 yaş ve üzeri, hamile kadınlar ve kronik hastalara yapılması öneriliyor. Yüksek Sağlık Konseyi artık yaşlılar için reçetesiz olarak eczanelerde satılan güçlendirilmiş bir aşıyı destekliyor.",
-    "ar": "يوصى بالتطعيم في الفترة من منتصف أكتوبر إلى منتصف ديسمبر، مع إعطاء الأولوية للأشخاص الذين تبلغ أعمارهم 65 عامًا فما فوق، والنساء الحوامل والمصابين بأمراض مزمنة. ويفضل مجلس الصحة الأعلى الآن اللقاح المعزز لكبار السن، والذي يتم تسليمه في الصيدليات دون وصفة طبية."
-   },
-   "coverage": 1,
-   "related": [],
-   "score": 0
-  },
-  {
-   "id": "taiwan",
-   "cat": "monde",
-   "source": "Euronews",
-   "url": "https://www.euronews.com/video/2026/10/12/latest-news-bulletin-october-12th-2026-morning",
-   "image": null,
-   "publishedAt": "2026-10-12T08:30:00Z",
-   "lang": "fr",
-   "title": {
-    "fr": "Taïwan : Pékin sanctionne des ministres du Paraguay et du Belize",
-    "en": "Taiwan: Beijing sanctions ministers from Paraguay and Belize",
-    "nl": "Taiwan: Peking stelt sanctieministers uit Paraguay en Belize op",
-    "tr": "Tayvan: Pekin, Paraguay ve Belize'den bakanlara yaptırım uyguluyor",
-    "ar": "تايوان: بكين تفرض عقوبات على وزراء من باراغواي وبليز"
-   },
-   "summary": {
-    "fr": "La Chine frappe de sanctions des membres des gouvernements paraguayen et bélizien, deux des rares pays qui reconnaissent encore Taipei. Une nouvelle étape dans la pression diplomatique exercée sur l'île.",
-    "en": "China is imposing sanctions on members of the Paraguayan and Belizean governments, two of the few countries that still recognize Taipei. A new stage in the diplomatic pressure exerted on the island.",
-    "nl": "China legt sancties op aan leden van de regeringen van Paraguay en Belize, twee van de weinige landen die Taipei nog steeds erkennen. Een nieuwe fase in de diplomatieke druk die op het eiland wordt uitgeoefend.",
-    "tr": "Çin, Taipei'yi hâlâ tanıyan az sayıdaki ülkeden ikisi olan Paraguay ve Belize hükümetlerinin üyelerine yaptırımlar uyguluyor. Adaya uygulanan diplomatik baskıda yeni bir aşama.",
-    "ar": "وتفرض الصين عقوبات على أعضاء حكومتي باراجواي وبليز، وهما من الدول القليلة التي لا تزال تعترف بتايبيه. مرحلة جديدة من الضغوط الدبلوماسية التي تمارس على الجزيرة."
-   },
-   "coverage": 1,
-   "related": [],
-   "score": 0
-  },
-  {
-   "id": "couteau",
-   "cat": "faits-divers",
-   "source": "BruxellesToday",
-   "url": "https://www.bruxellestoday.be/faits-divers/agression-couteau-bruxelles-police-recherche-deux-suspects.html",
-   "image": null,
-   "publishedAt": "2026-10-09T10:00:00Z",
-   "lang": "fr",
-   "title": {
-    "fr": "Coup de couteau dans le centre de Bruxelles : la police diffuse un avis de recherche",
-    "en": "Stabbing in the center of Brussels: police issue wanted notice",
-    "nl": "Steekpartij in centrum Brussel: politievraag wilde bericht",
-    "tr": "Brüksel'in merkezinde bıçaklama: Polis meselesine ilişkin ihbar isteniyor",
-    "ar": "طعن وسط بروكسل: الشرطة تصدر إشعاراً بالمطلوبين"
-   },
-   "summary": {
-    "fr": "À la demande du parquet de Bruxelles, la police fédérale publie les images de deux suspects d'une agression au couteau commise en avril dans le centre de la capitale. Toute personne pouvant les identifier est invitée à contacter les enquêteurs.",
-    "en": "At the request of the Brussels public prosecutor's office, the federal police published the images of two suspects in a knife attack committed in April in the center of the capital. Anyone who can identify them is encouraged to contact investigators.",
-    "nl": "Op vraag van het Brusselse parket heeft de federale politie de beelden gepubliceerd van twee verdachten van een mesaanval die in april in het centrum van de hoofdstad werd gepleegd. Iedereen die ze kan identificeren, wordt aangemoedigd contact op te nemen met de onderzoekers.",
-    "tr": "Brüksel savcılığının talebi üzerine federal polis, başkentin merkezinde nisan ayında gerçekleştirilen bıçaklı saldırıdaki iki şüphelinin görüntülerini yayınladı. Bunları tanımlayabilen herkesin araştırmacılarla iletişime geçmesi teşvik ediliyor.",
-    "ar": "وبناء على طلب من مكتب المدعي العام في بروكسل، نشرت الشرطة الاتحادية صور اثنين من المشتبه بهم في هجوم بسكين وقع في أبريل/نيسان الماضي وسط العاصمة. ويتم تشجيع أي شخص يمكنه التعرف عليهم على الاتصال بالمحققين."
-   },
-   "coverage": 1,
-   "related": [],
-   "score": 0
-  },
-  {
-   "id": "delhi",
-   "cat": "monde",
-   "source": "Euronews",
-   "url": "https://www.euronews.com/video/2026/10/12/latest-news-bulletin-october-12th-2026-morning",
-   "image": null,
-   "publishedAt": "2026-10-12T06:45:00Z",
-   "lang": "fr",
-   "title": {
-    "fr": "Inde : Delhi ferme des stations de métro avant une manifestation contre le chef des élections",
-    "en": "India: Delhi closes metro stations ahead of protest against election chief",
-    "nl": "India: Delhi sluit metrostations voorafgaand aan protest tegen verkiezingsleider",
-    "tr": "Hindistan: Delhi, seçim şefine karşı protesto öncesinde metro istasyonlarını kapattı",
-    "ar": "الهند: دلهي تغلق محطات المترو قبيل الاحتجاج ضد رئيس الانتخابات"
-   },
-   "summary": {
-    "fr": "Les autorités ont restreint la circulation et fermé plusieurs stations du centre de la capitale indienne pour encadrer un rassemblement visant le responsable de la commission électorale.",
-    "en": "Authorities restricted traffic and closed several stations in the center of the Indian capital to control a rally targeting the head of the electoral commission.",
-    "nl": "De autoriteiten beperkten het verkeer en sloten verschillende stations in het centrum van de Indiase hoofdstad om een demonstratie tegen het hoofd van de verkiezingscommissie onder controle te houden.",
-    "tr": "Yetkililer, seçim komisyonu başkanını hedef alan bir mitingi kontrol etmek için trafiği kısıtladı ve Hindistan'ın başkentinin merkezindeki birçok istasyonu kapattı.",
-    "ar": "وقيدت السلطات حركة المرور وأغلقت عدة محطات وسط العاصمة الهندية للسيطرة على حشد استهدف رئيس اللجنة الانتخابية."
-   },
-   "coverage": 1,
-   "related": [],
+   "sources": [
+    {
+     "source": "SBS News",
+     "url": "https://news.sbs.co.kr/english/article.do?news_id=N1008792331",
+     "title": "Morning Wide : les grandes informations du 12 octobre 2026",
+     "summary": "",
+     "lang": "fr"
+    }
+   ],
    "score": 0
   },
   {
    "id": "petrole",
    "cat": "economie",
+   "importance": 3,
+   "coverage": 1,
    "source": "MoneyVox",
    "url": "https://www.moneyvox.fr/bourse/actualites/110681/wall-street-au-sommet-le-journal-de-la-bourse-du-6-octobre-2026",
    "image": null,
    "publishedAt": "2026-10-06T17:30:00Z",
    "lang": "fr",
+   "written": true,
    "title": {
     "fr": "Pétrole : le G7 promet 100 millions de barils pour faire baisser les prix",
     "en": "Oil: the G7 promises 100 million barrels to lower prices",
@@ -460,24 +1337,146 @@
     "ar": "النفط: مجموعة السبع تتعهد بإنتاج 100 مليون برميل لخفض الأسعار"
    },
    "summary": {
-    "fr": "Le brut recule alors que les exportations du Moyen-Orient repartent et que le G7 s'engage à mettre des réserves sur le marché. Une détente qui réduit la pression sur l'inflation et, par ricochet, sur les taux d'intérêt.",
-    "en": "Crude falls as exports from the Middle East pick up and the G7 commits to putting reserves on the market. An easing which reduces pressure on inflation and, in turn, on interest rates.",
-    "nl": "Ruwe olie daalt naarmate de export uit het Midden-Oosten toeneemt en de G7 zich ertoe verbindt reserves op de markt te brengen. Een versoepeling die de druk op de inflatie en daarmee op de rente vermindert.",
-    "tr": "Orta Doğu'dan ihracatın artması ve G7'nin rezervlerini piyasaya sürme taahhüdünde bulunmasıyla ham petrol düşüyor. Enflasyon ve dolayısıyla faiz oranları üzerindeki baskıyı azaltacak bir gevşeme.",
-    "ar": "انخفض النفط الخام مع ارتفاع الصادرات من الشرق الأوسط والتزام مجموعة السبع بوضع احتياطيات في السوق. التيسير الذي يقلل الضغط على التضخم، وبالتالي، على أسعار الفائدة."
+    "fr": "Le brut recule alors que les exportations du Moyen-Orient repartent et que le G7 s'engage à puiser dans ses réserves. Une détente bienvenue pour l'inflation.",
+    "en": "Crude prices are falling as exports from the Middle East pick up and the G7 commits to drawing on its reserves. A welcome relief for inflation.",
+    "nl": "De prijzen voor ruwe olie dalen nu de export uit het Midden-Oosten aantrekt en de G7 zich ertoe verbindt zijn reserves aan te spreken. Een welkome verlichting van de inflatie.",
+    "tr": "Orta Doğu'dan yapılan ihracatın artması ve G7'nin rezervlerini çekmeyi taahhüt etmesiyle ham petrol fiyatları düşüyor. Enflasyon için hoş bir rahatlama.",
+    "ar": "تنخفض أسعار النفط الخام مع ارتفاع الصادرات من الشرق الأوسط والتزام مجموعة السبع بالسحب من احتياطياتها. ترحيب مرحب به للتضخم."
    },
-   "coverage": 1,
-   "related": [],
+   "body": {
+    "fr": {
+     "lede": "Le brut recule alors que les exportations du Moyen-Orient repartent et que le G7 s'engage à puiser dans ses réserves. Une détente bienvenue pour l'inflation.",
+     "keyPoints": [
+      "Le G7 s’engage à libérer 100 millions de barils.",
+      "Les exportations du Moyen-Orient repartent.",
+      "Moins de pression sur l’inflation et les taux."
+     ],
+     "sections": [
+      {
+       "heading": "Le brut recule",
+       "paragraphs": [
+        "Les cours du pétrole ont reculé début octobre après l'engagement des pays du G7 de mettre 100 millions de barils sur le marché, alors que les exportations du Moyen-Orient se redressent, selon MoneyVox."
+       ]
+      },
+      {
+       "heading": "Ce que cela change",
+       "paragraphs": [
+        "Un pétrole moins cher réduit les pressions inflationnistes, ce qui allège à son tour la pression sur les taux d'intérêt. Le 6 octobre, la Bourse de Paris en a profité : le CAC 40 a gagné 0,40 %, à 7 865 points."
+       ]
+      }
+     ]
+    },
+    "en": {
+     "lede": "Crude prices are falling as exports from the Middle East pick up and the G7 commits to drawing on its reserves. A welcome relief for inflation.",
+     "keyPoints": [
+      "The G7 commits to releasing 100 million barrels.",
+      "Exports from the Middle East are picking up.",
+      "Less pressure on inflation and rates."
+     ],
+     "sections": [
+      {
+       "heading": "Crude falls",
+       "paragraphs": [
+        "Oil prices fell in early October after G7 countries pledged to put 100 million barrels on the market, while Middle East exports are recovering, according to MoneyVox."
+       ]
+      },
+      {
+       "heading": "What this changes",
+       "paragraphs": [
+        "Cheaper oil reduces inflationary pressures, which in turn eases pressure on interest rates. On October 6, the Paris Stock Exchange took advantage: the CAC 40 gained 0.40%, to 7,865 points."
+       ]
+      }
+     ]
+    },
+    "nl": {
+     "lede": "De prijzen voor ruwe olie dalen nu de export uit het Midden-Oosten aantrekt en de G7 zich ertoe verbindt zijn reserves aan te spreken. Een welkome verlichting van de inflatie.",
+     "keyPoints": [
+      "De G7 verbindt zich ertoe 100 miljoen vaten vrij te geven.",
+      "De export uit het Midden-Oosten trekt aan.",
+      "Minder druk op inflatie en tarieven."
+     ],
+     "sections": [
+      {
+       "heading": "Ruw valt",
+       "paragraphs": [
+        "De olieprijzen daalden begin oktober nadat de G7-landen beloofden 100 miljoen vaten op de markt te brengen, terwijl de export uit het Midden-Oosten zich herstelt, aldus MoneyVox."
+       ]
+      },
+      {
+       "heading": "Wat verandert dit",
+       "paragraphs": [
+        "Goedkopere olie vermindert de inflatiedruk, wat op zijn beurt de druk op de rente verlicht. Op 6 oktober profiteerde de beurs van Parijs: de CAC 40 won 0,40%, tot 7.865 punten."
+       ]
+      }
+     ]
+    },
+    "tr": {
+     "lede": "Orta Doğu'dan yapılan ihracatın artması ve G7'nin rezervlerini çekmeyi taahhüt etmesiyle ham petrol fiyatları düşüyor. Enflasyon için hoş bir rahatlama.",
+     "keyPoints": [
+      "G7 100 milyon varil petrol çıkarmayı taahhüt ediyor.",
+      "Ortadoğu'dan ihracat artıyor.",
+      "Enflasyon ve oranlar üzerinde daha az baskı."
+     ],
+     "sections": [
+      {
+       "heading": "Ham düşüşler",
+       "paragraphs": [
+        "MoneyVox'a göre Orta Doğu ihracatı toparlanırken, G7 ülkelerinin piyasaya 100 milyon varil arz etme sözü vermesinin ardından petrol fiyatları Ekim ayı başında düştü."
+       ]
+      },
+      {
+       "heading": "Bu neyi değiştirir?",
+       "paragraphs": [
+        "Ucuz petrol enflasyonist baskıları azaltır, bu da faiz oranları üzerindeki baskıyı hafifletir. 6 Ekim'de Paris Menkul Kıymetler Borsası bu avantajdan yararlandı: CAC 40 %0,40 artışla 7.865 puana yükseldi."
+       ]
+      }
+     ]
+    },
+    "ar": {
+     "lede": "تنخفض أسعار النفط الخام مع ارتفاع الصادرات من الشرق الأوسط والتزام مجموعة السبع بالسحب من احتياطياتها. ترحيب مرحب به للتضخم.",
+     "keyPoints": [
+      "وتلتزم مجموعة السبع بالإفراج عن 100 مليون برميل.",
+      "وتشهد الصادرات من الشرق الأوسط انتعاشا.",
+      "ضغط أقل على التضخم والأسعار."
+     ],
+     "sections": [
+      {
+       "heading": "السقوط الخام",
+       "paragraphs": [
+        "انخفضت أسعار النفط في أوائل أكتوبر بعد تعهد دول مجموعة السبع بطرح 100 مليون برميل في السوق، بينما تتعافى صادرات الشرق الأوسط، وفقًا لموقع MoneyVox."
+       ]
+      },
+      {
+       "heading": "ما هذا يتغير",
+       "paragraphs": [
+        "ويؤدي انخفاض أسعار النفط إلى تقليل الضغوط التضخمية، وهو ما يؤدي بدوره إلى تخفيف الضغوط على أسعار الفائدة. في 6 أكتوبر، استفادت بورصة باريس من هذه الفرصة: ارتفع مؤشر كاك 40 بنسبة 0.40%، ليصل إلى 7865 نقطة."
+       ]
+      }
+     ]
+    }
+   },
+   "sources": [
+    {
+     "source": "MoneyVox",
+     "url": "https://www.moneyvox.fr/bourse/actualites/110681/wall-street-au-sommet-le-journal-de-la-bourse-du-6-octobre-2026",
+     "title": "Wall Street au sommet… Le journal de la Bourse du 6 octobre 2026",
+     "summary": "",
+     "lang": "fr"
+    }
+   ],
    "score": 0
   },
   {
    "id": "tech-wallstreet",
    "cat": "finance",
+   "importance": 3,
+   "coverage": 1,
    "source": "Scala Patrimoine",
    "url": "https://scala-patrimoine.fr/2026/10/01/le-rendez-vous-des-marches-financiers-et-de-leconomie-octobre-2026/",
    "image": null,
    "publishedAt": "2026-10-01T08:00:00Z",
    "lang": "fr",
+   "written": true,
    "title": {
     "fr": "Wall Street : la tech tient les indices, mais 78 % des valeurs du S&P 500 ont reculé en septembre",
     "en": "Wall Street: tech holds up the indices, but 78% of S&P 500 values fell in September",
@@ -486,24 +1485,1125 @@
     "ar": "وول ستريت: التكنولوجيا تدعم المؤشرات، لكن 78% من قيم مؤشر S&P 500 انخفضت في سبتمبر"
    },
    "summary": {
-    "fr": "Le S&P 500 termine septembre quasi stable (+0,26 %) et le Nasdaq gagne 2,9 %, portés par Meta, AMD et Intel. Le Dow Jones cède 3,5 % et l'Euro Stoxx 50 1,6 %. Le marché obligataire reste le principal point de tension, avec la remontée des rendements.",
-    "en": "The S&P 500 ended September almost stable (+0.26%) and the Nasdaq gained 2.9%, driven by Meta, AMD and Intel. The Dow Jones lost 3.5% and the Euro Stoxx 50 1.6%. The bond market remains the main point of tension, with the rise in yields.",
-    "nl": "De S&P 500 eindigde september vrijwel stabiel (+0,26%) en de Nasdaq won 2,9%, gedreven door Meta, AMD en Intel. De Dow Jones verloor 3,5% en de Euro Stoxx 50 1,6%. De obligatiemarkt blijft het voornaamste spanningspunt, gezien de stijging van de rente.",
-    "tr": "S&P 500 Eylül ayını neredeyse istikrarlı bir şekilde tamamladı (+%0,26) ve Nasdaq Meta, AMD ve Intel'in desteğiyle %2,9 kazandı. Dow Jones %3,5, Euro Stoxx 50 ise %1,6 kaybetti. Tahvil piyasası, getirilerdeki yükselişle birlikte asıl gerilim noktası olmaya devam ediyor.",
-    "ar": "أنهى مؤشر S&P 500 شهر سبتمبر مستقرًا تقريبًا (+0.26%) وارتفع مؤشر Nasdaq بنسبة 2.9%، مدفوعًا بأسهم Meta وAMD وIntel. وخسر مؤشر داو جونز 3.5% ويورو ستوكس 50 1.6%. ولا تزال سوق السندات هي نقطة التوتر الرئيسية، مع ارتفاع العائدات."
+    "fr": "Le S&P 500 termine septembre quasi stable et le Nasdaq progresse, portés par Meta, AMD et Intel. La grande majorité des actions a pourtant baissé.",
+    "en": "The S&P 500 ended September almost stable and the Nasdaq progressed, driven by Meta, AMD and Intel. However, the vast majority of stocks fell.",
+    "nl": "De S&P 500 eindigde september vrijwel stabiel en de Nasdaq maakte vooruitgang, aangedreven door Meta, AMD en Intel. Het overgrote deel van de aandelen daalde echter.",
+    "tr": "S&P 500 Eylül ayını neredeyse istikrarlı bir şekilde tamamladı ve Nasdaq Meta, AMD ve Intel'in desteğiyle yükseliş kaydetti. Ancak hisselerin büyük çoğunluğu düştü.",
+    "ar": "أنهى مؤشر S&P 500 شهر سبتمبر مستقرًا تقريبًا وتقدم مؤشر ناسداك، مدفوعًا بـ Meta وAMD وIntel. ومع ذلك، انخفضت الغالبية العظمى من الأسهم."
    },
+   "body": {
+    "fr": {
+     "lede": "Le S&P 500 termine septembre quasi stable et le Nasdaq progresse, portés par Meta, AMD et Intel. La grande majorité des actions a pourtant baissé.",
+     "keyPoints": [
+      "S&P 500 +0,26 %, Nasdaq +2,9 %, Dow Jones −3,5 % en septembre.",
+      "Meta, AMD et Intel ont porté la hausse.",
+      "78 % des valeurs du S&P 500 ont pourtant reculé."
+     ],
+     "sections": [
+      {
+       "heading": "Une hausse en trompe-l’œil",
+       "paragraphs": [
+        "Le S&P 500 a terminé septembre presque à l'équilibre (+0,26 %), le Nasdaq a progressé de 2,9 % et le Dow Jones a cédé 3,5 %. En Europe, l'Euro Stoxx 50 a reculé de 1,6 %.",
+        "La hausse est très concentrée : Meta a gagné 26,7 % sur le mois, AMD 30 % et Intel 34,3 %, alors que 78 % des valeurs du S&P 500 ont fini le mois dans le rouge et que 27 % ont chuté d'au moins 10 %."
+       ]
+      },
+      {
+       "heading": "Les obligations, point de tension",
+       "paragraphs": [
+        "Le marché obligataire concentre les inquiétudes, avec une forte hausse des rendements et un écart grandissant entre les dettes française et allemande."
+       ]
+      }
+     ]
+    },
+    "en": {
+     "lede": "The S&P 500 ended September almost stable and the Nasdaq progressed, driven by Meta, AMD and Intel. However, the vast majority of stocks fell.",
+     "keyPoints": [
+      "S&P 500 +0.26%, Nasdaq +2.9%, Dow Jones −3.5% in September.",
+      "Meta, AMD and Intel led the increase.",
+      "However, 78% of S&P 500 values ​​fell."
+     ],
+     "sections": [
+      {
+       "heading": "A false increase",
+       "paragraphs": [
+        "The S&P 500 ended September almost in balance (+0.26%), the Nasdaq rose 2.9% and the Dow Jones lost 3.5%. In Europe, the Euro Stoxx 50 fell 1.6%.",
+        "The increase is very concentrated: Meta gained 26.7% over the month, AMD 30% and Intel 34.3%, while 78% of S&P 500 stocks ended the month in the red and 27% fell by at least 10%."
+       ]
+      },
+      {
+       "heading": "Obligations, point of tension",
+       "paragraphs": [
+        "The bond market is the focus of concern, with a sharp rise in yields and a growing gap between French and German debt."
+       ]
+      }
+     ]
+    },
+    "nl": {
+     "lede": "De S&P 500 eindigde september vrijwel stabiel en de Nasdaq maakte vooruitgang, aangedreven door Meta, AMD en Intel. Het overgrote deel van de aandelen daalde echter.",
+     "keyPoints": [
+      "S&P 500 +0,26%, Nasdaq +2,9%, Dow Jones −3,5% in september.",
+      "Meta, AMD en Intel leidden de stijging.",
+      "78% van de S&P 500-waarden daalde echter."
+     ],
+     "sections": [
+      {
+       "heading": "Een valse stijging",
+       "paragraphs": [
+        "De S&P 500 eindigde september vrijwel in evenwicht (+0,26%), de Nasdaq steeg 2,9% en de Dow Jones verloor 3,5%. In Europa daalde de Euro Stoxx 50 1,6%.",
+        "De stijging is zeer geconcentreerd: Meta won deze maand 26,7%, AMD 30% en Intel 34,3%, terwijl 78% van de S&P 500-aandelen de maand in het rood eindigde en 27% met minstens 10% daalde."
+       ]
+      },
+      {
+       "heading": "Verplichtingen, spanningspunt",
+       "paragraphs": [
+        "De obligatiemarkt is het middelpunt van zorg, met een scherpe stijging van de rente en een groeiende kloof tussen Franse en Duitse staatsobligaties."
+       ]
+      }
+     ]
+    },
+    "tr": {
+     "lede": "S&P 500 Eylül ayını neredeyse istikrarlı bir şekilde tamamladı ve Nasdaq Meta, AMD ve Intel'in desteğiyle yükseliş kaydetti. Ancak hisselerin büyük çoğunluğu düştü.",
+     "keyPoints": [
+      "Eylül ayında S&P 500 +%0,26, Nasdaq +%2,9, Dow Jones -%3,5.",
+      "Artışa Meta, AMD ve Intel öncülük etti.",
+      "Ancak S&P 500 değerlerinin %78'i düştü."
+     ],
+     "sections": [
+      {
+       "heading": "Yanlış artış",
+       "paragraphs": [
+        "S&P 500 eylül ayını neredeyse dengede tamamladı (+%0,26), Nasdaq %2,9 yükseldi ve Dow Jones %3,5 kaybetti. Avrupa'da Euro Stoxx 50 %1,6 düştü.",
+        "Artış çok yoğun: Meta ay boyunca %26,7, AMD %30 ve Intel %34,3 kazanırken, S&P 500 hisselerinin %78'i ayı kırmızıyla kapattı ve %27'si en az %10 düştü."
+       ]
+      },
+      {
+       "heading": "Yükümlülükler, gerilim noktası",
+       "paragraphs": [
+        "Tahvil piyasası, getirilerdeki keskin artış ve Fransa ile Almanya'nın borçları arasında büyüyen uçurum nedeniyle endişelerin odağında yer alıyor."
+       ]
+      }
+     ]
+    },
+    "ar": {
+     "lede": "أنهى مؤشر S&P 500 شهر سبتمبر مستقرًا تقريبًا وتقدم مؤشر ناسداك، مدفوعًا بـ Meta وAMD وIntel. ومع ذلك، انخفضت الغالبية العظمى من الأسهم.",
+     "keyPoints": [
+      "ستاندرد آند بورز 500 +0.26%، ناسداك +2.9%، داو جونز -3.5% في سبتمبر.",
+      "قادت Meta وAMD وIntel هذه الزيادة.",
+      "ومع ذلك، انخفضت 78% من قيم مؤشر S&P 500."
+     ],
+     "sections": [
+      {
+       "heading": "زيادة كاذبة",
+       "paragraphs": [
+        "وأنهى مؤشر ستاندرد آند بورز 500 شهر سبتمبر بتوازن تقريبًا (+0.26%)، وارتفع مؤشر ناسداك بنسبة 2.9%، وخسر مؤشر داو جونز 3.5%. وفي أوروبا، انخفض مؤشر Euro Stoxx 50 بنسبة 1.6%.",
+        "كانت الزيادة مركزة للغاية: ارتفعت Meta بنسبة 26.7% خلال الشهر، وAMD 30%، وIntel 34.3%، في حين أنهت 78% من أسهم S&P 500 الشهر في المنطقة الحمراء وانخفضت 27% بنسبة 10% على الأقل."
+       ]
+      },
+      {
+       "heading": "الالتزامات، نقطة التوتر",
+       "paragraphs": [
+        "سوق السندات هي محور الاهتمام، مع الارتفاع الحاد في العائدات والفجوة المتزايدة بين الديون الفرنسية والألمانية."
+       ]
+      }
+     ]
+    }
+   },
+   "sources": [
+    {
+     "source": "Scala Patrimoine",
+     "url": "https://scala-patrimoine.fr/2026/10/01/le-rendez-vous-des-marches-financiers-et-de-leconomie-octobre-2026/",
+     "title": "Le rendez-vous des marchés financiers et de l’économie – octobre 2026",
+     "summary": "",
+     "lang": "fr"
+    }
+   ],
+   "score": 0
+  },
+  {
+   "id": "greve-aeroport",
+   "cat": "belgique",
+   "importance": 3,
    "coverage": 1,
-   "related": [],
+   "source": "Air Journal",
+   "url": "https://www.air-journal.fr/2026-10-12-greve-du-12-octobre-a-bruxelles-des-vols-prevus-normalement-mais-un-acces-a-laeroport-perturbe-ce-lundi-5278150.html",
+   "image": null,
+   "publishedAt": "2026-10-12T06:30:00Z",
+   "lang": "fr",
+   "written": true,
+   "title": {
+    "fr": "Brussels Airport : les vols maintenus, mais rejoindre l'aéroport reste un casse-tête",
+    "en": "Brussels Airport: flights maintained, but reaching the airport remains a headache",
+    "nl": "Brussels Airport: vluchten blijven doorgaan, maar het bereiken van de luchthaven blijft lastig",
+    "tr": "Brüksel Havaalanı: uçuşlar devam ediyor ancak havaalanına ulaşmak baş ağrısı olmaya devam ediyor",
+    "ar": "مطار بروكسل: استمرت الرحلات الجوية، لكن الوصول إلى المطار لا يزال يمثل صداعًا"
+   },
+   "summary": {
+    "fr": "Aucun impact sur le trafic aérien n'est prévu, mais la grève complique l'accès à Zaventem. Les voyageurs sont invités à prévoir une large marge.",
+    "en": "No impact on air traffic is expected, but the strike complicates access to Zaventem. Travelers are advised to allow plenty of room.",
+    "nl": "Er wordt geen impact op het vliegverkeer verwacht, maar de staking bemoeilijkt de toegang tot Zaventem. Reizigers wordt geadviseerd voldoende ruimte te voorzien.",
+    "tr": "Hava trafiği üzerinde herhangi bir etki beklenmiyor ancak saldırı Zaventem'e erişimi zorlaştırıyor. Gezginlere bol miktarda yer bırakmaları tavsiye edilir.",
+    "ar": "ومن غير المتوقع أن يؤثر الإضراب على الحركة الجوية، لكن الإضراب يعقد الوصول إلى زافينتيم. يُنصح المسافرون بإتاحة مساحة كبيرة."
+   },
+   "body": {
+    "fr": {
+     "lede": "Aucun impact sur le trafic aérien n'est prévu, mais la grève complique l'accès à Zaventem. Les voyageurs sont invités à prévoir une large marge.",
+     "keyPoints": [
+      "Pas d’annulations de vols prévues à ce stade.",
+      "Trains réduits et bus De Lijn perturbés.",
+      "Prévoir de l’avance avant le départ."
+     ],
+     "sections": [
+      {
+       "heading": "Comment s’y rendre",
+       "paragraphs": [
+        "Brussels Airport ne prévoit pas d'annulations liées à la grève des services publics, rapporte Air Journal. Mais rejoindre Zaventem est plus difficile : la SNCB ne fait circuler qu'une partie de ses trains et le réseau De Lijn est perturbé.",
+        "Les voyageurs qui partent ce lundi ont intérêt à vérifier leur itinéraire, à envisager un autre moyen de transport et à arriver à l'aéroport avec de l'avance."
+       ]
+      }
+     ]
+    },
+    "en": {
+     "lede": "No impact on air traffic is expected, but the strike complicates access to Zaventem. Travelers are advised to allow plenty of room.",
+     "keyPoints": [
+      "No flight cancellations planned at this stage.",
+      "Reduced trains and De Lijn buses disrupted.",
+      "Plan ahead before departure."
+     ],
+     "sections": [
+      {
+       "heading": "How to get there",
+       "paragraphs": [
+        "Brussels Airport is not planning any cancellations linked to the public services strike, reports Air Journal. But reaching Zaventem is more difficult: SNCB only runs part of its trains and the De Lijn network is disrupted.",
+        "Travelers departing this Monday are advised to check their itinerary, consider another means of transportation and arrive at the airport early."
+       ]
+      }
+     ]
+    },
+    "nl": {
+     "lede": "Er wordt geen impact op het vliegverkeer verwacht, maar de staking bemoeilijkt de toegang tot Zaventem. Reizigers wordt geadviseerd voldoende ruimte te voorzien.",
+     "keyPoints": [
+      "Er zijn momenteel geen vluchtannuleringen gepland.",
+      "Minder treinen en bussen van De Lijn verstoord.",
+      "Plan vooruit voor vertrek."
+     ],
+     "sections": [
+      {
+       "heading": "Hoe kom je daar?",
+       "paragraphs": [
+        "Brussels Airport plant geen annuleringen in verband met de staking van de openbare diensten, meldt Air Journal. Maar Zaventem bereiken is moeilijker: de NMBS rijdt slechts een deel van haar treinen en het netwerk van De Lijn is verstoord.",
+        "Reizigers die deze maandag vertrekken, worden geadviseerd hun reisschema te controleren, een ander vervoermiddel te overwegen en vroeg op de luchthaven aan te komen."
+       ]
+      }
+     ]
+    },
+    "tr": {
+     "lede": "Hava trafiği üzerinde herhangi bir etki beklenmiyor ancak saldırı Zaventem'e erişimi zorlaştırıyor. Gezginlere bol miktarda yer bırakmaları tavsiye edilir.",
+     "keyPoints": [
+      "Şu aşamada herhangi bir uçuş iptali planlanmadı.",
+      "Azaltılmış trenler ve De Lijn otobüsleri aksadı.",
+      "Kalkıştan önce önceden plan yapın."
+     ],
+     "sections": [
+      {
+       "heading": "Oraya nasıl gidilir?",
+       "paragraphs": [
+        "Air Journal'ın haberine göre Brüksel Havalimanı, kamu hizmetleri greviyle bağlantılı herhangi bir iptal planlamadığını bildirdi. Ancak Zaventem'e ulaşmak daha zor: SNCB trenlerinin yalnızca bir kısmını işletiyor ve De Lijn ağı kesintiye uğruyor.",
+        "Bu Pazartesi yola çıkacak yolcuların seyahat programlarını kontrol etmeleri, başka bir ulaşım aracını düşünmeleri ve havaalanına erken gelmeleri tavsiye ediliyor."
+       ]
+      }
+     ]
+    },
+    "ar": {
+     "lede": "ومن غير المتوقع أن يؤثر الإضراب على الحركة الجوية، لكن الإضراب يعقد الوصول إلى زافينتيم. يُنصح المسافرون بإتاحة مساحة كبيرة.",
+     "keyPoints": [
+      "لا يوجد خطط لإلغاء الرحلات في هذه المرحلة.",
+      "تعطلت القطارات المخفضة وحافلات De Lijn.",
+      "التخطيط للمستقبل قبل المغادرة."
+     ],
+     "sections": [
+      {
+       "heading": "كيفية الوصول إلى هناك",
+       "paragraphs": [
+        "لا يخطط مطار بروكسل لأي إلغاءات مرتبطة بإضراب الخدمات العامة، حسبما ذكرت صحيفة Air Journal. لكن الوصول إلى زافينتيم أكثر صعوبة: إذ لا تدير شركة SNCB سوى جزء من قطاراتها وتعطلت شبكة دي لين.",
+        "يُنصح المسافرون المغادرون يوم الاثنين بالتحقق من خط سير الرحلة والتفكير في وسيلة نقل أخرى والوصول إلى المطار مبكرًا."
+       ]
+      }
+     ]
+    }
+   },
+   "sources": [
+    {
+     "source": "Air Journal",
+     "url": "https://www.air-journal.fr/2026-10-12-greve-du-12-octobre-a-bruxelles-des-vols-prevus-normalement-mais-un-acces-a-laeroport-perturbe-ce-lundi-5278150.html",
+     "title": "Grève du 12 octobre à Bruxelles : des vols prévus normalement, mais un accès à l’aéroport perturbé",
+     "summary": "",
+     "lang": "fr"
+    }
+   ],
+   "score": 0
+  },
+  {
+   "id": "climat",
+   "cat": "belgique",
+   "importance": 3,
+   "coverage": 1,
+   "source": "BX1",
+   "url": "https://bx1.be/",
+   "image": null,
+   "publishedAt": "2026-10-11T13:30:00Z",
+   "lang": "fr",
+   "written": true,
+   "title": {
+    "fr": "Marche pour le climat : des dizaines de milliers de personnes dans les rues de Bruxelles",
+    "en": "March for the climate: tens of thousands of people in the streets of Brussels",
+    "nl": "Mars voor het klimaat: tienduizenden mensen in de straten van Brussel",
+    "tr": "İklim için yürüyüş: On binlerce insan Brüksel sokaklarında",
+    "ar": "مسيرة من أجل المناخ: عشرات الآلاف من الأشخاص في شوارع بروكسل"
+   },
+   "summary": {
+    "fr": "Les organisateurs revendiquent 60 000 participants, la police en a compté 45 000, à l’approche de la conférence climat COP31.",
+    "en": "The organizers claim 60,000 participants, the police counted 45,000, in the run-up to the COP31 climate conference.",
+    "nl": "De organisatoren claimen 60.000 deelnemers, de politie telde 45.000, in aanloop naar de klimaatconferentie COP31.",
+    "tr": "COP31 iklim konferansı öncesinde organizatörler 60.000 katılımcının olduğunu iddia ederken, polis 45.000 katılımcı saydı.",
+    "ar": "ويزعم المنظمون أن عدد المشاركين بلغ 60 ألف مشارك، بينما أحصت الشرطة 45 ألف مشارك، في الفترة التي سبقت مؤتمر المناخ COP31."
+   },
+   "body": {
+    "fr": {
+     "lede": "Les organisateurs revendiquent 60 000 participants, la police en a compté 45 000, à l’approche de la conférence climat COP31.",
+     "keyPoints": [
+      "60 000 participants selon les organisateurs, 45 000 selon la police.",
+      "La mobilisation précède la COP31."
+     ],
+     "sections": [
+      {
+       "heading": "Une forte mobilisation",
+       "paragraphs": [
+        "Une marche pour le climat a traversé Bruxelles ce week-end, rapporte BX1. Les organisateurs annoncent 60 000 participants, la police en a compté 45 000.",
+        "La mobilisation intervient alors que l'Union européenne prépare sa position pour la COP31."
+       ]
+      }
+     ]
+    },
+    "en": {
+     "lede": "The organizers claim 60,000 participants, the police counted 45,000, in the run-up to the COP31 climate conference.",
+     "keyPoints": [
+      "60,000 participants according to the organizers, 45,000 according to the police.",
+      "The mobilization precedes COP31."
+     ],
+     "sections": [
+      {
+       "heading": "A strong mobilization",
+       "paragraphs": [
+        "A climate march passed through Brussels this weekend, reports BX1. The organizers announce 60,000 participants, the police counted 45,000.",
+        "The mobilization comes as the European Union prepares its position for COP31."
+       ]
+      }
+     ]
+    },
+    "nl": {
+     "lede": "De organisatoren claimen 60.000 deelnemers, de politie telde 45.000, in aanloop naar de klimaatconferentie COP31.",
+     "keyPoints": [
+      "Volgens de organisatoren 60.000 deelnemers, volgens de politie 45.000.",
+      "De mobilisatie gaat vooraf aan COP31."
+     ],
+     "sections": [
+      {
+       "heading": "Een sterke mobilisatie",
+       "paragraphs": [
+        "Dit weekend trok er een klimaatmars door Brussel, meldt BX1. De organisatoren kondigen 60.000 deelnemers aan, de politie telde 45.000.",
+        "De mobilisatie komt op het moment dat de Europese Unie haar standpunt voor COP31 voorbereidt."
+       ]
+      }
+     ]
+    },
+    "tr": {
+     "lede": "COP31 iklim konferansı öncesinde organizatörler 60.000 katılımcının olduğunu iddia ederken, polis 45.000 katılımcı saydı.",
+     "keyPoints": [
+      "Organizatörlere göre 60.000, polise göre 45.000 katılımcı.",
+      "Seferberlik COP31'den önce gerçekleşti."
+     ],
+     "sections": [
+      {
+       "heading": "Güçlü bir seferberlik",
+       "paragraphs": [
+        "BX1'in haberine göre bu hafta sonu Brüksel'de bir iklim yürüyüşü düzenlendi. Organizatörler 60.000 katılımcının olduğunu duyurdu, polis ise 45.000 kişi saydı.",
+        "Seferberlik, Avrupa Birliği'nin COP31 için pozisyonunu hazırlarken gerçekleşti."
+       ]
+      }
+     ]
+    },
+    "ar": {
+     "lede": "ويزعم المنظمون أن عدد المشاركين بلغ 60 ألف مشارك، بينما أحصت الشرطة 45 ألف مشارك، في الفترة التي سبقت مؤتمر المناخ COP31.",
+     "keyPoints": [
+      "60 ألف مشارك بحسب المنظمين، و45 ألفاً بحسب الشرطة.",
+      "التعبئة تسبق COP31."
+     ],
+     "sections": [
+      {
+       "heading": "تعبئة قوية",
+       "paragraphs": [
+        "مرت مسيرة مناخية عبر بروكسل في نهاية هذا الأسبوع، وفقًا لتقارير BX1. أعلن المنظمون عن 60 ألف مشارك، وأحصت الشرطة 45 ألفاً.",
+        "وتأتي هذه التعبئة في الوقت الذي يستعد فيه الاتحاد الأوروبي لموقفه بشأن مؤتمر الأمم المتحدة المعني بتغير المناخ (COP31)."
+       ]
+      }
+     ]
+    }
+   },
+   "sources": [
+    {
+     "source": "BX1",
+     "url": "https://bx1.be/",
+     "title": "BX1, la chaîne d’info de Bruxelles",
+     "summary": "",
+     "lang": "fr"
+    }
+   ],
+   "score": 0
+  },
+  {
+   "id": "mineurs",
+   "cat": "faits-divers",
+   "importance": 3,
+   "coverage": 1,
+   "source": "BX1",
+   "url": "https://bx1.be/",
+   "image": null,
+   "publishedAt": "2026-10-11T15:20:00Z",
+   "lang": "fr",
+   "written": true,
+   "title": {
+    "fr": "Débordements après la manifestation nationale : des mineurs relâchés faute de place en IPPJ",
+    "en": "Overflows after the national demonstration: minors released due to lack of space in IPPJ",
+    "nl": "Overflow na de landelijke demonstratie: minderjarigen vrijgelaten wegens ruimtegebrek in IPPJ",
+    "tr": "Ulusal gösteriden sonra taşkınlar: IPPJ'de yer olmaması nedeniyle reşit olmayanlar serbest bırakıldı",
+    "ar": "الفيضانات بعد المظاهرة الوطنية: إطلاق سراح القُصّر بسبب ضيق المساحة في IPPJ"
+   },
+   "summary": {
+    "fr": "Des mineurs soupçonnés d'avoir pris part aux violences du 9 octobre à Bruxelles ont été remis en liberté, les institutions de protection de la jeunesse étant saturées.",
+    "en": "Minors suspected of having taken part in the violence of October 9 in Brussels were released, youth protection institutions being saturated.",
+    "nl": "Minderjarigen die verdacht werden van deelname aan het geweld van 9 oktober in Brussel werden vrijgelaten, terwijl de instellingen voor jeugdbescherming verzadigd raakten.",
+    "tr": "Brüksel'de 9 Ekim'de yaşanan şiddet olaylarına karıştıklarından şüphelenilen küçükler serbest bırakıldı, gençlik koruma kurumları doymuş durumdaydı.",
+    "ar": "تم إطلاق سراح القُصَّر المشتبه في مشاركتهم في أعمال العنف التي وقعت في 9 أكتوبر/تشرين الأول في بروكسل، وتم إشباع مؤسسات حماية الشباب."
+   },
+   "body": {
+    "fr": {
+     "lede": "Des mineurs soupçonnés d'avoir pris part aux violences du 9 octobre à Bruxelles ont été remis en liberté, les institutions de protection de la jeunesse étant saturées.",
+     "keyPoints": [
+      "Des mineurs interpellés le 9 octobre ont été relâchés.",
+      "Les IPPJ manquent de places."
+     ],
+     "sections": [
+      {
+       "heading": "Faute de place",
+       "paragraphs": [
+        "Après les débordements survenus en marge de la manifestation nationale du vendredi 9 octobre à Bruxelles, plusieurs mineurs interpellés ont été remis en liberté, rapporte BX1. En cause : le manque de places dans les institutions publiques de protection de la jeunesse (IPPJ).",
+        "Le manque de capacité de ces institutions est un sujet récurrent en Belgique."
+       ]
+      }
+     ]
+    },
+    "en": {
+     "lede": "Minors suspected of having taken part in the violence of October 9 in Brussels were released, youth protection institutions being saturated.",
+     "keyPoints": [
+      "Minors arrested on October 9 were released.",
+      "The IPPJs are short of places."
+     ],
+     "sections": [
+      {
+       "heading": "Lack of space",
+       "paragraphs": [
+        "After the excesses that occurred on the sidelines of the national demonstration on Friday October 9 in Brussels, several minors arrested were released, reports BX1. The reason: the lack of places in public youth protection institutions (IPPJ).",
+        "The lack of capacity of these institutions is a recurring subject in Belgium."
+       ]
+      }
+     ]
+    },
+    "nl": {
+     "lede": "Minderjarigen die verdacht werden van deelname aan het geweld van 9 oktober in Brussel werden vrijgelaten, terwijl de instellingen voor jeugdbescherming verzadigd raakten.",
+     "keyPoints": [
+      "Minderjarigen die op 9 oktober werden gearresteerd, werden vrijgelaten.",
+      "De IPPJ's hebben een tekort aan plaatsen."
+     ],
+     "sections": [
+      {
+       "heading": "Gebrek aan ruimte",
+       "paragraphs": [
+        "Na de excessen die plaatsvonden aan de zijlijn van de nationale demonstratie op vrijdag 9 oktober in Brussel zijn verschillende opgepakte minderjarigen vrijgelaten, meldt BX1. De reden: het gebrek aan plaatsen in openbare instellingen voor jeugdbescherming (IPPJ).",
+        "Het capaciteitsgebrek van deze instellingen is een terugkerend onderwerp in België."
+       ]
+      }
+     ]
+    },
+    "tr": {
+     "lede": "Brüksel'de 9 Ekim'de yaşanan şiddet olaylarına karıştıklarından şüphelenilen küçükler serbest bırakıldı, gençlik koruma kurumları doymuş durumdaydı.",
+     "keyPoints": [
+      "9 Ekim'de tutuklanan küçükler serbest bırakıldı.",
+      "IPPJ'lerde yer sıkıntısı var."
+     ],
+     "sections": [
+      {
+       "heading": "Yer eksikliği",
+       "paragraphs": [
+        "BX1'in haberine göre, 9 Ekim Cuma günü Brüksel'de düzenlenen ulusal gösterinin oturum aralarında meydana gelen aşırılıkların ardından tutuklanan çok sayıda çocuk serbest bırakıldı. Sebebi ise kamuya ait gençleri koruma kurumlarında (IPPJ) yer eksikliği.",
+        "Bu kurumların kapasite eksikliği Belçika'da tekrarlanan bir konudur."
+       ]
+      }
+     ]
+    },
+    "ar": {
+     "lede": "تم إطلاق سراح القُصَّر المشتبه في مشاركتهم في أعمال العنف التي وقعت في 9 أكتوبر/تشرين الأول في بروكسل، وتم إشباع مؤسسات حماية الشباب.",
+     "keyPoints": [
+      "تم إطلاق سراح القُصَّر الذين اعتقلوا في 9 أكتوبر/تشرين الأول.",
+      "IPPJs تفتقر إلى الأماكن."
+     ],
+     "sections": [
+      {
+       "heading": "قلة المساحة",
+       "paragraphs": [
+        "بعد التجاوزات التي حدثت على هامش المظاهرة الوطنية يوم الجمعة 9 أكتوبر في بروكسل، تم إطلاق سراح العديد من القاصرين المعتقلين، حسب ما أوردته BX1. السبب: عدم وجود أماكن في المؤسسات العامة لحماية الشباب (IPPJ).",
+        "يعد نقص قدرة هذه المؤسسات موضوعًا متكررًا في بلجيكا."
+       ]
+      }
+     ]
+    }
+   },
+   "sources": [
+    {
+     "source": "BX1",
+     "url": "https://bx1.be/",
+     "title": "BX1, la chaîne d’info de Bruxelles",
+     "summary": "",
+     "lang": "fr"
+    }
+   ],
+   "score": 0
+  },
+  {
+   "id": "france-sondage",
+   "cat": "monde",
+   "importance": 3,
+   "coverage": 1,
+   "source": "Euronews",
+   "url": "https://www.yahoo.com/news/world/articles/latest-news-bulletin-october-12th-050032352.html",
+   "image": null,
+   "publishedAt": "2026-10-12T05:00:00Z",
+   "lang": "fr",
+   "written": true,
+   "title": {
+    "fr": "Présidentielle française : un sondage annonce un second tour Le Pen – Mélenchon",
+    "en": "French presidential election: a poll announces a second round Le Pen – Mélenchon",
+    "nl": "Franse presidentsverkiezingen: een opiniepeiling kondigt een tweede ronde Le Pen – Mélenchon aan",
+    "tr": "Fransa cumhurbaşkanlığı seçimi: Anket ikinci tura çıkacağını duyurdu Le Pen – Mélenchon",
+    "ar": "الانتخابات الرئاسية الفرنسية: استطلاع للرأي يعلن عن جولة ثانية لوبان – ميلينشون"
+   },
+   "summary": {
+    "fr": "Selon une enquête d'opinion relayée par Euronews, le Rassemblement national et La France insoumise s'affronteraient au second tour. La contestation étudiante bouscule la campagne.",
+    "en": "According to an opinion poll relayed by Euronews, the National Rally and La France insoumise would face each other in the second round. The student protest shakes up the campaign.",
+    "nl": "Volgens een opiniepeiling van Euronews zouden de National Rally en La France insoumise in de tweede ronde tegenover elkaar staan. Het studentenprotest schudt de campagne wakker.",
+    "tr": "Euronews'in aktardığı kamuoyu yoklamasına göre National Rally ve La France insoumise ikinci turda karşı karşıya gelecek. Öğrenci protestosu kampanyayı sarstı.",
+    "ar": "وبحسب استطلاع للرأي نقلته يورونيوز، فإن حزبي التجمع الوطني وحزب فرنسا الأبية سيواجهان بعضهما البعض في الجولة الثانية. احتجاج الطلاب يهز الحملة."
+   },
+   "body": {
+    "fr": {
+     "lede": "Selon une enquête d'opinion relayée par Euronews, le Rassemblement national et La France insoumise s'affronteraient au second tour. La contestation étudiante bouscule la campagne.",
+     "keyPoints": [
+      "Un sondage prédit un duel Le Pen – Mélenchon au second tour.",
+      "La mobilisation étudiante pèse sur la campagne."
+     ],
+     "sections": [
+      {
+       "heading": "Un duel annoncé",
+       "paragraphs": [
+        "D'après un sondage relayé par Euronews, la prochaine présidentielle française déboucherait sur un second tour entre Le Pen et Jean-Luc Mélenchon. Euronews souligne aussi que des manifestations étudiantes bousculent la campagne.",
+        "Un sondage reste une photographie de l'opinion à un moment donné, à plusieurs mois du scrutin."
+       ]
+      }
+     ]
+    },
+    "en": {
+     "lede": "According to an opinion poll relayed by Euronews, the National Rally and La France insoumise would face each other in the second round. The student protest shakes up the campaign.",
+     "keyPoints": [
+      "A poll predicts a Le Pen – Mélenchon duel in the second round.",
+      "Student mobilization weighs on the campaign."
+     ],
+     "sections": [
+      {
+       "heading": "A duel announced",
+       "paragraphs": [
+        "According to a poll relayed by Euronews, the next French presidential election would lead to a second round between Le Pen and Jean-Luc Mélenchon. Euronews also points out that student demonstrations are disrupting the campaign.",
+        "A poll remains a snapshot of opinion at a given moment, several months before the election."
+       ]
+      }
+     ]
+    },
+    "nl": {
+     "lede": "Volgens een opiniepeiling van Euronews zouden de National Rally en La France insoumise in de tweede ronde tegenover elkaar staan. Het studentenprotest schudt de campagne wakker.",
+     "keyPoints": [
+      "Een opiniepeiling voorspelt een duel tussen Le Pen en Mélenchon in de tweede ronde.",
+      "De mobilisatie van studenten weegt op de campagne."
+     ],
+     "sections": [
+      {
+       "heading": "Een duel aangekondigd",
+       "paragraphs": [
+        "Volgens een opiniepeiling van Euronews zouden de volgende Franse presidentsverkiezingen leiden tot een tweede ronde tussen Le Pen en Jean-Luc Mélenchon. Euronews wijst er ook op dat studentendemonstraties de campagne verstoren.",
+        "Een opiniepeiling blijft een momentopname van de opinie op een bepaald moment, enkele maanden vóór de verkiezingen."
+       ]
+      }
+     ]
+    },
+    "tr": {
+     "lede": "Euronews'in aktardığı kamuoyu yoklamasına göre National Rally ve La France insoumise ikinci turda karşı karşıya gelecek. Öğrenci protestosu kampanyayı sarstı.",
+     "keyPoints": [
+      "Anketler ikinci turda Le Pen-Mélenchon düellosu olacağını öngörüyor.",
+      "Öğrenci seferberliği kampanyaya ağırlık veriyor."
+     ],
+     "sections": [
+      {
+       "heading": "Düello duyurusu yapıldı",
+       "paragraphs": [
+        "Euronews'in aktardığı ankete göre, Fransa'da bir sonraki cumhurbaşkanlığı seçimi Le Pen ile Jean-Luc Mélenchon arasında ikinci tura çıkacak. Euronews ayrıca öğrenci gösterilerinin kampanyayı aksattığına dikkat çekiyor.",
+        "Anket, seçimden birkaç ay önce, belirli bir andaki görüşlerin anlık görüntüsü olarak kalır."
+       ]
+      }
+     ]
+    },
+    "ar": {
+     "lede": "وبحسب استطلاع للرأي نقلته يورونيوز، فإن حزبي التجمع الوطني وحزب فرنسا الأبية سيواجهان بعضهما البعض في الجولة الثانية. احتجاج الطلاب يهز الحملة.",
+     "keyPoints": [
+      "ويتوقع استطلاع للرأي مواجهة بين لوبان وميلينشون في الجولة الثانية.",
+      "التعبئة الطلابية تؤثر على الحملة."
+     ],
+     "sections": [
+      {
+       "heading": "تم الإعلان عن مبارزة",
+       "paragraphs": [
+        "أظهر استطلاع للرأي نقلته يورونيوز أن الانتخابات الرئاسية الفرنسية المقبلة ستؤدي إلى جولة ثانية بين لوبان وجان لوك ميلينشون. وتشير يورونيوز أيضًا إلى أن المظاهرات الطلابية تعطل الحملة.",
+        "ويظل الاستطلاع بمثابة لقطة من الرأي في لحظة معينة، قبل عدة أشهر من الانتخابات."
+       ]
+      }
+     ]
+    }
+   },
+   "sources": [
+    {
+     "source": "Euronews",
+     "url": "https://www.yahoo.com/news/world/articles/latest-news-bulletin-october-12th-050032352.html",
+     "title": "Le bulletin d’information du 12 octobre 2026",
+     "summary": "",
+     "lang": "fr"
+    }
+   ],
+   "score": 0
+  },
+  {
+   "id": "grippe",
+   "cat": "sante",
+   "importance": 3,
+   "coverage": 1,
+   "source": "Test-Achats",
+   "url": "https://www.test-achats.be/sante/maladies-et-medicaments/apercus-maladies/news/vaccin-renforce-grippe-belgique-2026",
+   "image": null,
+   "publishedAt": "2026-10-10T08:00:00Z",
+   "lang": "fr",
+   "written": true,
+   "title": {
+    "fr": "Grippe : la vaccination commence, un vaccin renforcé conseillé aux plus de 65 ans",
+    "en": "Flu: vaccination begins, a reinforced vaccine recommended for over 65s",
+    "nl": "Griep: vaccinatie begint, een versterkt vaccin aanbevolen voor 65-plussers",
+    "tr": "Grip: Aşılama başlıyor, 65 yaş üstü için güçlendirilmiş aşı öneriliyor",
+    "ar": "الأنفلونزا: بدء التطعيم، وهو لقاح معزز يوصى به للأشخاص الذين تزيد أعمارهم عن 65 عامًا"
+   },
+   "summary": {
+    "fr": "La vaccination est recommandée de la mi-octobre à la mi-décembre, en priorité pour les seniors, les femmes enceintes et les malades chroniques.",
+    "en": "Vaccination is recommended from mid-October to mid-December, with priority for seniors, pregnant women and the chronically ill.",
+    "nl": "Vaccinatie wordt aanbevolen van half oktober tot half december, met voorrang voor senioren, zwangere vrouwen en chronisch zieken.",
+    "tr": "Aşılamanın ekim ortasından aralık ortasına kadar, öncelikli olarak yaşlılara, hamile kadınlara ve kronik hastalara yapılması tavsiye ediliyor.",
+    "ar": "يوصى بالتطعيم من منتصف أكتوبر إلى منتصف ديسمبر، مع إعطاء الأولوية لكبار السن والنساء الحوامل والمصابين بأمراض مزمنة."
+   },
+   "body": {
+    "fr": {
+     "lede": "La vaccination est recommandée de la mi-octobre à la mi-décembre, en priorité pour les seniors, les femmes enceintes et les malades chroniques.",
+     "keyPoints": [
+      "Se faire vacciner entre la mi-octobre et la mi-décembre.",
+      "Priorité aux 65 ans et plus, aux femmes enceintes et aux malades chroniques.",
+      "Un vaccin renforcé est recommandé pour les seniors."
+     ],
+     "sections": [
+      {
+       "heading": "Qui doit se faire vacciner",
+       "paragraphs": [
+        "La campagne de vaccination contre la grippe saisonnière démarre. Il est recommandé de se faire vacciner entre la mi-octobre et la mi-décembre, en priorité pour les personnes de 65 ans et plus, les femmes enceintes et les personnes atteintes de maladies chroniques."
+       ]
+      },
+      {
+       "heading": "Un vaccin renforcé pour les seniors",
+       "paragraphs": [
+        "Le Conseil supérieur de la santé privilégie désormais, pour les plus de 65 ans, un vaccin renforcé, plus fortement dosé ou avec adjuvant. Selon Test-Achats, il peut être obtenu en pharmacie sans ordonnance."
+       ]
+      }
+     ]
+    },
+    "en": {
+     "lede": "Vaccination is recommended from mid-October to mid-December, with priority for seniors, pregnant women and the chronically ill.",
+     "keyPoints": [
+      "Get vaccinated between mid-October and mid-December.",
+      "Priority for those aged 65 and over, pregnant women and the chronically ill.",
+      "A reinforced vaccine is recommended for seniors."
+     ],
+     "sections": [
+      {
+       "heading": "Who should get vaccinated",
+       "paragraphs": [
+        "The seasonal flu vaccination campaign is starting. It is recommended to be vaccinated between mid-October and mid-December, with priority given to people aged 65 and over, pregnant women and people with chronic illnesses."
+       ]
+      },
+      {
+       "heading": "A reinforced vaccine for seniors",
+       "paragraphs": [
+        "The Superior Health Council now favors, for those over 65, a reinforced vaccine, more highly dosed or with an adjuvant. According to Test-Achats, it can be obtained in pharmacies without a prescription."
+       ]
+      }
+     ]
+    },
+    "nl": {
+     "lede": "Vaccinatie wordt aanbevolen van half oktober tot half december, met voorrang voor senioren, zwangere vrouwen en chronisch zieken.",
+     "keyPoints": [
+      "Laat u vaccineren tussen half oktober en half december.",
+      "Prioriteit voor 65-plussers, zwangere vrouwen en chronisch zieken.",
+      "Voor senioren wordt een versterkt vaccin aanbevolen."
+     ],
+     "sections": [
+      {
+       "heading": "Wie moet zich laten vaccineren",
+       "paragraphs": [
+        "De seizoensgriepvaccinatiecampagne gaat van start. Het wordt aanbevolen om zich tussen half oktober en half december te laten vaccineren, waarbij voorrang wordt gegeven aan mensen van 65 jaar en ouder, zwangere vrouwen en mensen met chronische ziekten."
+       ]
+      },
+      {
+       "heading": "Een versterkt vaccin voor senioren",
+       "paragraphs": [
+        "De Hoge Gezondheidsraad geeft nu voor 65-plussers de voorkeur aan een versterkt vaccin, hoger gedoseerd of met een adjuvans. Volgens Test-Aankoop is het zonder recept verkrijgbaar in de apotheek."
+       ]
+      }
+     ]
+    },
+    "tr": {
+     "lede": "Aşılamanın ekim ortasından aralık ortasına kadar, öncelikli olarak yaşlılara, hamile kadınlara ve kronik hastalara yapılması tavsiye ediliyor.",
+     "keyPoints": [
+      "Ekim ortası ile aralık ortası arasında aşı olun.",
+      "65 yaş ve üzeri, hamileler ve kronik rahatsızlığı olanlara öncelik verilmektedir.",
+      "Yaşlılara güçlendirilmiş aşı önerilmektedir."
+     ],
+     "sections": [
+      {
+       "heading": "Kimler aşı olmalı",
+       "paragraphs": [
+        "Mevsimsel grip aşısı kampanyası başlıyor. Aşının Ekim ortası ile Aralık ortası arasında, öncelikli olarak 65 yaş ve üzeri, hamileler ve kronik rahatsızlığı olan kişilere yapılması öneriliyor."
+       ]
+      },
+      {
+       "heading": "Yaşlılar için güçlendirilmiş aşı",
+       "paragraphs": [
+        "Yüksek Sağlık Konseyi artık 65 yaş üstü kişiler için daha yüksek dozda veya adjuvan içeren güçlendirilmiş bir aşıyı destekliyor. Test-Achats'a göre eczanelerden reçetesiz temin edilebiliyor."
+       ]
+      }
+     ]
+    },
+    "ar": {
+     "lede": "يوصى بالتطعيم من منتصف أكتوبر إلى منتصف ديسمبر، مع إعطاء الأولوية لكبار السن والنساء الحوامل والمصابين بأمراض مزمنة.",
+     "keyPoints": [
+      "احصل على التطعيم بين منتصف أكتوبر ومنتصف ديسمبر.",
+      "الأولوية لمن هم في سن 65 سنة فما فوق والحوامل والمصابين بأمراض مزمنة.",
+      "يوصى باللقاح المعزز لكبار السن."
+     ],
+     "sections": [
+      {
+       "heading": "من يجب أن يحصل على التطعيم",
+       "paragraphs": [
+        "انطلاق حملة التطعيم ضد الانفلونزا الموسمية. ويوصى بالتطعيم بين منتصف أكتوبر ومنتصف ديسمبر، مع إعطاء الأولوية للأشخاص الذين تبلغ أعمارهم 65 عامًا فما فوق، والنساء الحوامل والأشخاص الذين يعانون من أمراض مزمنة."
+       ]
+      },
+      {
+       "heading": "لقاح معزز لكبار السن",
+       "paragraphs": [
+        "ويفضل مجلس الصحة الأعلى الآن، لمن تزيد أعمارهم عن 65 عامًا، الحصول على لقاح معزز، بجرعات أعلى أو مع مادة مساعدة. وبحسب موقع Test-Achats، يمكن الحصول عليه من الصيدليات دون وصفة طبية."
+       ]
+      }
+     ]
+    }
+   },
+   "sources": [
+    {
+     "source": "Test-Achats",
+     "url": "https://www.test-achats.be/sante/maladies-et-medicaments/apercus-maladies/news/vaccin-renforce-grippe-belgique-2026",
+     "title": "La Belgique recommande le vaccin renforcé contre la grippe : ce qu’il faut savoir en 3 questions",
+     "summary": "",
+     "lang": "fr"
+    }
+   ],
+   "score": 0
+  },
+  {
+   "id": "taiwan",
+   "cat": "monde",
+   "importance": 3,
+   "coverage": 1,
+   "source": "Euronews",
+   "url": "https://www.euronews.com/video/2026/10/12/latest-news-bulletin-october-12th-2026-morning",
+   "image": null,
+   "publishedAt": "2026-10-12T08:30:00Z",
+   "lang": "fr",
+   "written": true,
+   "title": {
+    "fr": "Taïwan : Pékin sanctionne des ministres du Paraguay et du Belize",
+    "en": "Taiwan: Beijing sanctions ministers from Paraguay and Belize",
+    "nl": "Taiwan: Peking stelt sanctieministers uit Paraguay en Belize op",
+    "tr": "Tayvan: Pekin, Paraguay ve Belize'den bakanlara yaptırım uyguluyor",
+    "ar": "تايوان: بكين تفرض عقوبات على وزراء من باراغواي وبليز"
+   },
+   "summary": {
+    "fr": "La Chine frappe de sanctions des membres des gouvernements paraguayen et bélizien, deux des rares pays qui reconnaissent encore Taipei.",
+    "en": "China is imposing sanctions on members of the Paraguayan and Belizean governments, two of the few countries that still recognize Taipei.",
+    "nl": "China legt sancties op aan leden van de regeringen van Paraguay en Belize, twee van de weinige landen die Taipei nog steeds erkennen.",
+    "tr": "Çin, Taipei'yi hâlâ tanıyan az sayıdaki ülkeden ikisi olan Paraguay ve Belize hükümetlerinin üyelerine yaptırımlar uyguluyor.",
+    "ar": "وتفرض الصين عقوبات على أعضاء حكومتي باراجواي وبليز، وهما من الدول القليلة التي لا تزال تعترف بتايبيه."
+   },
+   "body": {
+    "fr": {
+     "lede": "La Chine frappe de sanctions des membres des gouvernements paraguayen et bélizien, deux des rares pays qui reconnaissent encore Taipei.",
+     "keyPoints": [
+      "Pékin sanctionne des ministres du Paraguay et du Belize.",
+      "Ces pays reconnaissent officiellement Taïwan."
+     ],
+     "sections": [
+      {
+       "heading": "Pression diplomatique",
+       "paragraphs": [
+        "La Chine a annoncé des sanctions visant des ministres du Paraguay et du Belize en raison de leurs liens avec Taïwan, selon Euronews.",
+        "Ces deux pays font partie du petit nombre d'États qui reconnaissent encore officiellement Taipei plutôt que Pékin. La Chine considère Taïwan comme une partie de son territoire et cherche à isoler l'île sur la scène internationale."
+       ]
+      }
+     ]
+    },
+    "en": {
+     "lede": "China is imposing sanctions on members of the Paraguayan and Belizean governments, two of the few countries that still recognize Taipei.",
+     "keyPoints": [
+      "Beijing sanctions ministers from Paraguay and Belize.",
+      "These countries officially recognize Taiwan."
+     ],
+     "sections": [
+      {
+       "heading": "Diplomatic pressure",
+       "paragraphs": [
+        "China has announced sanctions targeting ministers from Paraguay and Belize over their ties to Taiwan, according to Euronews.",
+        "These two countries are among the small number of states that still officially recognize Taipei rather than Beijing. China considers Taiwan to be part of its territory and seeks to isolate the island internationally."
+       ]
+      }
+     ]
+    },
+    "nl": {
+     "lede": "China legt sancties op aan leden van de regeringen van Paraguay en Belize, twee van de weinige landen die Taipei nog steeds erkennen.",
+     "keyPoints": [
+      "Peking stelt sanctieministers uit Paraguay en Belize op.",
+      "Deze landen erkennen Taiwan officieel."
+     ],
+     "sections": [
+      {
+       "heading": "Diplomatieke druk",
+       "paragraphs": [
+        "Volgens Euronews heeft China sancties aangekondigd tegen ministers uit Paraguay en Belize vanwege hun banden met Taiwan.",
+        "Deze twee landen behoren tot het kleine aantal staten dat Taipei nog steeds officieel erkent in plaats van Peking. China beschouwt Taiwan als onderdeel van zijn grondgebied en probeert het eiland internationaal te isoleren."
+       ]
+      }
+     ]
+    },
+    "tr": {
+     "lede": "Çin, Taipei'yi hâlâ tanıyan az sayıdaki ülkeden ikisi olan Paraguay ve Belize hükümetlerinin üyelerine yaptırımlar uyguluyor.",
+     "keyPoints": [
+      "Pekin, Paraguay ve Belize'den bakanlara yaptırım uyguluyor.",
+      "Bu ülkeler Tayvan'ı resmen tanıyor."
+     ],
+     "sections": [
+      {
+       "heading": "Diplomatik baskı",
+       "paragraphs": [
+        "Euronews'e göre Çin, Tayvan'la bağları nedeniyle Paraguay ve Belize'li bakanları hedef alan yaptırımları duyurdu.",
+        "Bu iki ülke resmi olarak Pekin yerine Taipei'yi tanıyan az sayıdaki eyalet arasında yer alıyor. Çin, Tayvan'ı kendi topraklarının bir parçası olarak görüyor ve adayı uluslararası alanda izole etmeye çalışıyor."
+       ]
+      }
+     ]
+    },
+    "ar": {
+     "lede": "وتفرض الصين عقوبات على أعضاء حكومتي باراجواي وبليز، وهما من الدول القليلة التي لا تزال تعترف بتايبيه.",
+     "keyPoints": [
+      "بكين تفرض عقوبات على وزراء من باراغواي وبليز.",
+      "تعترف هذه الدول رسميًا بتايوان."
+     ],
+     "sections": [
+      {
+       "heading": "الضغط الدبلوماسي",
+       "paragraphs": [
+        "أعلنت الصين فرض عقوبات تستهدف وزراء من باراغواي وبليز بسبب علاقاتهما مع تايوان، بحسب يورونيوز.",
+        "وهاتان الدولتان من بين عدد قليل من الدول التي لا تزال تعترف رسميًا بتايبيه بدلاً من بكين. وتعتبر الصين تايوان جزءا من أراضيها وتسعى إلى عزل الجزيرة دوليا."
+       ]
+      }
+     ]
+    }
+   },
+   "sources": [
+    {
+     "source": "Euronews",
+     "url": "https://www.euronews.com/video/2026/10/12/latest-news-bulletin-october-12th-2026-morning",
+     "title": "Le bulletin d’information du 12 octobre 2026",
+     "summary": "",
+     "lang": "fr"
+    }
+   ],
+   "score": 0
+  },
+  {
+   "id": "couteau",
+   "cat": "faits-divers",
+   "importance": 2,
+   "coverage": 1,
+   "source": "BruxellesToday",
+   "url": "https://www.bruxellestoday.be/faits-divers/agression-couteau-bruxelles-police-recherche-deux-suspects.html",
+   "image": null,
+   "publishedAt": "2026-10-09T10:00:00Z",
+   "lang": "fr",
+   "written": true,
+   "title": {
+    "fr": "Coup de couteau dans le centre de Bruxelles : la police diffuse un avis de recherche",
+    "en": "Stabbing in the center of Brussels: police issue wanted notice",
+    "nl": "Steekpartij in centrum Brussel: politievraag wilde bericht",
+    "tr": "Brüksel'in merkezinde bıçaklama: Polis meselesine ilişkin ihbar isteniyor",
+    "ar": "طعن وسط بروكسل: الشرطة تصدر إشعاراً بالمطلوبين"
+   },
+   "summary": {
+    "fr": "À la demande du parquet de Bruxelles, la police fédérale publie les images de deux suspects d'une agression au couteau commise en avril.",
+    "en": "At the request of the Brussels public prosecutor's office, the federal police publish the images of two suspects in a knife attack committed in April.",
+    "nl": "Op vraag van het Brusselse parket publiceert de federale politie de beelden van twee verdachten van een mesaanval gepleegd in april.",
+    "tr": "Brüksel savcılığının talebi üzerine federal polis, Nisan ayında gerçekleştirilen bıçaklı saldırıdaki iki şüphelinin fotoğraflarını yayınladı.",
+    "ar": "بناء على طلب من مكتب المدعي العام في بروكسل، نشرت الشرطة الفيدرالية صور اثنين من المشتبه بهم في هجوم بسكين ارتكب في أبريل."
+   },
+   "body": {
+    "fr": {
+     "lede": "À la demande du parquet de Bruxelles, la police fédérale publie les images de deux suspects d'une agression au couteau commise en avril.",
+     "keyPoints": [
+      "Avis de recherche pour deux suspects.",
+      "Les faits remontent à avril, dans le centre de Bruxelles."
+     ],
+     "sections": [
+      {
+       "heading": "Appel à témoins",
+       "paragraphs": [
+        "À la demande du parquet de Bruxelles, la police fédérale a diffusé un avis de recherche concernant deux suspects d'une agression au couteau commise en avril dans le centre de la capitale, rapporte BruxellesToday.",
+        "Toute personne qui reconnaîtrait ces individus ou disposerait d’informations est invitée à contacter les enquêteurs."
+       ]
+      }
+     ]
+    },
+    "en": {
+     "lede": "At the request of the Brussels public prosecutor's office, the federal police publish the images of two suspects in a knife attack committed in April.",
+     "keyPoints": [
+      "Wanted notice for two suspects.",
+      "The facts date back to April, in the center of Brussels."
+     ],
+     "sections": [
+      {
+       "heading": "Call for witnesses",
+       "paragraphs": [
+        "At the request of the Brussels public prosecutor's office, the federal police issued a wanted notice concerning two suspects in a knife attack committed in April in the center of the capital, reports BruxellesToday.",
+        "Anyone who recognizes these individuals or has information is invited to contact investigators."
+       ]
+      }
+     ]
+    },
+    "nl": {
+     "lede": "Op vraag van het Brusselse parket publiceert de federale politie de beelden van twee verdachten van een mesaanval gepleegd in april.",
+     "keyPoints": [
+      "Gevraagd bericht voor twee verdachten.",
+      "De feiten dateren van april, in het centrum van Brussel."
+     ],
+     "sections": [
+      {
+       "heading": "Oproep voor getuigen",
+       "paragraphs": [
+        "Op vraag van het Brusselse parket heeft de federale politie een proces-verbaal opgemaakt betreffende twee verdachten van een mesaanval gepleegd in april in het centrum van de hoofdstad, meldt BruxellesToday.",
+        "Iedereen die deze personen herkent of informatie heeft, wordt uitgenodigd contact op te nemen met de onderzoekers."
+       ]
+      }
+     ]
+    },
+    "tr": {
+     "lede": "Brüksel savcılığının talebi üzerine federal polis, Nisan ayında gerçekleştirilen bıçaklı saldırıdaki iki şüphelinin fotoğraflarını yayınladı.",
+     "keyPoints": [
+      "İki şüpheli için tebligat istendi.",
+      "Gerçekler Brüksel'in merkezinde Nisan ayına kadar uzanıyor."
+     ],
+     "sections": [
+      {
+       "heading": "Tanık çağırma",
+       "paragraphs": [
+        "BruxellesToday'ın haberine göre, Brüksel savcılığının talebi üzerine federal polis, Nisan ayında başkentin merkezinde gerçekleştirilen bıçaklı saldırının iki şüphelisi hakkında arama ilanı yayınladı.",
+        "Bu kişileri tanıyan veya bilgisi olan herkesin soruşturmacılarla iletişime geçmesi rica olunur."
+       ]
+      }
+     ]
+    },
+    "ar": {
+     "lede": "بناء على طلب من مكتب المدعي العام في بروكسل، نشرت الشرطة الفيدرالية صور اثنين من المشتبه بهم في هجوم بسكين ارتكب في أبريل.",
+     "keyPoints": [
+      "مطلوب إنذار لاثنين من المشتبه بهم.",
+      "وتعود الوقائع إلى شهر أبريل/نيسان الماضي، وسط بروكسل."
+     ],
+     "sections": [
+      {
+       "heading": "استدعاء الشهود",
+       "paragraphs": [
+        "بناءً على طلب مكتب المدعي العام في بروكسل، أصدرت الشرطة الفيدرالية مذكرة مطلوب بشأن اثنين من المشتبه بهم في هجوم بسكين ارتكب في أبريل في وسط العاصمة، حسبما ذكرت صحيفة BruxellesToday.",
+        "وأي شخص يتعرف على هؤلاء الأفراد أو لديه معلومات مدعو للاتصال بالمحققين."
+       ]
+      }
+     ]
+    }
+   },
+   "sources": [
+    {
+     "source": "BruxellesToday",
+     "url": "https://www.bruxellestoday.be/faits-divers/agression-couteau-bruxelles-police-recherche-deux-suspects.html",
+     "title": "Agression au couteau dans le centre de Bruxelles : la police recherche deux suspects",
+     "summary": "",
+     "lang": "fr"
+    }
+   ],
+   "score": 0
+  },
+  {
+   "id": "delhi",
+   "cat": "monde",
+   "importance": 2,
+   "coverage": 1,
+   "source": "Euronews",
+   "url": "https://www.euronews.com/video/2026/10/12/latest-news-bulletin-october-12th-2026-morning",
+   "image": null,
+   "publishedAt": "2026-10-12T06:45:00Z",
+   "lang": "fr",
+   "written": true,
+   "title": {
+    "fr": "Inde : Delhi ferme des stations de métro avant une manifestation contre le chef des élections",
+    "en": "India: Delhi closes metro stations ahead of protest against election chief",
+    "nl": "India: Delhi sluit metrostations voorafgaand aan protest tegen verkiezingsleider",
+    "tr": "Hindistan: Delhi, seçim şefine karşı protesto öncesinde metro istasyonlarını kapattı",
+    "ar": "الهند: دلهي تغلق محطات المترو قبيل الاحتجاج ضد رئيس الانتخابات"
+   },
+   "summary": {
+    "fr": "Les autorités ont restreint la circulation et fermé plusieurs stations du centre de la capitale indienne.",
+    "en": "Authorities restricted traffic and closed several stations in the center of the Indian capital.",
+    "nl": "De autoriteiten beperkten het verkeer en sloten verschillende stations in het centrum van de Indiase hoofdstad.",
+    "tr": "Yetkililer trafiği kısıtladı ve Hindistan'ın başkentinin merkezindeki birçok istasyonu kapattı.",
+    "ar": "وقيدت السلطات حركة المرور وأغلقت عدة محطات في وسط العاصمة الهندية."
+   },
+   "body": {
+    "fr": {
+     "lede": "Les autorités ont restreint la circulation et fermé plusieurs stations du centre de la capitale indienne.",
+     "keyPoints": [
+      "Stations de métro fermées et circulation restreinte à Delhi.",
+      "La manifestation vise le chef de la commission électorale."
+     ],
+     "sections": [
+      {
+       "heading": "Mesures de sécurité",
+       "paragraphs": [
+        "Les autorités de Delhi ont fermé plusieurs stations de métro et restreint la circulation avant une manifestation visant le chef de la commission électorale indienne, selon Euronews."
+       ]
+      }
+     ]
+    },
+    "en": {
+     "lede": "Authorities restricted traffic and closed several stations in the center of the Indian capital.",
+     "keyPoints": [
+      "Metro stations closed and traffic restricted in Delhi.",
+      "The demonstration targets the head of the electoral commission."
+     ],
+     "sections": [
+      {
+       "heading": "Security measures",
+       "paragraphs": [
+        "Authorities in Delhi closed several metro stations and restricted traffic ahead of a protest targeting the head of India's Election Commission, according to Euronews."
+       ]
+      }
+     ]
+    },
+    "nl": {
+     "lede": "De autoriteiten beperkten het verkeer en sloten verschillende stations in het centrum van de Indiase hoofdstad.",
+     "keyPoints": [
+      "Metrostations gesloten en verkeer beperkt in Delhi.",
+      "De demonstratie richt zich op het hoofd van de verkiezingscommissie."
+     ],
+     "sections": [
+      {
+       "heading": "Beveiligingsmaatregelen",
+       "paragraphs": [
+        "Autoriteiten in Delhi sloten verschillende metrostations en beperkten het verkeer in de aanloop naar een protest tegen het hoofd van de Indiase verkiezingscommissie, aldus Euronews."
+       ]
+      }
+     ]
+    },
+    "tr": {
+     "lede": "Yetkililer trafiği kısıtladı ve Hindistan'ın başkentinin merkezindeki birçok istasyonu kapattı.",
+     "keyPoints": [
+      "Delhi'de metro istasyonları kapatıldı ve trafik kısıtlandı.",
+      "Gösteri seçim komisyonu başkanını hedef alıyor."
+     ],
+     "sections": [
+      {
+       "heading": "Güvenlik önlemleri",
+       "paragraphs": [
+        "Euronews'e göre, Delhi'deki yetkililer Hindistan Seçim Komisyonu başkanını hedef alan protesto öncesinde birçok metro istasyonunu kapattı ve trafiği kısıtladı."
+       ]
+      }
+     ]
+    },
+    "ar": {
+     "lede": "وقيدت السلطات حركة المرور وأغلقت عدة محطات في وسط العاصمة الهندية.",
+     "keyPoints": [
+      "أغلقت محطات المترو وتم تقييد حركة المرور في دلهي.",
+      "وتستهدف التظاهرة رئيس مفوضية الانتخابات."
+     ],
+     "sections": [
+      {
+       "heading": "التدابير الأمنية",
+       "paragraphs": [
+        "أغلقت السلطات في دلهي عدة محطات مترو وقيدت حركة المرور قبل احتجاج استهدف رئيس لجنة الانتخابات الهندية، وفقا ليورونيوز."
+       ]
+      }
+     ]
+    }
+   },
+   "sources": [
+    {
+     "source": "Euronews",
+     "url": "https://www.euronews.com/video/2026/10/12/latest-news-bulletin-october-12th-2026-morning",
+     "title": "Le bulletin d’information du 12 octobre 2026",
+     "summary": "",
+     "lang": "fr"
+    }
+   ],
    "score": 0
   },
   {
    "id": "burnout",
    "cat": "sante",
+   "importance": 2,
+   "coverage": 1,
    "source": "Europe Says",
    "url": "https://www.europesays.com/be-fr/tag/elite/",
    "image": null,
    "publishedAt": "2026-10-07T09:00:00Z",
    "lang": "fr",
+   "written": true,
    "title": {
     "fr": "Burn-out : en Belgique, le parcours du combattant des malades",
     "en": "Burn-out: in Belgium, the obstacle course of patients",
@@ -512,14 +2612,103 @@
     "ar": "الإرهاق: في بلجيكا، مسار العقبات الذي يواجهه المرضى"
    },
    "summary": {
-    "fr": "Témoignages à l'appui, un reportage décrit le long chemin administratif et médical imposé aux personnes en burn-out, et le coût d'une absence de longue durée pour les employeurs.",
-    "en": "Supporting testimonies, a report describes the long administrative and medical journey imposed on people experiencing burnout, and the cost of long-term absence for employers.",
-    "nl": "Een rapport ondersteunt getuigenissen en beschrijft de lange administratieve en medische reis die mensen met een burn-out moeten ondergaan, en de kosten van langdurig verzuim voor werkgevers.",
-    "tr": "Tanıklıkları destekleyen bir rapor, tükenmişlik yaşayan insanlara dayatılan uzun idari ve tıbbi yolculuğu ve uzun süreli devamsızlığın işverenler için maliyetini anlatıyor.",
-    "ar": "ودعمًا للشهادات، يصف تقرير الرحلة الإدارية والطبية الطويلة المفروضة على الأشخاص الذين يعانون من الإرهاق، وتكلفة الغياب طويل الأمد بالنسبة لأصحاب العمل."
+    "fr": "Un reportage décrit le long chemin administratif et médical imposé aux personnes en burn-out, et le coût d'une absence de longue durée pour les employeurs.",
+    "en": "A report describes the long administrative and medical journey imposed on people experiencing burnout, and the cost of long-term absence for employers.",
+    "nl": "Een rapport beschrijft de lange administratieve en medische reis die mensen met een burn-out moeten ondergaan, en de kosten van langdurig verzuim voor werkgevers.",
+    "tr": "Bir rapor, tükenmişlik yaşayan insanlara dayatılan uzun idari ve tıbbi yolculukları ve uzun süreli devamsızlığın işverenler için maliyetini anlatıyor.",
+    "ar": "يصف أحد التقارير الرحلة الإدارية والطبية الطويلة المفروضة على الأشخاص الذين يعانون من الإرهاق، وتكلفة الغياب طويل الأمد بالنسبة لأصحاب العمل."
    },
-   "coverage": 1,
-   "related": [],
+   "body": {
+    "fr": {
+     "lede": "Un reportage décrit le long chemin administratif et médical imposé aux personnes en burn-out, et le coût d'une absence de longue durée pour les employeurs.",
+     "keyPoints": [
+      "Les malades décrivent un parcours long et éprouvant.",
+      "Les absences de longue durée coûtent cher aux employeurs."
+     ],
+     "sections": [
+      {
+       "heading": "Un parcours du combattant",
+       "paragraphs": [
+        "Un reportage consacré au burn-out en Belgique suit Lisiane et décrit le chemin, long et complexe, que doivent suivre les personnes en épuisement professionnel pour être reconnues et accompagnées.",
+        "Il souligne aussi le coût d'une absence de longue durée pour les employeurs."
+       ]
+      }
+     ]
+    },
+    "en": {
+     "lede": "A report describes the long administrative and medical journey imposed on people experiencing burnout, and the cost of long-term absence for employers.",
+     "keyPoints": [
+      "Patients describe a long and trying journey.",
+      "Long-term absences are costly for employers."
+     ],
+     "sections": [
+      {
+       "heading": "An obstacle course",
+       "paragraphs": [
+        "A report dedicated to burn-out in Belgium follows Lisiane and describes the long and complex path that people experiencing professional burnout must follow to be recognized and supported.",
+        "It also highlights the cost of long-term absence for employers."
+       ]
+      }
+     ]
+    },
+    "nl": {
+     "lede": "Een rapport beschrijft de lange administratieve en medische reis die mensen met een burn-out moeten ondergaan, en de kosten van langdurig verzuim voor werkgevers.",
+     "keyPoints": [
+      "Patiënten beschrijven een lange en moeilijke reis.",
+      "Langdurig verzuim kost werkgevers veel geld."
+     ],
+     "sections": [
+      {
+       "heading": "Een hindernisbaan",
+       "paragraphs": [
+        "Een rapport gewijd aan burn-out in België volgt Lisiane en beschrijft het lange en complexe pad dat mensen met een professionele burn-out moeten volgen om erkend en ondersteund te worden.",
+        "Het benadrukt ook de kosten van langdurig verzuim voor werkgevers."
+       ]
+      }
+     ]
+    },
+    "tr": {
+     "lede": "Bir rapor, tükenmişlik yaşayan insanlara dayatılan uzun idari ve tıbbi yolculukları ve uzun süreli devamsızlığın işverenler için maliyetini anlatıyor.",
+     "keyPoints": [
+      "Hastalar uzun ve zorlu bir yolculuktan bahsediyorlar.",
+      "Uzun süreli devamsızlıklar işverenler için maliyetlidir."
+     ],
+     "sections": [
+      {
+       "heading": "Engelli parkur",
+       "paragraphs": [
+        "Belçika'daki tükenmişliğe adanmış bir rapor Lisiane'i takip ediyor ve profesyonel tükenmişlik yaşayan kişilerin tanınmak ve desteklenmek için izlemesi gereken uzun ve karmaşık yolu anlatıyor.",
+        "Aynı zamanda uzun süreli devamsızlığın işverenlere getireceği maliyeti de vurguluyor."
+       ]
+      }
+     ]
+    },
+    "ar": {
+     "lede": "يصف أحد التقارير الرحلة الإدارية والطبية الطويلة المفروضة على الأشخاص الذين يعانون من الإرهاق، وتكلفة الغياب طويل الأمد بالنسبة لأصحاب العمل.",
+     "keyPoints": [
+      "يصف المرضى رحلة طويلة وشاقة.",
+      "الغياب طويل الأمد مكلف بالنسبة لأصحاب العمل."
+     ],
+     "sections": [
+      {
+       "heading": "مسار عقبة",
+       "paragraphs": [
+        "تقرير مخصص للإرهاق المهني في بلجيكا يتتبع ليسيان ويصف المسار الطويل والمعقد الذي يجب على الأشخاص الذين يعانون من الإرهاق المهني اتباعه ليتم الاعتراف بهم ودعمهم.",
+        "كما يسلط الضوء على تكلفة الغياب طويل الأمد بالنسبة لأصحاب العمل."
+       ]
+      }
+     ]
+    }
+   },
+   "sources": [
+    {
+     "source": "Europe Says",
+     "url": "https://www.europesays.com/be-fr/tag/elite/",
+     "title": "Lisiane raconte le burn-out et le parcours du combattant que la Belgique impose aux malades",
+     "summary": "",
+     "lang": "fr"
+    }
+   ],
    "score": 0
   }
  ]

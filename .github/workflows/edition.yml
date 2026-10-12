@@ -1,11 +1,12 @@
 name: Édition automatique
 
-# Toutes les 30 minutes : on récupère les journaux, on classe, on traduit
-# et on publie l'application sur GitHub Pages.
+# Toutes les 10 minutes : on récupère les journaux, on classe par importance,
+# la rédaction (Claude) écrit les articles, on traduit et on publie sur GitHub Pages.
+# GitHub peut décaler un passage planifié de quelques minutes quand ses serveurs sont chargés.
 on:
   push:
   schedule:
-    - cron: '7,37 * * * *'
+    - cron: '*/10 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -15,12 +16,12 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 9
     steps:
       - uses: actions/checkout@v4
 
@@ -33,16 +34,24 @@ jobs:
 
       - run: npm test
 
-      - name: Cache des traductions
+      - name: Cache (traductions et articles déjà rédigés)
         uses: actions/cache@v4
         with:
           path: .cache
-          key: translations-${{ github.run_id }}
-          restore-keys: translations-
+          key: journal-${{ github.run_id }}
+          restore-keys: |
+            journal-
+            translations-
 
       - name: Générer l'édition
         # si les sources sont injoignables, l'édition déjà présente est conservée
         continue-on-error: true
+        env:
+          # Settings → Secrets and variables → Actions
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          JOURNAL_MODEL: ${{ vars.JOURNAL_MODEL }}
+          JOURNAL_EFFORT: ${{ vars.JOURNAL_EFFORT }}
+          JOURNAL_WRITE_LIMIT: ${{ vars.JOURNAL_WRITE_LIMIT }}
         run: node scripts/build-news.mjs
 
       - name: Préparer le site

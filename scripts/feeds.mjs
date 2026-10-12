@@ -11,15 +11,17 @@ const GN = (topic) =>
 export const FEEDS = [
   // ——— Belgique ———
   { source: 'RTBF', cat: 'belgique', lang: 'fr', weight: 1.0, top: true, url: 'https://rss.rtbf.be/article/rss/highlight_rtbf_info.xml' },
-  { source: 'Le Soir', cat: 'belgique', lang: 'fr', weight: 1.0, top: true, url: 'https://www.lesoir.be/rss/81853/cible_principale_gratuit' },
   { source: 'La Libre', cat: 'belgique', lang: 'fr', weight: 0.95, url: 'https://www.lalibre.be/arc/outboundfeeds/rss/section/belgique/?outputType=xml' },
   { source: 'La Libre', cat: 'belgique', lang: 'fr', weight: 0.95, top: true, url: 'https://www.lalibre.be/arc/outboundfeeds/rss/?outputType=xml' },
   { source: "L'Avenir", cat: 'belgique', lang: 'fr', weight: 0.85, url: 'https://www.lavenir.net/arc/outboundfeeds/rss/?outputType=xml' },
   { source: 'La DH', cat: 'belgique', lang: 'fr', weight: 0.8, url: 'https://www.dhnet.be/arc/outboundfeeds/rss/?outputType=xml' },
   { source: '7sur7', cat: 'belgique', lang: 'fr', weight: 0.75, url: 'https://www.7sur7.be/belgique/rss.xml' },
-  { source: 'BX1', cat: 'belgique', lang: 'fr', weight: 0.8, url: 'https://bx1.be/feed/' },
-  { source: 'The Brussels Times', cat: 'belgique', lang: 'en', weight: 0.8, url: 'https://www.brusselstimes.com/feed' },
   { source: 'VRT NWS', cat: 'belgique', lang: 'nl', weight: 0.85, url: 'https://www.vrt.be/vrtnws/nl.rss.articles.xml' },
+  { source: 'Le Soir', cat: 'belgique', lang: 'fr', weight: 1.0, top: true, url: 'https://www.lesoir.be/rss2/2/cible_principale' },
+  { source: 'Sudinfo', cat: 'belgique', lang: 'fr', weight: 0.8, url: 'https://www.sudinfo.be/rss2/2/cible_principale' },
+  { source: 'RTBF', cat: 'belgique', lang: 'fr', weight: 1.0, url: 'https://rss.rtbf.be/article/rss/highlight_rtbf_info_belgique.xml' },
+  { source: 'Belga', cat: 'belgique', lang: 'en', weight: 0.9, url: 'https://www.belganewsagency.eu/feed' },
+  { source: 'De Standaard', cat: 'belgique', lang: 'nl', weight: 0.85, url: 'https://www.standaard.be/rss/section/1f2838d4-99ea-49f0-9102-138784c7ea7c' },
   { source: 'Google Actualités', cat: 'belgique', lang: 'fr', weight: 0.6, top: true, aggregator: true, url: GN('NATION') },
   { source: 'Google Actualités', cat: null, lang: 'fr', weight: 0.6, top: true, aggregator: true, url: GN() },
 
@@ -31,22 +33,33 @@ export const FEEDS = [
   { source: 'franceinfo', cat: 'monde', lang: 'fr', weight: 0.9, top: true, url: 'https://www.francetvinfo.fr/titres.rss' },
   { source: 'La Libre', cat: 'monde', lang: 'fr', weight: 0.9, url: 'https://www.lalibre.be/arc/outboundfeeds/rss/section/international/?outputType=xml' },
   { source: 'BBC News', cat: 'monde', lang: 'en', weight: 0.95, top: true, url: 'https://feeds.bbci.co.uk/news/world/rss.xml' },
+  { source: 'Le Figaro', cat: 'monde', lang: 'fr', weight: 0.9, url: 'https://www.lefigaro.fr/rss/figaro_international.xml' },
+  { source: 'Euronews', cat: 'monde', lang: 'fr', weight: 0.85, url: 'https://fr.euronews.com/rss?level=theme&name=news' },
+  { source: 'The Guardian', cat: 'monde', lang: 'en', weight: 0.85, url: 'https://www.theguardian.com/world/rss' },
   { source: 'Google Actualités', cat: 'monde', lang: 'fr', weight: 0.6, aggregator: true, url: GN('WORLD') },
 
   // ——— Économie ———
-  { source: "L'Echo", cat: 'economie', lang: 'fr', weight: 1.0, top: true, url: 'https://www.lecho.be/rss/top_stories.xml' },
   { source: 'Le Monde', cat: 'economie', lang: 'fr', weight: 0.95, url: 'https://www.lemonde.fr/economie/rss_full.xml' },
   { source: 'La Libre', cat: 'economie', lang: 'fr', weight: 0.9, url: 'https://www.lalibre.be/arc/outboundfeeds/rss/section/economie/?outputType=xml' },
   { source: 'franceinfo', cat: 'economie', lang: 'fr', weight: 0.85, url: 'https://www.francetvinfo.fr/economie.rss' },
-  { source: 'Les Echos', cat: 'economie', lang: 'fr', weight: 0.95, url: 'https://services.lesechos.fr/rss/les-echos-economie.xml' },
   { source: 'BBC News', cat: 'economie', lang: 'en', weight: 0.85, url: 'https://feeds.bbci.co.uk/news/business/rss.xml' },
+  { source: 'Le Figaro', cat: 'economie', lang: 'fr', weight: 0.9, url: 'https://www.lefigaro.fr/rss/figaro_economie.xml' },
+  { source: 'France 24', cat: 'economie', lang: 'fr', weight: 0.85, url: 'https://www.france24.com/fr/%C3%A9co-tech/rss' },
+  { source: '20 Minutes', cat: 'economie', lang: 'fr', weight: 0.75, url: 'https://www.20minutes.fr/feeds/rss-economie.xml' },
+  { source: 'The Guardian', cat: 'economie', lang: 'en', weight: 0.85, url: 'https://www.theguardian.com/business/rss' },
+  { source: 'Euronews', cat: 'economie', lang: 'fr', weight: 0.8, url: 'https://fr.euronews.com/rss?level=theme&name=business' },
+  { source: 'La DH', cat: 'economie', lang: 'fr', weight: 0.75, url: 'https://www.dhnet.be/arc/outboundfeeds/rss/section/actu/economie/?outputType=xml' },
+  { source: "L'Avenir", cat: 'economie', lang: 'fr', weight: 0.8, url: 'https://www.lavenir.net/arc/outboundfeeds/rss/section/actu/economie/?outputType=xml' },
   { source: 'Google Actualités', cat: 'economie', lang: 'fr', weight: 0.6, aggregator: true, url: GN('BUSINESS') },
 
   // ——— Finance & marchés ———
-  { source: 'Les Echos', cat: 'finance', lang: 'fr', weight: 0.95, url: 'https://services.lesechos.fr/rss/les-echos-finance-marches.xml' },
-  { source: "L'Echo", cat: 'finance', lang: 'fr', weight: 0.95, url: 'https://www.lecho.be/rss/marches.xml' },
+  { source: 'Le Figaro', cat: 'finance', lang: 'fr', weight: 0.9, url: 'https://www.lefigaro.fr/rss/figaro_bourse.xml' },
+  { source: 'Le Figaro', cat: 'finance', lang: 'fr', weight: 0.85, url: 'https://www.lefigaro.fr/rss/figaro_placement.xml' },
+  { source: 'Investing.com', cat: 'finance', lang: 'fr', weight: 0.8, url: 'https://fr.investing.com/rss/news.rss' },
+  { source: 'MarketWatch', cat: 'finance', lang: 'en', weight: 0.85, url: 'https://feeds.content.dowjones.io/public/rss/mw_topstories' },
+  { source: 'CNBC', cat: 'finance', lang: 'en', weight: 0.9, url: 'https://www.cnbc.com/id/15839069/device/rss/rss.html' },
+  { source: 'The Guardian', cat: 'finance', lang: 'en', weight: 0.85, url: 'https://www.theguardian.com/business/stock-markets/rss' },
   { source: 'Le Monde', cat: 'finance', lang: 'fr', weight: 0.85, url: 'https://www.lemonde.fr/argent/rss_full.xml' },
-  { source: 'Boursorama', cat: 'finance', lang: 'fr', weight: 0.8, url: 'https://www.boursorama.com/rss/actualites/economie' },
 
   // ——— Santé ———
   { source: 'Le Monde', cat: 'sante', lang: 'fr', weight: 0.95, url: 'https://www.lemonde.fr/sante/rss_full.xml' },
@@ -75,6 +88,20 @@ export const FEEDS = [
   { source: 'Le Monde', cat: 'culture', lang: 'fr', weight: 0.85, url: 'https://www.lemonde.fr/culture/rss_full.xml' },
   { source: 'franceinfo', cat: 'culture', lang: 'fr', weight: 0.8, url: 'https://www.francetvinfo.fr/culture.rss' },
 ];
+
+// Rubriques prioritaires : multiplicateur appliqué au score d'importance.
+// Belgique, économie, finance et monde passent devant le reste.
+export const PRIORITY = {
+  belgique: 1.4,
+  economie: 1.35,
+  finance: 1.35,
+  monde: 1.25,
+  sante: 0.9,
+  'faits-divers': 0.85,
+  tech: 0.85,
+  sport: 0.7,
+  culture: 0.7,
+};
 
 // Marchés suivis (Yahoo Finance, côté serveur)
 export const MARKETS = [

@@ -10,15 +10,17 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { XMLParser } from 'fast-xml-parser';
-import { FEEDS, MARKETS, CATEGORY_HINTS } from './feeds.mjs';
+import { FEEDS, MARKETS, CATEGORY_HINTS, PRIORITY } from './feeds.mjs';
+import { planWriting, writeArticles, extractText, writingEnabled } from './writer.mjs';
 
 const OUT = new URL('../data/news.json', import.meta.url);
-const CACHE = new URL('../.cache/translations.json', import.meta.url);
+const CACHE_DIR = process.env.JOURNAL_CACHE_DIR ? new URL(`file://${process.env.JOURNAL_CACHE_DIR}/`) : new URL('../.cache/', import.meta.url);
+const CACHE = new URL('translations.json', CACHE_DIR);
 const LANGS = ['fr', 'en', 'nl', 'tr', 'ar'];
 const MAX_AGE_H = 36;
 const MAX_ARTICLES = 140;
 const MIN_ARTICLES = 12; // en dessous, on garde l'édition précédente
-const UA = 'Mozilla/5.0 (compatible; JournalBot/1.0; +https://github.com/)';
+const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0 Safari/537.36';
 
 const log = (...a) => console.log('[news]', ...a);
 
@@ -55,7 +57,7 @@ async function fetchText(url, { timeout = 15000, headers = {} } = {}) {
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), timeout);
   try {
-    const res = await fetch(url, { headers: { 'user-agent': UA, accept: '*/*', ...headers }, signal: ctrl.signal, redirect: 'follow' });
+    const res = await fetch(url, { headers: { 'user-agent': UA, accept: '*/*', 'accept-language': 'fr-BE,fr;q=0.9,en;q=0.7', ...headers }, signal: ctrl.signal, redirect: 'follow' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return await res.text();
   } finally {
@@ -157,7 +159,9 @@ function tokens(title) {
       .replace(/[̀-ͯ]/g, '')
       .replace(/[^a-z0-9 ]+/g, ' ')
       .split(' ')
-      .filter((w) => w.length > 2 && !STOP.has(w)),
+      .filter((w) => w.length > 2 && !STOP.has(w))
+      // racine grossière : « budgétaire » et « budget », « milliards » et « milliard » se rejoignent
+      .map((w) => w.replace(/s$/, '').slice(0, 6)),
   );
 }
 
@@ -181,11 +185,13 @@ function guessCategory(a) {
 export function cluster(articles) {
   const clusters = [];
   for (const a of articles) {
-    a._tok = tokens(a.title);
+    a._tok = tokens(a.titleFr || a.title);
     let home = null, best = 0;
     for (const c of clusters) {
-      const s = similarity(a._tok, c.lead._tok);
-      if (s > best) { best = s; home = c; }
+      for (const other of c.items) {
+        const s = similarity(a._tok, other._tok);
+        if (s > best) { best = s; home = c; }
+      }
     }
     if (home && best >= 0.6) home.items.push(a);
     else clusters.push({ lead: a, items: [a] });
@@ -193,7 +199,7 @@ export function cluster(articles) {
   return clusters;
 }
 
-function scoreCluster(c, now) {
+function scoreCluster(c, now, cat) {
   const sources = new Set(c.items.map((a) => a.source));
   const newest = Math.max(...c.items.map((a) => +new Date(a.publishedAt)));
   const ageH = Math.max(0, (now - newest) / 3.6e6);
@@ -201,7 +207,16 @@ function scoreCluster(c, now) {
   const onFront = c.items.some((a) => a.top);
   const coverage = 1 + 0.55 * Math.log2(sources.size);
   const fresh = Math.exp(-ageH / 14);
-  return weight * coverage * (0.35 + fresh) * (onFront ? 1.25 : 1);
+  return weight * coverage * (0.35 + fresh) * (onFront ? 1.25 : 1) * (PRIORITY[cat] ?? 1);
+}
+
+// Importance de 1 à 5 : rang dans l'édition, relevé si le sujet est très repris.
+function importance(rank, c) {
+  const sources = new Set(c.items.map((a) => a.source)).size;
+  let level = rank < 5 ? 5 : rank < 15 ? 4 : rank < 40 ? 3 : rank < 80 ? 2 : 1;
+  if (sources >= 5) level = Math.max(level, 4);
+  else if (sources >= 3) level = Math.max(level, 3);
+  return level;
 }
 
 // Choisit l'article "vitrine" d'un sujet : un vrai journal, en français, avec image si possible.
@@ -212,8 +227,9 @@ function pickLead(c) {
 
 // ———————————————————————————————————————— enrichissement (og:image / og:description)
 
-async function enrich(article) {
+async function enrich(article, { withText = false } = {}) {
   const html = await fetchText(article.url, { timeout: 9000, headers: { accept: 'text/html' } });
+  if (withText) article.text = extractText(html);
   const meta = (prop) => {
     const re = new RegExp(`<meta[^>]+(?:property|name)=["']${prop}["'][^>]*>`, 'i');
     const tag = html.match(re)?.[0];
@@ -233,9 +249,9 @@ async function loadCache() {
   try { cache = JSON.parse(await readFile(CACHE, 'utf8')); } catch { cache = {}; }
 }
 async function saveCache() {
-  await mkdir(new URL('../.cache/', import.meta.url), { recursive: true });
+  await mkdir(CACHE_DIR, { recursive: true });
   // on ne garde que les entrées récentes pour éviter que le cache grossisse sans fin
-  const entries = Object.entries(cache).slice(-12000);
+  const entries = Object.entries(cache).slice(-40000);
   await writeFile(CACHE, JSON.stringify(Object.fromEntries(entries)));
 }
 
@@ -307,26 +323,64 @@ async function translateArticles(articles) {
   await loadCache();
   // 1. tout ramener en français (langue de base du journal)
   for (const lang of ['en', 'nl']) {
-    const subset = articles.filter((a) => a.lang === lang && !a.title.fr);
+    const subset = articles.filter((a) => a.lang === lang && !a.summary.fr);
     if (!subset.length) continue;
     const res = await translateAll(subset.flatMap((a) => [a.title[lang], a.summary[lang]]), lang, 'fr');
     subset.forEach((a, k) => {
-      a.title.fr = res[2 * k] || a.title[lang];
+      a.title.fr ||= res[2 * k] || a.title[lang];
       a.summary.fr = res[2 * k + 1] || a.summary[lang];
     });
   }
-  // 2. du français vers les autres langues
-  for (const tl of LANGS.filter((l) => l !== 'fr')) {
-    const subset = articles.filter((a) => !a.title[tl]);
-    if (!subset.length) continue;
-    log(`traduction → ${tl} (${subset.length} articles)`);
-    const res = await translateAll(subset.flatMap((a) => [a.title.fr, a.summary.fr]), 'fr', tl);
-    subset.forEach((a, k) => {
-      if (res[2 * k]) a.title[tl] = res[2 * k];
-      if (res[2 * k + 1]) a.summary[tl] = res[2 * k + 1];
+  // extraits des sources étrangères (revue de presse) → français
+  for (const lang of ['en', 'nl']) {
+    const items = articles.flatMap((a) => a.sources || []).filter((x) => x.lang === lang && !x.fr);
+    if (!items.length) continue;
+    const res = await translateAll(items.flatMap((x) => [x.title, x.summary]), lang, 'fr');
+    items.forEach((x, k) => {
+      x.title = x.titleFr || res[2 * k] || x.title;
+      x.summary = res[2 * k + 1] || x.summary;
+      x.fr = true;
     });
   }
+  // 2. du français vers les autres langues (titre, résumé et article complet)
+  for (const tl of LANGS.filter((l) => l !== 'fr')) {
+    const subset = articles.filter((a) => !a.title[tl]);
+    if (subset.length) {
+      log(`traduction → ${tl} (${subset.length} titres)`);
+      const res = await translateAll(subset.flatMap((a) => [a.title.fr, a.summary.fr]), 'fr', tl);
+      subset.forEach((a, k) => {
+        if (res[2 * k]) a.title[tl] = res[2 * k];
+        if (res[2 * k + 1]) a.summary[tl] = res[2 * k + 1];
+      });
+    }
+    const bodies = articles.filter((a) => a.body?.fr && !a.body[tl]);
+    if (bodies.length) {
+      log(`traduction → ${tl} (${bodies.length} articles complets)`);
+      const flat = bodies.map((a) => flattenBody(a.body.fr));
+      const res = await translateAll(flat.flat(), 'fr', tl);
+      let k = 0;
+      bodies.forEach((a, n) => {
+        const part = res.slice(k, k + flat[n].length);
+        k += flat[n].length;
+        if (part.every(Boolean)) a.body[tl] = rebuildBody(a.body.fr, part);
+      });
+    }
+  }
   await saveCache();
+}
+
+// un article complet ↔ une liste de textes (pour la traduction)
+function flattenBody(b) {
+  return [b.lede, ...b.keyPoints, ...b.sections.flatMap((s) => [s.heading, ...s.paragraphs])];
+}
+function rebuildBody(b, t) {
+  let i = 0;
+  const next = () => t[i++];
+  return {
+    lede: next(),
+    keyPoints: b.keyPoints.map(next),
+    sections: b.sections.map((s) => ({ heading: next(), paragraphs: s.paragraphs.map(next) })),
+  };
 }
 
 // ———————————————————————————————————————— marchés
@@ -349,7 +403,7 @@ async function fetchMarkets() {
 
 // ———————————————————————————————————————— pipeline
 
-async function build() {
+export async function build() {
   const now = Date.now();
   log(`${FEEDS.length} flux à lire…`);
   const results = await pool(FEEDS, 8, async (feed) => {
@@ -375,31 +429,52 @@ async function build() {
   });
   log(`${articles.length} articles récents`);
 
-  const clusters = cluster(articles);
-  for (const c of clusters) c.score = scoreCluster(c, now);
-  clusters.sort((a, b) => b.score - a.score);
+  // titres étrangers traduits avant le regroupement : un même sujet couvert par
+  // la BBC, la VRT et Le Soir est ainsi reconnu comme un seul sujet
+  await loadCache();
+  for (const lang of ['en', 'nl']) {
+    const foreign = articles.filter((a) => a.lang === lang);
+    if (!foreign.length) continue;
+    const res = await translateAll(foreign.map((a) => a.title), lang, 'fr');
+    foreign.forEach((a, k) => { if (res[k]) a.titleFr = res[k]; });
+  }
 
-  const picked = clusters.slice(0, MAX_ARTICLES).map((c) => {
+  const clusters = cluster(articles);
+  for (const c of clusters) {
     const lead = pickLead(c);
     const cats = c.items.map((a) => a.cat).filter(Boolean);
     const voted = cats.sort((x, y) => cats.filter((v) => v === y).length - cats.filter((v) => v === x).length)[0];
     const hinted = guessCategory(lead);
     let cat = voted || hinted || 'monde';
-    // un sujet repris par un flux "Belgique" généraliste mais clairement thématique est reclassé
-    if ((cat === 'belgique' || cat === 'monde') && hinted && ['faits-divers', 'sante', 'finance', 'sport'].includes(hinted)) cat = hinted;
-    const sources = [...new Set(c.items.map((a) => a.source))];
+    // un sujet repris par un flux généraliste mais clairement thématique est reclassé
+    if ((cat === 'belgique' || cat === 'monde') && hinted && ['faits-divers', 'sante', 'finance', 'economie', 'sport'].includes(hinted)) cat = hinted;
+    c.lead = lead;
+    c.cat = cat;
+    c.score = scoreCluster(c, now, cat);
+  }
+  clusters.sort((a, b) => b.score - a.score);
+
+  const picked = clusters.slice(0, MAX_ARTICLES).map((c, rank) => {
+    const lead = c.lead;
+    const direct = c.items.filter((a) => !a.aggregator);
+    // identifiant stable d'un sujet : son plus ancien article
+    const first = [...c.items].sort((x, y) => new Date(x.publishedAt) - new Date(y.publishedAt))[0];
     return {
-      id: hash(lead.url),
-      cat,
+      id: hash(first.url),
+      cat: c.cat,
       source: lead.source,
       url: lead.url,
       image: lead.image || c.items.find((a) => a.image)?.image || null,
       publishedAt: lead.publishedAt,
+      updatedAt: new Date(Math.max(...c.items.map((a) => +new Date(a.publishedAt)))).toISOString(),
       lang: lead.lang,
-      title: { [lead.lang]: lead.title },
+      title: lead.titleFr ? { [lead.lang]: lead.title, fr: lead.titleFr } : { [lead.lang]: lead.title },
       summary: { [lead.lang]: lead.summary || c.items.find((a) => a.summary && a.lang === lead.lang)?.summary || '' },
-      coverage: sources.length,
-      related: c.items.filter((a) => a !== lead && !a.aggregator).slice(0, 4).map((a) => ({ source: a.source, url: a.url })),
+      coverage: new Set(c.items.map((a) => a.source)).size,
+      importance: importance(rank, c),
+      sources: (direct.length ? [lead, ...direct.filter((a) => a !== lead)] : [lead]).slice(0, 6).map((a) => ({
+        source: a.source, url: a.url, title: a.title, titleFr: a.titleFr, summary: a.summary, lang: a.lang, publishedAt: a.publishedAt,
+      })),
       score: +c.score.toFixed(4),
       _agg: lead.aggregator,
     };
@@ -420,18 +495,39 @@ async function build() {
     a.summary[a.lang] = proxy.summary;
   });
 
+  // la rédaction : articles complets, lisibles dans l'application
+  const todo = await planWriting(picked);
+  if (todo.length) {
+    const sources = todo.flatMap((a) => a.sources.slice(0, 4));
+    log(`lecture de ${sources.length} articles sources…`);
+    await pool(sources, 6, async (src) => {
+      const proxy = { url: src.url, image: null, summary: src.summary };
+      await enrich(proxy, { withText: true });
+      src.text = proxy.text;
+    });
+  }
+  await writeArticles(todo, picked);
+  if (writingEnabled()) log(`${picked.filter((a) => a.written).length}/${picked.length} articles rédigés`);
+
   await translateArticles(picked);
 
   // "À la une" : les sujets les plus importants, avec un peu de diversité
   const top = [];
   const perCat = {};
   for (const a of picked) {
-    if (top.length >= 7) break;
-    if ((perCat[a.cat] || 0) >= 2) continue;
+    if (top.length >= 8) break;
+    if ((perCat[a.cat] || 0) >= 3) continue;
     if (top.length === 0 && !a.image) continue; // la manchette doit avoir une photo
     top.push(a.id);
     perCat[a.cat] = (perCat[a.cat] || 0) + 1;
   }
+
+  // aperçu du classement dans le journal de la tâche
+  log('— classement —');
+  picked.slice(0, 25).forEach((a, i) =>
+    log(`${String(i + 1).padStart(2)}. [${a.cat}] ${'●'.repeat(a.importance)} ×${a.coverage} ${a.written ? '✎' : ' '} ${a.title.fr}`));
+
+  for (const a of picked) for (const s of a.sources) { delete s.text; delete s.fr; delete s.titleFr; }
 
   let markets = [];
   try { markets = await fetchMarkets(); } catch (e) { log('marchés indisponibles', e.message); }

@@ -4,10 +4,13 @@
   const { LANGS, S, CATS, WX } = window.I18N;
   const { icon } = window.ICONS;
 
-  const CAT_ORDER = ['belgique', 'monde', 'economie', 'finance', 'sante', 'faits-divers', 'tech', 'sport', 'culture'];
+  // ordre des rubriques : les priorités (Belgique, économie, marchés, monde) d'abord
+  const CAT_ORDER = ['belgique', 'economie', 'finance', 'monde', 'sante', 'faits-divers', 'tech', 'sport', 'culture'];
+  const PRIORITY_CATS = ['belgique', 'economie', 'finance', 'monde'];
   const BRUSSELS = { lat: 50.8503, lon: 4.3517, name: 'Bruxelles', fallback: true };
   const NEWS_URL = 'data/news.json';
   const REFRESH_MS = 10 * 60 * 1000;
+  const POLL_MS = 4 * 60 * 1000; // vérifie s'il y a une nouvelle édition
 
   // ———————————————————————————————————————— stockage local
   const store = {
@@ -33,6 +36,9 @@
     tab: 'home',
     fluxFilter: 'all',
     fluxBuiltFor: '',
+    readerId: null,
+    readerList: [],
+    pending: null,
   };
 
   const $ = (sel, root = document) => root.querySelector(sel);
@@ -122,13 +128,19 @@
       : '';
     return `<div class="${cls}${a.image ? '' : ' no-img'}">${art(a)}${img}</div>`;
   }
+  const byline = (a) => (a.written ? t('newsroom') : a.source);
+  function dots(a) {
+    const n = a.importance || 0;
+    if (!n) return '';
+    return `<span class="imp imp-${n}" title="${esc(t('importance', { n }))}" aria-label="${esc(t('importance', { n }))}">${'<i></i>'.repeat(5)}</span>`;
+  }
   function meta(a, { coverage = false } = {}) {
     const cov = coverage && a.coverage > 1 ? `<span class="cov">${icon('layers')}${t('coverage', { n: a.coverage })}</span>` : '';
-    return `<div class="meta"><span class="src">${esc(a.source)}</span><span class="sep">·</span><time datetime="${esc(a.publishedAt)}">${esc(fmt.rel(a.publishedAt))}</time>${cov}</div>`;
+    return `<div class="meta"><span class="src">${esc(byline(a))}</span><span class="sep">·</span><time datetime="${esc(a.publishedAt)}">${esc(fmt.rel(a.publishedAt))}</time>${cov}</div>`;
   }
-  const kicker = (a) => `<span class="kicker k-${esc(a.cat)}">${esc(catName(a.cat))}</span>`;
-  const link = (a, cls, inner) =>
-    `<a class="${cls}" href="${esc(a.url)}" target="_blank" rel="noopener" data-id="${esc(a.id)}">${inner}</a>`;
+  const kicker = (a, withDots = false) => `<span class="kicker k-${esc(a.cat)}">${esc(catName(a.cat))}</span>${withDots ? dots(a) : ''}`;
+  // les articles s'ouvrent dans l'application (lecteur intégré)
+  const link = (a, cls, inner) => `<a class="${cls}" href="#lire-${esc(a.id)}" data-read="${esc(a.id)}">${inner}</a>`;
 
   // ———————————————————————————————————————— sélection éditoriale
   const visible = () => (state.news?.articles || []).filter((a) => !state.hidden.includes(a.cat));
@@ -136,17 +148,8 @@
 
   function editorialOrder(list) {
     const top = (state.news?.top || []).map((id) => list.find((a) => a.id === id)).filter(Boolean);
-    const rest = list.filter((a) => !top.includes(a));
-    // on évite deux articles de la même rubrique à la suite
-    const out = [...top];
-    const pool = [...rest];
-    while (pool.length) {
-      const prev = out.at(-1)?.cat;
-      let k = pool.findIndex((a, i) => i < 4 && a.cat !== prev);
-      if (k < 0) k = 0;
-      out.push(pool.splice(k, 1)[0]);
-    }
-    return out;
+    // ensuite, strictement par ordre d'importance (l'édition est déjà triée)
+    return [...top, ...list.filter((a) => !top.includes(a))];
   }
 
   // ———————————————————————————————————————— page d'accueil : couverture
@@ -301,7 +304,7 @@
       html += link(lead, 'lead', `
         ${media(lead, 'media media-lead')}
         <div class="lead-body">
-          ${kicker(lead)}
+          ${kicker(lead, true)}
           <h3>${esc(titleOf(lead))}</h3>
           <p>${esc(summaryOf(lead))}</p>
           ${meta(lead, { coverage: true })}
@@ -313,7 +316,7 @@
       html += essentials
         .map((a, i) => `<li>${link(a, 'row', `
           <span class="num">${i + 2}</span>
-          <div class="row-body">${kicker(a)}<h4>${esc(titleOf(a))}</h4>${meta(a)}</div>
+          <div class="row-body">${kicker(a, true)}<h4>${esc(titleOf(a))}</h4>${meta(a)}</div>
           ${media(a, 'thumb')}`)}</li>`)
         .join('');
       html += '</ol>';
@@ -321,7 +324,7 @@
 
     for (const cat of CAT_ORDER) {
       if (state.hidden.includes(cat)) continue;
-      const items = ordered.filter((a) => a.cat === cat && !used.has(a.id)).slice(0, 4);
+      const items = ordered.filter((a) => a.cat === cat && !used.has(a.id)).slice(0, PRIORITY_CATS.includes(cat) ? 6 : 3);
       if (!items.length) continue;
       items.forEach(take);
       const [first, ...others] = items;
@@ -371,18 +374,18 @@
 
   function reel(a, i, n) {
     const saved = state.saved.some((s) => s.id === a.id);
-    const related = (a.related || []).slice(0, 3);
+    const others = (a.sources || []).filter((x) => x.source !== a.source).slice(0, 3);
     return `<article class="reel${a.image ? '' : ' no-image'}" data-id="${esc(a.id)}" data-index="${i}">
       <div class="reel-bg">${art(a, 'art-xl')}${a.image ? `<img src="${esc(a.image)}" alt="" ${i > 2 ? 'loading="lazy"' : ''} decoding="async" referrerpolicy="no-referrer" onerror="this.remove()">` : ''}</div>
       <div class="reel-shade"></div>
       <div class="reel-content">
-        <div class="reel-top">${kicker(a)}<span class="reel-count">${i + 1} / ${n}</span></div>
-        <div class="reel-meta">${esc(a.source)} · ${esc(fmt.rel(a.publishedAt))}${a.coverage > 1 ? ` · ${esc(t('coverage', { n: a.coverage }))}` : ''}</div>
+        <div class="reel-top">${kicker(a)}${dots(a)}<span class="reel-count">${i + 1} / ${n}</span></div>
+        <div class="reel-meta">${esc(byline(a))} · ${esc(fmt.rel(a.publishedAt))}${a.coverage > 1 ? ` · ${esc(t('coverage', { n: a.coverage }))}` : ''}</div>
         <h2>${esc(titleOf(a))}</h2>
         <p>${esc(summaryOf(a))}</p>
         ${isTranslated(a) ? `<div class="reel-tr">${icon('globe')}${esc(t('translated'))}</div>` : ''}
-        ${related.length ? `<div class="reel-rel">${esc(t('alsoIn'))} ${related.map((r) => `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.source)}</a>`).join(', ')}</div>` : ''}
-        <a class="reel-cta" href="${esc(a.url)}" target="_blank" rel="noopener">${esc(t('read'))}${icon('external')}</a>
+        ${!a.written && others.length ? `<div class="reel-rel">${esc(t('basedOn', { n: a.coverage }))} · ${others.map((r) => esc(r.source)).join(', ')}</div>` : ''}
+        <button class="reel-cta" data-read="${esc(a.id)}">${esc(t('read'))}${icon('arrowRight', 'class="arrow-flip"')}</button>
       </div>
       <div class="reel-actions">
         <button data-action="save" data-id="${esc(a.id)}" aria-pressed="${saved}" aria-label="${esc(t('save'))}">${icon(saved ? 'bookmarkFill' : 'bookmark')}<span>${esc(t('save'))}</span></button>
@@ -429,14 +432,107 @@
     setTimeout(done, 5000);
   }
 
-  function openUrl(url) {
-    const l = document.createElement('a');
-    l.href = url;
-    l.target = '_blank';
-    l.rel = 'noopener';
-    document.body.appendChild(l);
-    l.click();
-    l.remove();
+  // ———————————————————————————————————————— lecteur d'article (dans l'application)
+  const bodyOf = (a) => (a.body ? a.body[state.lang] || a.body.fr : null);
+  const readingMinutes = (a) => {
+    const b = bodyOf(a);
+    const text = b ? [b.lede, ...b.keyPoints, ...b.sections.flatMap((x) => x.paragraphs)].join(' ') : summaryOf(a) + (a.sources || []).map((x) => x.summary).join(' ');
+    return Math.max(1, Math.round(text.split(/\s+/).length / 220));
+  };
+
+  function readerHTML(a) {
+    const b = bodyOf(a);
+    const sources = a.sources?.length ? a.sources : [{ source: a.source, url: a.url, title: titleOf(a), summary: summaryOf(a) }];
+    const names = [...new Set(sources.map((x) => x.source))];
+    const based = names.length > 1 ? t('basedOn', { n: names.length }) : t('basedOnOne', { s: names[0] });
+    const list = state.readerList.map(byId).filter(Boolean);
+    const idx = list.findIndex((x) => x.id === a.id);
+    const next = list[idx + 1];
+    const more = editorialOrder(visible()).filter((x) => x.cat === a.cat && x.id !== a.id && x.id !== next?.id).slice(0, 3);
+
+    let html = `<div class="r-hero${a.image ? '' : ' no-img'}">${art(a)}${a.image ? `<img src="${esc(a.image)}" alt="" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()">` : ''}</div>
+      ${a.image ? `<p class="r-credit">${esc(t('photo', { s: a.source }))}</p>` : ''}
+      <header class="r-head">
+        <div class="r-kicker">${kicker(a, true)}${a.importance >= 5 ? `<span class="r-major">${esc(t('major'))}</span>` : ''}</div>
+        <h1>${esc(titleOf(a))}</h1>
+        <p class="r-lede">${esc(b ? b.lede : summaryOf(a))}</p>
+        <div class="r-byline">
+          <strong>${esc(byline(a))}</strong>
+          <span>${esc(based)}</span>
+          <span><time datetime="${esc(a.publishedAt)}">${esc(fmt.rel(a.publishedAt))}</time> · ${esc(t('readTime', { n: readingMinutes(a) }))}</span>
+        </div>
+        ${isTranslated(a) ? `<div class="r-tr">${icon('globe')}${esc(t('translated'))}</div>` : ''}
+      </header>`;
+
+    if (b) {
+      if (b.keyPoints?.length) html += `<aside class="r-points"><h2>${esc(t('keyPoints'))}</h2><ul>${b.keyPoints.map((p) => `<li>${esc(p)}</li>`).join('')}</ul></aside>`;
+      html += `<div class="r-body">${b.sections.map((sec) => `${sec.heading ? `<h2>${esc(sec.heading)}</h2>` : ''}${sec.paragraphs.map((p) => `<p>${esc(p)}</p>`).join('')}`).join('')}</div>`;
+    } else {
+      // pas encore d'article rédigé : revue de presse des médias qui couvrent le sujet
+      html += `<section class="r-press"><h2>${esc(t('pressReview'))}</h2>${sources
+        .map((x) => `<div class="r-quote"><div class="r-quote-src">${esc(x.source)}</div><h3>${esc(x.title || '')}</h3>${x.summary ? `<p>${esc(x.summary)}</p>` : ''}</div>`)
+        .join('')}</section>`;
+    }
+
+    html += `<section class="r-sources"><h2>${esc(t('sourcesTitle'))}</h2><ul>${sources
+      .map((x) => `<li><a href="${esc(x.url)}" target="_blank" rel="noopener"><strong>${esc(x.source)}</strong><span>${esc(x.title || '')}</span>${icon('external')}</a></li>`)
+      .join('')}</ul></section>`;
+
+    if (next) {
+      html += `<button class="r-next" data-read="${esc(next.id)}"><span>${esc(t('nextArticle'))}</span><strong>${esc(titleOf(next))}</strong>${icon('arrowRight', 'class="arrow-flip"')}</button>`;
+    }
+    if (more.length) {
+      html += `<section class="r-more"><h2 class="sub-head">${esc(t('alsoRead'))}</h2>${more
+        .map((x) => link(x, 'row row-compact', `<div class="row-body"><h4>${esc(titleOf(x))}</h4>${meta(x)}</div>${media(x, 'thumb')}`))
+        .join('')}</section>`;
+    }
+    return html;
+  }
+
+  function renderReaderBar(a) {
+    const saved = state.saved.some((x) => x.id === a.id);
+    $('#reader-actions').innerHTML = `
+      <button class="icon-btn" data-action="save" data-id="${esc(a.id)}" aria-pressed="${saved}" aria-label="${esc(t('save'))}">${icon(saved ? 'bookmarkFill' : 'bookmark')}</button>
+      <button class="icon-btn" data-action="share" data-id="${esc(a.id)}" aria-label="${esc(t('share'))}">${icon('share')}</button>
+      <button class="lang-pill" data-action="open-lang" aria-label="${esc(t('language'))}">${state.lang.toUpperCase()}</button>`;
+    $('#reader-back').setAttribute('aria-label', t('back'));
+    $('#reader-cat').textContent = catName(a.cat);
+  }
+
+  function openReader(id, list) {
+    const a = byId(id);
+    if (!a) return;
+    if (list) state.readerList = list;
+    if (!state.readerList.includes(id)) state.readerList = [id];
+    const r = $('#reader');
+    const wasOpen = !r.hidden;
+    state.readerId = id;
+    renderReaderBar(a);
+    $('#reader-body').innerHTML = readerHTML(a);
+    $('#reader-scroll').scrollTop = 0;
+    $('#reader-progress').style.transform = 'scaleX(0)';
+    if (!wasOpen) {
+      r.hidden = false;
+      requestAnimationFrame(() => r.classList.add('open'));
+      try { history.pushState({ reader: true }, ''); } catch { /* cadre restreint */ }
+    }
+    $('#reader-back').focus({ preventScroll: true });
+  }
+
+  function closeReader(fromHistory = false) {
+    const r = $('#reader');
+    if (r.hidden) return;
+    r.classList.remove('open');
+    state.readerId = null;
+    setTimeout(() => { r.hidden = true; $('#reader-body').innerHTML = ''; }, 260);
+    if (!fromHistory) { try { if (history.state?.reader) history.back(); } catch { /* cadre restreint */ } }
+    if (state.pending) showFresh();
+  }
+
+  function listFor(origin) {
+    if (origin === 'flux') return fluxList().map((x) => x.id);
+    if (origin === 'saved') return state.saved.map((x) => x.id);
+    return editorialOrder(visible()).map((x) => x.id);
   }
 
   // ———————————————————————————————————————— favoris
@@ -448,11 +544,13 @@
     } else {
       const a = byId(id);
       if (!a) return;
-      const { id: _id, cat, source, url, image, publishedAt, lang, title, summary } = a;
-      state.saved.unshift({ id: _id, cat, source, url, image, publishedAt, lang, title, summary, savedAt: Date.now() });
+      const { id: _id, cat, source, url, image, publishedAt, lang, title, summary, sources, written, importance, coverage } = a;
+      const body = a.body ? { fr: a.body.fr, ...(a.body[state.lang] ? { [state.lang]: a.body[state.lang] } : {}) } : undefined;
+      state.saved.unshift({ id: _id, cat, source, url, image, publishedAt, lang, title, summary, sources, written, importance, coverage, body, savedAt: Date.now() });
       toast(t('savedOk'));
     }
-    store.set('saved', state.saved.slice(0, 200));
+    state.saved = state.saved.slice(0, 120);
+    store.set('saved', state.saved);
     $$(`[data-action="save"][data-id="${CSS.escape(id)}"]`).forEach((b) => {
       const on = state.saved.some((s) => s.id === id);
       b.setAttribute('aria-pressed', on);
@@ -697,10 +795,14 @@
         if (!r.ok) throw new Error('news ' + r.status);
         data = await r.json();
       }
-      const changed = !state.news || state.news.generatedAt !== data.generatedAt;
-      state.news = data;
       state.newsLoadedAt = Date.now();
-      if (changed) {
+      const changed = !state.news || state.news.generatedAt !== data.generatedAt;
+      if (changed && state.news && busyReading()) {
+        // on ne change pas la page sous les yeux du lecteur : on propose la mise à jour
+        state.pending = data;
+        showFresh();
+      } else if (changed) {
+        state.news = data;
         await ensureLang(state.lang);
         renderAll();
         updateMarkets();
@@ -711,6 +813,36 @@
       $('#offline').hidden = navigator.onLine;
       $('#offline').textContent = t('offline');
     }
+  }
+
+  // nouvelle édition disponible pendant la lecture
+  function busyReading() {
+    if (state.readerId) return true;
+    if (state.tab === 'flux') return $('#flux-scroller').scrollTop > 0;
+    if (state.tab === 'home') return $('#view-home').scrollTop > $('#cover').offsetHeight - 80;
+    return false;
+  }
+  function freshCount(data) {
+    const known = new Set((state.news?.articles || []).map((a) => a.id));
+    return data.articles.filter((a) => !known.has(a.id)).length;
+  }
+  function showFresh() {
+    if (!state.pending || state.readerId) return;
+    const n = freshCount(state.pending);
+    const b = $('#fresh');
+    b.innerHTML = `${icon('chevronUp')}${esc(t('fresh'))}${n ? ` · ${n}` : ''}`;
+    b.hidden = false;
+  }
+  async function applyFresh() {
+    $('#fresh').hidden = true;
+    if (!state.pending) return;
+    state.news = state.pending;
+    state.pending = null;
+    await ensureLang(state.lang);
+    renderAll();
+    updateMarkets();
+    if (state.tab === 'flux') $('#flux-scroller').scrollTo({ top: 0 });
+    else $('#news-top')?.scrollIntoView({ behavior: 'smooth' });
   }
 
   // ———————————————————————————————————————— navigation
@@ -740,6 +872,10 @@
     else state.fluxBuiltFor = '';
     if (state.tab === 'saved') renderSaved();
     if (state.tab === 'settings') renderSettings();
+    if (state.readerId) {
+      const a = byId(state.readerId);
+      if (a) { renderReaderBar(a); $('#reader-body').innerHTML = readerHTML(a); }
+    }
   }
 
   async function setLang(lang) {
@@ -761,8 +897,16 @@
   });
 
   document.addEventListener('click', async (e) => {
+    const readEl = e.target.closest('[data-read]');
+    if (readEl) {
+      e.preventDefault();
+      const origin = readEl.closest('#reader') ? null : state.tab;
+      openReader(readEl.dataset.read, origin ? listFor(origin) : null);
+      return;
+    }
     const el = e.target.closest('[data-action], [data-tab]');
     if (el?.dataset.tab) {
+      closeReader();
       if (state.tab === el.dataset.tab) {
         // second appui : retour en haut
         const v = el.dataset.tab === 'flux' ? $('#flux-scroller') : $('#view-' + el.dataset.tab);
@@ -773,10 +917,7 @@
     if (!el) {
       // un appui sur une carte du flux ouvre l'article
       const card = e.target.closest('.reel[data-id]');
-      if (card && !e.target.closest('a, button')) {
-        const a = byId(card.dataset.id);
-        if (a) openUrl(a.url);
-      }
+      if (card && !e.target.closest('a, button')) openReader(card.dataset.id, listFor('flux'));
       return;
     }
     const { action } = el.dataset;
@@ -784,6 +925,8 @@
       case 'set-lang': setLang(el.dataset.lang || el.dataset.value); break;
       case 'open-lang': renderLangSheet(); openSheet('lang-sheet'); break;
       case 'close-sheet': closeSheet(el.dataset.sheet); break;
+      case 'close-reader': closeReader(); break;
+      case 'apply-fresh': applyFresh(); break;
       case 'set-theme': state.theme = el.dataset.value; store.set('theme', state.theme); applyChrome(); renderSettings(); break;
       case 'set-scale': state.scale = +el.dataset.value; store.set('scale', state.scale); applyChrome(); renderSettings(); break;
       case 'save': e.preventDefault(); toggleSave(el.dataset.id); break;
@@ -825,12 +968,16 @@
   });
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') { closeSheet('lang-sheet'); return; }
-    if (state.tab !== 'flux' || e.target.matches('input')) return;
+    if (e.key === 'Escape') {
+      if (!$('#lang-sheet').hidden) closeSheet('lang-sheet');
+      else closeReader();
+      return;
+    }
+    if (state.tab !== 'flux' || state.readerId || e.target.matches('input')) return;
     const s = $('#flux-scroller');
     if (['ArrowDown', 'j', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); s.scrollBy({ top: s.clientHeight, behavior: 'smooth' }); }
     if (['ArrowUp', 'k', 'PageUp'].includes(e.key)) { e.preventDefault(); s.scrollBy({ top: -s.clientHeight, behavior: 'smooth' }); }
-    if (e.key === 'Enter') { const a = byId(currentReelId()); if (a) openUrl(a.url); }
+    if (e.key === 'Enter') { const id = currentReelId(); if (id) openReader(id, listFor('flux')); }
   });
 
   $('#lang-sheet').addEventListener('click', (e) => { if (e.target.id === 'lang-sheet') closeSheet('lang-sheet'); });
@@ -842,10 +989,17 @@
 
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState !== 'visible') return;
-    if (Date.now() - state.newsLoadedAt > REFRESH_MS) loadNews();
+    if (Date.now() - state.newsLoadedAt > POLL_MS) loadNews();
     if (!state.weather || Date.now() - state.weather.fetchedAt > REFRESH_MS * 2) updateWeather();
   });
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyChrome);
+  window.addEventListener('popstate', () => closeReader(true));
+  // barre de progression de lecture
+  $('#reader-scroll').addEventListener('scroll', (e) => {
+    const el = e.target;
+    const p = el.scrollTop / Math.max(1, el.scrollHeight - el.clientHeight);
+    $('#reader-progress').style.transform = `scaleX(${Math.min(1, p)})`;
+  }, { passive: true });
   window.addEventListener('online', () => { $('#offline').hidden = true; loadNews(); });
   window.addEventListener('offline', () => { $('#offline').textContent = t('offline'); $('#offline').hidden = false; });
 
@@ -859,6 +1013,8 @@
     loadNews();
     updateWeather();
     if (state.markets.length) renderMarkets();
+    // une nouvelle édition est publiée toutes les 10 minutes environ
+    setInterval(() => { if (document.visibilityState === 'visible' && !window.__NEWS__) loadNews(); }, POLL_MS);
     if ('serviceWorker' in navigator && !window.__NEWS__ && location.protocol !== 'file:') {
       navigator.serviceWorker.register('sw.js').catch(() => {});
     }
