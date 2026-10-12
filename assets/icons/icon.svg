@@ -1,5 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="112" fill="#141414"/>
-  <rect x="96" y="372" width="320" height="10" fill="#a1262b"/>
-  <text x="256" y="336" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="300" font-weight="700" fill="#f6f4ef">J</text>
+  <defs>
+    <pattern id="up" width="15" height="15" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+      <rect width="15" height="6.5" fill="#fff"/>
+    </pattern>
+    <pattern id="down" width="15" height="15" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="15" height="6.5" fill="#fff"/>
+    </pattern>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="#0b0b0c"/>
+  <rect x="146" y="116" width="66" height="280" fill="#fff"/>
+  <polygon points="212,212 308,116 400,116 212,306" fill="url(#up)"/>
+  <polygon points="262,255 400,396 318,396 224,294" fill="url(#down)"/>
 </svg>

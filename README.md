@@ -1,4 +1,4 @@
-# Le Journal
+# K-NEWS
 
 L'actualité belge et internationale sur ton téléphone, présentée comme un vrai journal.
 

@@ -15,7 +15,7 @@ const MAX_SOURCE_CHARS = 6000;
 
 const log = (...a) => console.log('[rédaction]', ...a);
 
-const SYSTEM = `Tu es journaliste à la rédaction du « Journal », un quotidien numérique belge francophone, sobre et rigoureux.
+const SYSTEM = `Tu es journaliste à la rédaction de « K-NEWS », un quotidien numérique belge francophone, sobre et rigoureux.
 On te donne plusieurs sources de presse sur un même sujet. Rédige un article ORIGINAL en français, comme pour un journal de qualité.
 
 Règles :

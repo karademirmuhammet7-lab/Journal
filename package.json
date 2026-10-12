@@ -2,7 +2,7 @@
   "name": "journal",
   "version": "1.0.0",
   "private": true,
-  "description": "Le Journal — l'actualité belge et internationale sur mobile",
+  "description": "K-NEWS — l'actualité belge et internationale sur mobile",
   "type": "module",
   "scripts": {
     "news": "node scripts/build-news.mjs",

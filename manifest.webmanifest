@@ -1,13 +1,13 @@
 {
-  "name": "Le Journal — Belgique · Monde",
-  "short_name": "Le Journal",
+  "name": "K-NEWS — Belgique · Monde",
+  "short_name": "K-NEWS",
   "description": "L'actualité belge et internationale, la météo et les marchés.",
   "lang": "fr",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#f6f4ef",
+  "background_color": "#0b0b0c",
   "theme_color": "#f6f4ef",
   "icons": [
     { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },

@@ -1,5 +1,5 @@
 /* ————————————————————————————————————————————————————————————
-   Le Journal — feuille de style
+   K-NEWS — feuille de style
    ———————————————————————————————————————————————————————————— */
 
 :root {
@@ -152,12 +152,15 @@ svg { display: block; }
   border-bottom: 1px solid var(--rule-strong);
 }
 .brand {
-  font-family: var(--serif);
-  font-weight: 700;
-  font-size: 1.6rem;
-  letter-spacing: -.02em;
-  font-variation-settings: 'opsz' 72;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 1.45rem;
+  letter-spacing: .04em;
 }
+.brand .logo { width: 34px; height: 34px; flex: 0 0 auto; }
 .lang-pill {
   min-width: 44px;
   height: 32px;
@@ -594,7 +597,7 @@ body.scrolled .scroll-hint { opacity: 0; }
 }
 .colophon strong { color: var(--ink-2); }
 .colophon .note { padding: 10px 12px; border-radius: 8px; background: var(--chip); color: var(--ink-2); }
-.brand-mini { font-family: var(--serif); font-weight: 700; font-size: 1.2rem; color: var(--ink); }
+.brand-mini { font-family: var(--sans); font-weight: 800; letter-spacing: .04em; font-size: 1.1rem; color: var(--ink); }
 .btn-ghost {
   display: inline-flex;
   align-items: center;

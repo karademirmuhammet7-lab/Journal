@@ -1,4 +1,4 @@
-/* Le Journal — application */
+/* K-NEWS — application */
 (() => {
   'use strict';
   const { LANGS, S, CATS, WX } = window.I18N;
@@ -349,7 +349,7 @@
 
     const seed = state.news.edition === 'seed';
     html += `<footer class="colophon">
-      <div class="brand-mini">Le Journal</div>
+      <div class="brand-mini">K-NEWS</div>
       <p>${esc(t('editionOf', { d: fmt.fullDate(gen) }))} · ${esc(fmt.time(gen))}${seed ? ` · <strong>${esc(t('seedEdition'))}</strong>` : ''}</p>
       ${seed ? `<p class="note">${esc(t('seedNote'))}</p>` : ''}
       <p class="sources"><strong>${esc(t('sources'))} :</strong> ${state.news.sources.map(esc).join(', ')}</p>
@@ -736,7 +736,7 @@
         <button class="btn" id="install-btn" data-action="install" hidden>${esc(t('install'))}</button>
       </section>
       <section class="group about"><h3>${esc(t('about'))}</h3>
-        <p class="brand-mini">Le Journal</p>
+        <p class="brand-mini">K-NEWS</p>
         ${gen ? `<p class="muted">${esc(t('editionOf', { d: fmt.fullDate(gen) }))} · ${esc(fmt.time(gen))}</p>` : ''}
         ${state.news ? `<p class="muted">${esc(t('sources'))} : ${state.news.sources.map(esc).join(', ')}</p>` : ''}
       </section>`;
