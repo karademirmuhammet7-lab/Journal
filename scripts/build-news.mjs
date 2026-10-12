@@ -184,6 +184,8 @@ const placeRe = (name) => new RegExp(`(^|[^\\p{L}\\-])${name.replace(/[-]/g, '[-
 const LOCAL_RE = Object.fromEntries(
   Object.entries(LOCAL).map(([cat, { places, exclude }]) => [cat, { places: places.map((p) => [p, placeRe(p)]), exclude }]),
 );
+const BELGIAN_MARKERS = /Belgique|belges?\b|Wallonie|wallon|Flandre|flamand|Bruxelles|bruxellois|Liège|Namur|Mons\b|Anvers|Gand\b|Bruges|Louvain|Charleroi|Tournai|Arlon|Wavre|Ostende|Hasselt|Malines|Hainaut|Brabant|Limbourg|Luxembourg belge|De Wever|Arizona|N-VA|Vooruit|Engagés|\bMR\b|\bPS\b|Ecolo|PTB|Vlaams Belang|SNCB|STIB|\bTEC\b|De Lijn|bpost|Proximus|Delhaize|Colruyt|Diables Rouges|Anderlecht|Sporting|Standard|IRM|Sciensano|INAMI|Zaventem/;
+const FOREIGN = /France|français|Paris|Allemagne|allemand|Berlin|Merz|Rome|Vatican|pape|Léon XIV|Italie|Espagne|Royaume-Uni|britannique|Londres|États-Unis|américain|Washington|Trump|Ukraine|Kiev|Kyiv|Zelensky|Russie|russe|Moscou|Poutine|Israël|israélien|Gaza|Liban|Syrie|Iran|Chine|chinois|Pékin|Japon|Inde|Turquie|Maroc|Algérie|Tunisie|Pays-Bas|néerlandais|Pologne|Suisse|Canada|Brésil|Mexique|Venezuela|Afrique|Arabie saoudite|Égypte|Macron/;
 const BELGIAN = /Belgique|belge|Wallonie|wallon|Hainaut|Charleroi|Bruxelles|TEC|SNCB/;
 
 /** 'chatelet', 'charleroi' ou null, d'après les communes citées dans le texte. */
@@ -506,7 +508,10 @@ export async function build() {
     const hinted = guessCategory(lead);
     const sure = guessCategory(lead, 3); // mot distinctif dans le titre
     const belgian = c.items.some((a) => a.region === 'be' || a.cat === 'belgique');
-    let cat = voted || hinted || (belgian ? 'belgique' : 'monde');
+    // flux belge généraliste : une info clairement étrangère va en « Monde »
+    const text = c.items.map((a) => `${a.titleFr || a.title} ${a.summary || ''}`).join(' ');
+    const foreignOnly = FOREIGN.test(text) && !BELGIAN_MARKERS.test(text);
+    let cat = voted || hinted || (belgian && !foreignOnly ? 'belgique' : 'monde');
     // un sujet d'actualité générale mais clairement thématique est reclassé
     if ((cat === 'belgique' || cat === 'monde') && sure && sure !== 'economie') cat = sure;
     if (cat === 'monde' && sure === 'economie') cat = 'economie';
