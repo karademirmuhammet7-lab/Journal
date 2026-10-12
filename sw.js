@@ -1,5 +1,5 @@
 // Service worker : l'application s'ouvre même hors connexion avec la dernière édition.
-const VERSION = 'journal-v2';
+const VERSION = 'journal-v3';
 const SHELL = [
   './',
   'index.html',
@@ -39,21 +39,30 @@ self.addEventListener('fetch', (e) => {
     return;
   }
 
-  // L'application et les polices : cache d'abord, mise à jour en arrière-plan
-  if (url.origin === location.origin || url.host.endsWith('fonts.googleapis.com') || url.host.endsWith('fonts.gstatic.com')) {
+  // L'application : réseau d'abord (toujours la dernière version), cache si hors ligne
+  if (url.origin === location.origin) {
     e.respondWith(
-      caches.match(e.request).then((cached) => {
-        const network = fetch(e.request)
-          .then((res) => {
-            if (res.ok) {
-              const copy = res.clone();
-              caches.open(VERSION).then((c) => c.put(e.request, copy));
-            }
-            return res;
-          })
-          .catch(() => cached);
-        return cached || network;
-      }),
+      fetch(e.request)
+        .then((res) => {
+          if (res.ok) {
+            const copy = res.clone();
+            caches.open(VERSION).then((c) => c.put(e.request, copy));
+          }
+          return res;
+        })
+        .catch(() => caches.match(e.request, { ignoreSearch: true })),
+    );
+    return;
+  }
+
+  // Les polices : cache d'abord
+  if (url.host.endsWith('fonts.googleapis.com') || url.host.endsWith('fonts.gstatic.com')) {
+    e.respondWith(
+      caches.match(e.request).then((cached) => cached || fetch(e.request).then((res) => {
+        const copy = res.clone();
+        caches.open(VERSION).then((c) => c.put(e.request, copy));
+        return res;
+      })),
     );
   }
 });

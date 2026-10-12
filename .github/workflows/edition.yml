@@ -48,6 +48,8 @@ jobs:
         continue-on-error: true
         env:
           # Settings → Secrets and variables → Actions
+          # mot de passe des articles complets (lecture personnelle, textes chiffrés)
+          JOURNAL_KEY: ${{ secrets.JOURNAL_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           JOURNAL_MODEL: ${{ vars.JOURNAL_MODEL }}
           JOURNAL_EFFORT: ${{ vars.JOURNAL_EFFORT }}

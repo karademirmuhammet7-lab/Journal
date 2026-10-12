@@ -11,7 +11,8 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { XMLParser } from 'fast-xml-parser';
 import { FEEDS, MARKETS, CATEGORY_HINTS, STRONG_HINTS, PRIORITY } from './feeds.mjs';
-import { planWriting, writeArticles, extractText, writingEnabled } from './writer.mjs';
+import { planWriting, writeArticles, writingEnabled } from './writer.mjs';
+import { fetchFullTexts, publishFullTexts, ogImage } from './fulltext.mjs';
 
 const OUT = new URL('../data/news.json', import.meta.url);
 const CACHE_DIR = process.env.JOURNAL_CACHE_DIR ? new URL(`file://${process.env.JOURNAL_CACHE_DIR}/`) : new URL('../.cache/', import.meta.url);
@@ -23,6 +24,8 @@ const MIN_ARTICLES = 12; // en dessous, on garde l'édition précédente
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0 Safari/537.36';
 
 const log = (...a) => console.log('[news]', ...a);
+const FULL_KEY = process.env.JOURNAL_KEY || '';
+const ARTICLES_DIR = new URL('../data/articles/', import.meta.url);
 
 // ———————————————————————————————————————— utilitaires
 
@@ -233,13 +236,13 @@ function pickLead(c) {
 
 async function enrich(article, { withText = false } = {}) {
   const html = await fetchText(article.url, { timeout: 9000, headers: { accept: 'text/html' } });
-  if (withText) article.text = extractText(html);
+  if (withText) article.text = (await import('./writer.mjs')).extractText(html);
   const meta = (prop) => {
     const re = new RegExp(`<meta[^>]+(?:property|name)=["']${prop}["'][^>]*>`, 'i');
     const tag = html.match(re)?.[0];
     return tag?.match(/content=["']([^"']+)["']/i)?.[1];
   };
-  if (!article.image) article.image = upgradeImage(meta('og:image') || meta('twitter:image')) || null;
+  if (!article.image) article.image = upgradeImage(ogImage(html)) || null;
   if (!article.summary || article.summary.length < 60) {
     const d = meta('og:description') || meta('description');
     if (d) article.summary = clip(stripHtml(d), 320);
@@ -248,8 +251,9 @@ async function enrich(article, { withText = false } = {}) {
 
 // ———————————————————————————————————————— traduction
 
-let cache = {};
+let cache = null;
 async function loadCache() {
+  if (cache) return; // déjà chargé : on garde les traductions faites pendant ce passage
   try { cache = JSON.parse(await readFile(CACHE, 'utf8')); } catch { cache = {}; }
 }
 async function saveCache() {
@@ -279,6 +283,7 @@ export async function translateAll(texts, sl, tl) {
     const clean = (t || '').replace(/\s*\n\s*/g, ' ').trim();
     if (!clean) { out[i] = ''; return; }
     const key = `${sl}>${tl}:${hash(clean)}`;
+    cache ||= {};
     if (cache[key]) out[i] = cache[key];
     else todo.push({ i, clean, key });
   });
@@ -371,6 +376,12 @@ async function translateArticles(articles) {
     }
   }
   await saveCache();
+}
+
+async function translateBlocks(blocks, sl, tl) {
+  const res = await translateAll(blocks.map((b) => b.p || b.h), sl, tl);
+  if (!res.every(Boolean)) return null;
+  return blocks.map((b, i) => (b.p ? { p: res[i] } : { h: res[i] }));
 }
 
 // un article complet ↔ une liste de textes (pour la traduction)
@@ -492,15 +503,23 @@ export async function build() {
     return null;
   }
 
-  // compléter images et résumés manquants pour les articles les mieux classés
-  const needy = picked.filter((a) => !a._agg && (!a.image || !a.summary[a.lang])).slice(0, 70);
-  log(`enrichissement de ${needy.length} articles…`);
+  // texte complet (lecture personnelle, chiffré) — récupère aussi des photos
+  if (FULL_KEY) await fetchFullTexts(picked, { fetchText, pool, translateBlocks });
+
+  // une vraie photo pour chaque article : on essaie toutes ses sources
+  const needy = picked.filter((a) => !a.image || !a.summary[a.lang]).slice(0, 90);
+  log(`photos et résumés à compléter : ${needy.length}`);
   await pool(needy, 6, async (a) => {
-    const proxy = { url: a.url, image: a.image, summary: a.summary[a.lang] };
-    await enrich(proxy);
-    a.image = proxy.image;
-    a.summary[a.lang] = proxy.summary;
+    const urls = [a.url, ...(a.sources || []).map((s) => s.url)].filter((u, i, all) => /^https?:/.test(u) && !/news\.google\./.test(u) && all.indexOf(u) === i);
+    for (const url of urls.slice(0, 3)) {
+      const proxy = { url, image: a.image, summary: a.summary[a.lang] };
+      try { await enrich(proxy); } catch { continue; }
+      a.image = proxy.image;
+      if (url === a.url) a.summary[a.lang] = proxy.summary;
+      if (a.image) break;
+    }
   });
+  log(`${picked.filter((a) => a.image).length}/${picked.length} articles avec photo`);
 
   // la rédaction : articles complets, lisibles dans l'application
   const todo = await planWriting(picked);
@@ -561,6 +580,8 @@ async function main() {
   const data = await build();
   if (!data) return;
   await mkdir(new URL('../data/', import.meta.url), { recursive: true });
+  if (FULL_KEY) data.crypto = await publishFullTexts(data.articles, ARTICLES_DIR, FULL_KEY);
+  else for (const a of data.articles) delete a.full;
   await writeFile(OUT, JSON.stringify(data));
   log(`✓ ${data.articles.length} articles, ${data.markets.length} marchés → data/news.json`);
 }

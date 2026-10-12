@@ -122,11 +122,10 @@
   function art(a, cls = '') {
     return `<div class="art art-${esc(a.cat)} ${cls}">${icon(a.cat)}<span class="art-src">${esc(a.source)}</span></div>`;
   }
+  // une vraie photo, ou rien (mise en page texte, comme dans un journal)
   function media(a, cls = 'media') {
-    const img = a.image
-      ? `<img src="${esc(a.image)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()">`
-      : '';
-    return `<div class="${cls}${a.image ? '' : ' no-img'}">${art(a)}${img}</div>`;
+    if (!a.image) return '';
+    return `<div class="${cls}"><img src="${esc(a.image)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"></div>`;
   }
   const byline = (a) => (a.written ? t('newsroom') : a.source);
   function dots(a) {
@@ -290,7 +289,8 @@
     const used = new Set();
     const take = (a) => (used.add(a.id), a);
 
-    const lead = take(ordered.find((a) => a.image) && state.news.edition === 'live' ? ordered.find((a) => a.image) : ordered[0]);
+    // la manchette : le sujet le plus important qui a une photo, parmi les trois premiers
+    const lead = take(ordered.slice(0, 3).find((a) => a.image) || ordered[0]);
     const essentials = ordered.filter((a) => !used.has(a.id)).slice(0, 6).map(take);
 
     const gen = new Date(state.news.generatedAt);
@@ -327,6 +327,9 @@
       const items = ordered.filter((a) => a.cat === cat && !used.has(a.id)).slice(0, PRIORITY_CATS.includes(cat) ? 6 : 3);
       if (!items.length) continue;
       items.forEach(take);
+      // la carte principale de la rubrique prend une photo si l'un des sujets en a une
+      const withImage = items.findIndex((a) => a.image);
+      if (withImage > 0) items.unshift(items.splice(withImage, 1)[0]);
       const [first, ...others] = items;
       html += `<section class="cat-block">
         <header class="cat-head k-${cat}">
@@ -432,6 +435,101 @@
     setTimeout(done, 5000);
   }
 
+  // ———————————————————————————————————————— articles complets (chiffrés, mot de passe personnel)
+  const fullKey = { pass: store.get('key', ''), key: null, ok: false };
+  const b64d = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
+
+  async function deriveFullKey(pass) {
+    const { salt, iterations } = state.news.crypto;
+    const enc = new TextEncoder();
+    const base = await crypto.subtle.importKey('raw', enc.encode(pass), 'PBKDF2', false, ['deriveKey']);
+    return crypto.subtle.deriveKey({ name: 'PBKDF2', salt: enc.encode(salt), iterations, hash: 'SHA-256' }, base, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+  }
+  async function openBox(key, box) {
+    const plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64d(box.iv) }, key, b64d(box.data));
+    return JSON.parse(new TextDecoder().decode(plain));
+  }
+  /** Vérifie le mot de passe sur l'édition en cours ; renvoie true s'il est bon. */
+  async function unlockFull(pass) {
+    fullKey.ok = false;
+    fullKey.key = null;
+    if (!pass || !state.news?.crypto || !window.crypto?.subtle) return false;
+    try {
+      const key = await deriveFullKey(pass);
+      if ((await openBox(key, state.news.crypto.check)) !== 'ok') return false;
+      Object.assign(fullKey, { pass, key, ok: true });
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  const trFull = store.get('trFull', {}); // traductions des articles complets déjà lus
+  async function translateTexts(texts, lang) {
+    const out = [];
+    let batch = [];
+    let size = 0;
+    const run = async () => {
+      if (!batch.length) return;
+      const r = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&dt=t&sl=fr&tl=${lang}`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+        body: 'q=' + encodeURIComponent(batch.join('\n')),
+      });
+      const d = await r.json();
+      const parts = d[0].map((x) => x[0]).join('').split('\n');
+      if (parts.length !== batch.length) throw new Error('traduction incomplète');
+      out.push(...parts.map((x) => x.trim()));
+      batch = [];
+      size = 0;
+    };
+    for (const text of texts) {
+      if (size + text.length > 3500) await run();
+      batch.push(text.replace(/\s*\n\s*/g, ' '));
+      size += text.length;
+    }
+    await run();
+    return out;
+  }
+
+  async function loadFull(a) {
+    const box = $('#r-full');
+    if (!box || box.dataset.id !== a.id) return;
+    const show = (blocks, src) => {
+      if (state.readerId !== a.id) return;
+      box.innerHTML = blocks.map((x) => (x.h ? `<h2>${esc(x.h)}</h2>` : `<p>${esc(x.p)}</p>`)).join('') +
+        `<p class="r-textby">${esc(t('textBy', { s: src }))}</p>`;
+    };
+    try {
+      if (!fullKey.key) await unlockFull(fullKey.pass);
+      const r = await fetch(`data/articles/${encodeURIComponent(a.id)}.json`);
+      if (!r.ok) throw new Error('absent');
+      const doc = await openBox(fullKey.key, await r.json());
+      let blocks = doc.blocks;
+      if (state.lang !== 'fr') {
+        const cacheKey = state.lang + ':' + a.id;
+        if (trFull[cacheKey]) blocks = trFull[cacheKey];
+        else {
+          try {
+            const tr = await translateTexts(blocks.map((x) => x.p || x.h), state.lang);
+            blocks = blocks.map((x, i) => (x.p ? { p: tr[i] } : { h: tr[i] }));
+            trFull[cacheKey] = blocks;
+            const keys = Object.keys(trFull);
+            keys.slice(0, Math.max(0, keys.length - 15)).forEach((k) => delete trFull[k]);
+            store.set('trFull', trFull);
+          } catch { /* traduction indisponible : texte original */ }
+        }
+      }
+      show(blocks, doc.source);
+    } catch {
+      if (state.readerId !== a.id) return;
+      const sources = a.sources || [];
+      box.outerHTML = `<p class="r-note">${esc(t('fullUnavailable'))}</p><section class="r-press">${sources
+        .map((x) => `<div class="r-quote"><div class="r-quote-src">${esc(x.source)}</div><h3>${esc(x.title || '')}</h3>${x.summary ? `<p>${esc(x.summary)}</p>` : ''}</div>`)
+        .join('')}</section>`;
+    }
+  }
+
   // ———————————————————————————————————————— lecteur d'article (dans l'application)
   const bodyOf = (a) => (a.body ? a.body[state.lang] || a.body.fr : null);
   const readingMinutes = (a) => {
@@ -442,6 +540,8 @@
 
   function readerHTML(a) {
     const b = bodyOf(a);
+    // texte complet (chiffré) disponible et mot de passe saisi : il sera chargé juste après
+    const full = !b && a.full && fullKey.ok && state.news?.crypto;
     const sources = a.sources?.length ? a.sources : [{ source: a.source, url: a.url, title: titleOf(a), summary: summaryOf(a) }];
     const names = [...new Set(sources.map((x) => x.source))];
     const based = names.length > 1 ? t('basedOn', { n: names.length }) : t('basedOnOne', { s: names[0] });
@@ -450,16 +550,18 @@
     const next = list[idx + 1];
     const more = editorialOrder(visible()).filter((x) => x.cat === a.cat && x.id !== a.id && x.id !== next?.id).slice(0, 3);
 
-    let html = `<div class="r-hero${a.image ? '' : ' no-img'}">${art(a)}${a.image ? `<img src="${esc(a.image)}" alt="" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()">` : ''}</div>
-      ${a.image ? `<p class="r-credit">${esc(t('photo', { s: a.source }))}</p>` : ''}
+    let html = a.image
+      ? `<div class="r-hero"><img src="${esc(a.image)}" alt="" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.nextElementSibling?.remove();this.parentNode.remove()"></div><p class="r-credit">${esc(t('photo', { s: a.source }))}</p>`
+      : '';
+    html += `
       <header class="r-head">
         <div class="r-kicker">${kicker(a, true)}${a.importance >= 5 ? `<span class="r-major">${esc(t('major'))}</span>` : ''}</div>
         <h1>${esc(titleOf(a))}</h1>
         <p class="r-lede">${esc(b ? b.lede : summaryOf(a))}</p>
         <div class="r-byline">
-          <strong>${esc(byline(a))}</strong>
+          <strong>${esc(full ? a.full.source : byline(a))}</strong>
           <span>${esc(based)}</span>
-          <span><time datetime="${esc(a.publishedAt)}">${esc(fmt.rel(a.publishedAt))}</time> · ${esc(t('readTime', { n: readingMinutes(a) }))}</span>
+          <span><time datetime="${esc(a.publishedAt)}">${esc(fmt.rel(a.publishedAt))}</time> · ${esc(t('readTime', { n: full ? a.full.minutes : readingMinutes(a) }))}</span>
         </div>
         ${isTranslated(a) ? `<div class="r-tr">${icon('globe')}${esc(t('translated'))}</div>` : ''}
       </header>`;
@@ -467,15 +569,19 @@
     if (b) {
       if (b.keyPoints?.length) html += `<aside class="r-points"><h2>${esc(t('keyPoints'))}</h2><ul>${b.keyPoints.map((p) => `<li>${esc(p)}</li>`).join('')}</ul></aside>`;
       html += `<div class="r-body">${b.sections.map((sec) => `${sec.heading ? `<h2>${esc(sec.heading)}</h2>` : ''}${sec.paragraphs.map((p) => `<p>${esc(p)}</p>`).join('')}`).join('')}</div>`;
+    } else if (full) {
+      html += `<div id="r-full" class="r-body" data-id="${esc(a.id)}"><p class="r-loading">${esc(t('loadingArticle'))}</p></div>`;
     } else {
-      // pas encore d'article rédigé : revue de presse des médias qui couvrent le sujet
+      if (a.full && state.news?.crypto) html += `<button class="r-lock" data-action="goto-unlock">${icon('lock')}<span>${esc(t('lockedNote'))}</span></button>`;
+      // pas de texte complet : revue de presse des médias qui couvrent le sujet
       html += `<section class="r-press"><h2>${esc(t('pressReview'))}</h2>${sources
         .map((x) => `<div class="r-quote"><div class="r-quote-src">${esc(x.source)}</div><h3>${esc(x.title || '')}</h3>${x.summary ? `<p>${esc(x.summary)}</p>` : ''}</div>`)
         .join('')}</section>`;
     }
 
+    // sources citées, sans lien : on reste dans l'application
     html += `<section class="r-sources"><h2>${esc(t('sourcesTitle'))}</h2><ul>${sources
-      .map((x) => `<li><a href="${esc(x.url)}" target="_blank" rel="noopener"><strong>${esc(x.source)}</strong><span>${esc(x.title || '')}</span>${icon('external')}</a></li>`)
+      .map((x) => `<li><div class="r-src"><strong>${esc(x.source)}</strong><span>${esc(x.title || '')}</span></div></li>`)
       .join('')}</ul></section>`;
 
     if (next) {
@@ -499,6 +605,9 @@
     $('#reader-cat').textContent = catName(a.cat);
   }
 
+  // si le téléphone relance l'application, on revient où on était
+  const rememberView = () => store.set('view', { tab: state.tab, readerId: state.readerId, list: state.readerList.slice(0, 200), at: Date.now() });
+
   function openReader(id, list) {
     const a = byId(id);
     if (!a) return;
@@ -509,6 +618,7 @@
     state.readerId = id;
     renderReaderBar(a);
     $('#reader-body').innerHTML = readerHTML(a);
+    loadFull(a);
     $('#reader-scroll').scrollTop = 0;
     $('#reader-progress').style.transform = 'scaleX(0)';
     if (!wasOpen) {
@@ -516,7 +626,7 @@
       requestAnimationFrame(() => r.classList.add('open'));
       try { history.pushState({ reader: true }, ''); } catch { /* cadre restreint */ }
     }
-    $('#reader-back').focus({ preventScroll: true });
+    rememberView();
   }
 
   function closeReader(fromHistory = false) {
@@ -524,6 +634,7 @@
     if (r.hidden) return;
     r.classList.remove('open');
     state.readerId = null;
+    rememberView();
     setTimeout(() => { r.hidden = true; $('#reader-body').innerHTML = ''; }, 260);
     if (!fromHistory) { try { if (history.state?.reader) history.back(); } catch { /* cadre restreint */ } }
     if (state.pending) showFresh();
@@ -604,6 +715,17 @@
         <button class="btn-ghost wide" data-action="use-location">${icon('locate')}${esc(t('useMyLocation'))}</button>
         <div class="search">${icon('search')}<input id="city-search" type="search" autocomplete="off" placeholder="${esc(t('searchCity'))}"></div>
         <ul id="city-results" class="city-results"></ul>
+      </section>
+      <section class="group" id="full-group"><h3>${esc(t('fullTitle'))}</h3>
+        ${fullKey.ok
+          ? `<div class="loc-current ok">${icon('check')}<span>${esc(t('unlocked'))}</span></div>
+             <button class="btn-ghost wide" data-action="lock">${icon('lock')}${esc(t('lock'))}</button>`
+          : `<p class="muted">${esc(state.news?.crypto ? t('fullHelp') : t('fullNotReady'))}</p>
+             <form class="unlock" data-form="unlock">
+               <div class="search">${icon('lock')}<input id="full-pass" type="password" autocomplete="current-password" placeholder="${esc(t('fullPlaceholder'))}" ${state.news?.crypto ? '' : 'disabled'}></div>
+               <button class="btn" type="submit" ${state.news?.crypto ? '' : 'disabled'}>${esc(t('unlock'))}</button>
+               <p class="form-error" id="full-error" hidden>${esc(t('wrongPass'))}</p>
+             </form>`}
       </section>
       <section class="group"><h3>${esc(t('categories'))}</h3>
         <ul class="toggles">${CAT_ORDER.map((c) => `<li><label><span class="k-${c}">${icon(c)}</span><span>${esc(catName(c))}</span>
@@ -803,9 +925,15 @@
         showFresh();
       } else if (changed) {
         state.news = data;
+        if (fullKey.pass) await unlockFull(fullKey.pass);
         await ensureLang(state.lang);
         renderAll();
         updateMarkets();
+      }
+      if (state.restoreReader) {
+        const { id, list } = state.restoreReader;
+        state.restoreReader = null;
+        if (byId(id)) openReader(id, list);
       }
       $('#offline').hidden = true;
     } catch {
@@ -838,6 +966,7 @@
     if (!state.pending) return;
     state.news = state.pending;
     state.pending = null;
+    if (fullKey.pass) await unlockFull(fullKey.pass);
     await ensureLang(state.lang);
     renderAll();
     updateMarkets();
@@ -859,6 +988,7 @@
     if (tab === 'saved') renderSaved();
     if (tab === 'settings') renderSettings();
     try { history.replaceState(null, '', tab === 'home' ? location.pathname + location.search : '#' + tab); } catch { /* cadre restreint */ }
+    rememberView();
   }
 
   function renderAll() {
@@ -874,7 +1004,7 @@
     if (state.tab === 'settings') renderSettings();
     if (state.readerId) {
       const a = byId(state.readerId);
-      if (a) { renderReaderBar(a); $('#reader-body').innerHTML = readerHTML(a); }
+      if (a) { renderReaderBar(a); $('#reader-body').innerHTML = readerHTML(a); loadFull(a); }
     }
   }
 
@@ -926,6 +1056,8 @@
       case 'open-lang': renderLangSheet(); openSheet('lang-sheet'); break;
       case 'close-sheet': closeSheet(el.dataset.sheet); break;
       case 'close-reader': closeReader(); break;
+      case 'lock': fullKey.ok = false; fullKey.key = null; fullKey.pass = ''; store.set('key', ''); renderSettings(); break;
+      case 'goto-unlock': closeReader(); setTab('settings'); setTimeout(() => $('#full-group')?.scrollIntoView({ behavior: 'smooth' }), 50); break;
       case 'apply-fresh': applyFresh(); break;
       case 'set-theme': state.theme = el.dataset.value; store.set('theme', state.theme); applyChrome(); renderSettings(); break;
       case 'set-scale': state.scale = +el.dataset.value; store.set('scale', state.scale); applyChrome(); renderSettings(); break;
@@ -957,6 +1089,19 @@
       if (state.hidden.includes(state.fluxFilter)) state.fluxFilter = 'all';
       renderHome();
       state.fluxBuiltFor = '';
+    }
+  });
+
+  document.addEventListener('submit', async (e) => {
+    if (e.target.dataset.form !== 'unlock') return;
+    e.preventDefault();
+    const pass = $('#full-pass').value;
+    if (await unlockFull(pass)) {
+      store.set('key', pass);
+      toast(t('unlocked'));
+      renderSettings();
+    } else {
+      $('#full-error').hidden = false;
     }
   });
 
@@ -1006,8 +1151,12 @@
   // ———————————————————————————————————————— démarrage
   function start() {
     const initial = location.hash.slice(1);
+    const last = store.get('view', null);
+    const recent = last && Date.now() - last.at < 30 * 60 * 1000;
     renderAll();
-    setTab(['flux', 'saved', 'settings'].includes(initial) ? initial : 'home');
+    const tab = ['flux', 'saved', 'settings'].includes(initial) ? initial : recent && last.tab ? last.tab : 'home';
+    setTab(tab);
+    if (recent && last.readerId) state.restoreReader = { id: last.readerId, list: last.list };
     setInterval(tickClock, 1000);
     setInterval(() => { if (state.tab === 'home') $$('#news time[datetime]').forEach((el) => (el.textContent = fmt.rel(el.getAttribute('datetime')))); }, 60000);
     loadNews();

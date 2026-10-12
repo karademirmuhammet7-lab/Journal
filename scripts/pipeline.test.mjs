@@ -4,6 +4,7 @@ import { mkdtemp } from 'node:fs/promises';
 
 process.env.JOURNAL_CACHE_DIR = await mkdtemp('/tmp/journal-test-');
 delete process.env.ANTHROPIC_API_KEY;
+process.env.JOURNAL_KEY = 'test';
 
 const now = new Date();
 const ago = (h) => new Date(now - h * 3600e3).toUTCString();
@@ -37,7 +38,7 @@ globalThis.fetch = async (url, opts = {}) => {
     const out = q.split('\n').map((l) => known[l] || `[T]${l}`).join('\n');
     return Response.json([[[out, q]]]);
   }
-  if (/lalibre\.be\/greve/.test(url)) return new Response('<html><meta property="og:image" content="https://img/og.jpg"><article><p>' + 'Texte de l’article sur la grève. '.repeat(5) + '</p></article></html>');
+  if (/lalibre\.be\/greve/.test(url)) return new Response('<html><meta property="og:image" content="https://img/og.jpg"><article>' + Array.from({ length: 12 }, (_, i) => `<p>Paragraphe ${i} de l’article sur la grève des services publics en Belgique, avec ses conséquences.</p>`).join('') + '</article></html>');
   return new Response('not found', { status: 404 });
 };
 
@@ -60,6 +61,8 @@ test('pipeline complet sans clé API : regroupement, priorités, importance, tra
   assert.ok(data.articles.indexOf(foot) > data.articles.indexOf(budget), 'le sport passe après');
   const greve = data.articles.find((a) => /Grève/.test(a.title.fr));
   assert.equal(greve.image, 'https://img/og.jpg', 'image complétée depuis la page');
+  assert.equal(greve.full.source, 'La Libre', 'texte complet récupéré');
+  assert.equal(greve.full.blocks.length, 12);
   assert.equal(data.top[0], budget.id);
 });
 

@@ -17,26 +17,25 @@ Toutes les 10 minutes, une tâche GitHub Actions (`.github/workflows/edition.yml
 1. lit les flux RSS de RTBF, Le Soir, La Libre, L'Avenir, La DH, Sudinfo, 7sur7, VRT NWS, Le Monde, Le Figaro, franceinfo, France 24, Euronews, BBC, The Guardian, CNBC, MarketWatch… (liste dans `scripts/feeds.mjs`) ;
 2. traduit les titres étrangers puis regroupe les articles qui parlent du même sujet : plus un sujet est repris par des médias différents, plus il remonte ;
 3. note chaque sujet (fraîcheur, « unes » des rédactions, rubriques prioritaires — réglables dans `PRIORITY`) ;
-4. **la rédaction** : pour les 60 sujets les plus importants, Claude lit les articles des différents médias et rédige un article original en français (jusqu'à 15 nouveaux par passage, les autres sont gardés en cache) ;
+4. récupère le texte complet et une vraie photo des sujets les plus importants (textes chiffrés, voir plus bas) ;
 5. traduit titres, résumés et articles complets dans les 5 langues ;
 6. ajoute les marchés (BEL 20, CAC 40, Euro Stoxx 50, S&P 500, EUR/USD, Brent, or, bitcoin) ;
 7. publie l'application sur GitHub Pages. L'appli ouverte vérifie toutes les 4 minutes s'il y a du nouveau.
 
 GitHub peut décaler un passage planifié de quelques minutes quand ses serveurs sont chargés.
 
-### Activer la rédaction (articles complets)
+### Articles complets dans l'appli (gratuit, lecture personnelle)
 
-Sans clé, chaque article s'affiche en mode « revue de presse » : le résumé et ce qu'en disent les différents médias. Pour des articles complets rédigés :
+Pour les 80 sujets les plus importants, la tâche récupère le texte complet chez un média qui le publie en accès libre (RTBF, La Libre, franceinfo, BBC…), le traduit en français si besoin, puis le **chiffre** avec ton mot de passe. Le site reste public et gratuit, mais personne ne peut lire ces textes sans le mot de passe.
 
-1. crée une clé sur [console.anthropic.com](https://console.anthropic.com) ;
-2. GitHub → **Settings → Secrets and variables → Actions → New repository secret** : nom `ANTHROPIC_API_KEY`, valeur = la clé.
+1. GitHub → **Settings → Secrets and variables → Actions → New repository secret** : nom `JOURNAL_KEY`, valeur = un mot de passe de ton choix.
+2. Dans l'appli : **Réglages → Articles complets**, entre le même mot de passe (une seule fois, il reste sur le téléphone).
 
-Réglages facultatifs (onglet **Variables** au même endroit) : `JOURNAL_MODEL` (par défaut `claude-opus-5-5`), `JOURNAL_EFFORT` (`low` par défaut), `JOURNAL_WRITE_LIMIT` (articles rédigés par passage, 15 par défaut).
+Sans mot de passe, chaque article s'affiche en « revue de presse » : le résumé et ce qu'en disent les différents médias. Les articles des journaux payants (Le Soir, L'Echo…) restent en revue de presse : on ne contourne pas leurs abonnements.
 
-Les articles rédigés n'utilisent que les faits des sources, qui sont toujours citées en bas de l'article.
-Le dépôt contient une **édition de lancement** (`data/news.json`, générée par `scripts/seed.mjs`) qui sert tant que la première génération automatique n'a pas tourné.
+### Rédaction par Claude (facultatif, payant)
 
-Météo : [Open-Meteo](https://open-meteo.com). Nom de la ville : BigDataCloud. Change : Frankfurter. Bitcoin : CoinGecko. Aucune clé d'API n'est nécessaire.
+Si un secret `ANTHROPIC_API_KEY` est ajouté, Claude rédige en plus un article original par sujet. Ce n'est pas nécessaire pour utiliser l'appli.
 
 ## Mise en ligne (une seule fois)
 

@@ -29,6 +29,7 @@ window.I18N = (() => {
       remove: 'Retirer', install: "Installer l'application", installSub: "Sur iPhone : Partager → « Sur l'écran d'accueil ». Sur Android : menu ⋮ → « Installer ».",
       days: 'Prochains jours', positionDenied: 'Position refusée — météo de Bruxelles affichée.', loading: 'Chargement de l’édition…',
       sampleWx: "Aperçu : météo d'exemple. Dans l'application installée, c'est la météo réelle de ta position qui s'affiche.", newsroom: 'La rédaction', basedOn: "d'après {n} médias", basedOnOne: "d'après {s}", readTime: '{n} min de lecture', keyPoints: "L'essentiel", pressReview: "Ce qu'en disent les médias", sourcesTitle: 'Sources', alsoRead: 'À lire aussi', nextArticle: 'Article suivant', back: 'Retour', fresh: 'Nouvelles infos', importance: 'Importance {n}/5', major: 'Info majeure', photo: 'Photo : {s}', updatedAgo: 'mis à jour {t}',
+      fullTitle: 'Articles complets', fullHelp: "Entre le mot de passe enregistré sur GitHub (secret JOURNAL_KEY) pour lire les articles en entier dans l'appli. Il reste sur ce téléphone.", fullPlaceholder: 'Mot de passe', unlock: 'Déverrouiller', unlocked: 'Articles complets activés', wrongPass: 'Mot de passe incorrect', lockedNote: "L'article complet est disponible : entre ton mot de passe dans Réglages pour le lire ici.", loadingArticle: "Chargement de l'article…", textBy: 'Texte : {s}', fullUnavailable: "Le texte complet n'a pas pu être chargé. Voici ce qu'en disent les médias.", lock: 'Verrouiller', fullNotReady: "La première édition avec les articles complets n'est pas encore publiée.",
       refresh: 'Actualiser', editionOf: 'Édition du {d}',
     },
     en: {
@@ -51,6 +52,7 @@ window.I18N = (() => {
       remove: 'Remove', install: 'Install the app', installSub: 'On iPhone: Share → “Add to Home Screen”. On Android: menu ⋮ → “Install”.',
       days: 'Next days', positionDenied: 'Location denied — showing Brussels weather.', loading: 'Loading the edition…',
       sampleWx: 'Preview: sample weather. In the installed app, the real weather for your location is shown.', newsroom: 'Newsroom', basedOn: 'based on {n} outlets', basedOnOne: 'based on {s}', readTime: '{n} min read', keyPoints: 'Key points', pressReview: 'What the press says', sourcesTitle: 'Sources', alsoRead: 'Also read', nextArticle: 'Next story', back: 'Back', fresh: 'New stories', importance: 'Importance {n}/5', major: 'Major story', photo: 'Photo: {s}', updatedAgo: 'updated {t}',
+      fullTitle: 'Full articles', fullHelp: 'Enter the password saved on GitHub (JOURNAL_KEY secret) to read full articles in the app. It stays on this phone.', fullPlaceholder: 'Password', unlock: 'Unlock', unlocked: 'Full articles enabled', wrongPass: 'Wrong password', lockedNote: 'The full article is available: enter your password in Settings to read it here.', loadingArticle: 'Loading the article…', textBy: 'Text: {s}', fullUnavailable: 'The full text could not be loaded. Here is what the press says.', lock: 'Lock', fullNotReady: 'The first edition with full articles has not been published yet.',
       refresh: 'Refresh', editionOf: 'Edition of {d}',
     },
     nl: {
@@ -73,6 +75,7 @@ window.I18N = (() => {
       remove: 'Verwijderen', install: 'App installeren', installSub: 'Op iPhone: Deel → “Zet op beginscherm”. Op Android: menu ⋮ → “Installeren”.',
       days: 'Komende dagen', positionDenied: 'Locatie geweigerd — weer in Brussel getoond.', loading: 'Uitgave laden…',
       sampleWx: 'Voorbeeld: fictief weer. In de geïnstalleerde app zie je het echte weer op je locatie.', newsroom: 'De redactie', basedOn: 'op basis van {n} media', basedOnOne: 'op basis van {s}', readTime: '{n} min lezen', keyPoints: 'Het belangrijkste', pressReview: 'Wat de media schrijven', sourcesTitle: 'Bronnen', alsoRead: 'Lees ook', nextArticle: 'Volgend artikel', back: 'Terug', fresh: 'Nieuwe berichten', importance: 'Belang {n}/5', major: 'Groot nieuws', photo: 'Foto: {s}', updatedAgo: 'bijgewerkt {t}',
+      fullTitle: 'Volledige artikels', fullHelp: 'Voer het wachtwoord in dat op GitHub is opgeslagen (secret JOURNAL_KEY) om volledige artikels in de app te lezen. Het blijft op deze telefoon.', fullPlaceholder: 'Wachtwoord', unlock: 'Ontgrendelen', unlocked: 'Volledige artikels ingeschakeld', wrongPass: 'Onjuist wachtwoord', lockedNote: 'Het volledige artikel is beschikbaar: voer je wachtwoord in bij Instellingen om het hier te lezen.', loadingArticle: 'Artikel laden…', textBy: 'Tekst: {s}', fullUnavailable: 'De volledige tekst kon niet worden geladen. Dit schrijven de media.', lock: 'Vergrendelen', fullNotReady: 'De eerste uitgave met volledige artikels is nog niet gepubliceerd.',
       refresh: 'Vernieuwen', editionOf: 'Uitgave van {d}',
     },
     tr: {
@@ -95,6 +98,7 @@ window.I18N = (() => {
       remove: 'Kaldır', install: 'Uygulamayı yükle', installSub: 'iPhone: Paylaş → “Ana Ekrana Ekle”. Android: menü ⋮ → “Yükle”.',
       days: 'Önümüzdeki günler', positionDenied: 'Konum izni yok — Brüksel hava durumu gösteriliyor.', loading: 'Baskı yükleniyor…',
       sampleWx: 'Önizleme: örnek hava durumu. Yüklü uygulamada konumunuzun gerçek hava durumu gösterilir.', newsroom: 'Haber merkezi', basedOn: '{n} kaynağa göre', basedOnOne: '{s} kaynağına göre', readTime: '{n} dk okuma', keyPoints: 'Öne çıkanlar', pressReview: 'Basında ne yazıldı', sourcesTitle: 'Kaynaklar', alsoRead: 'Bunları da okuyun', nextArticle: 'Sonraki haber', back: 'Geri', fresh: 'Yeni haberler', importance: 'Önem {n}/5', major: 'Önemli haber', photo: 'Fotoğraf: {s}', updatedAgo: '{t} güncellendi',
+      fullTitle: 'Tam makaleler', fullHelp: 'Haberleri uygulamada tam okumak için GitHub’a kaydedilen şifreyi (JOURNAL_KEY) girin. Şifre bu telefonda kalır.', fullPlaceholder: 'Şifre', unlock: 'Kilidi aç', unlocked: 'Tam makaleler etkin', wrongPass: 'Şifre yanlış', lockedNote: 'Haberin tamamı mevcut: burada okumak için Ayarlar’dan şifrenizi girin.', loadingArticle: 'Haber yükleniyor…', textBy: 'Metin: {s}', fullUnavailable: 'Tam metin yüklenemedi. Basında yazılanlar:', lock: 'Kilitle', fullNotReady: 'Tam makaleli ilk baskı henüz yayımlanmadı.',
       refresh: 'Yenile', editionOf: '{d} baskısı',
     },
     ar: {
@@ -117,6 +121,7 @@ window.I18N = (() => {
       remove: 'إزالة', install: 'تثبيت التطبيق', installSub: 'على iPhone: مشاركة ← «إضافة إلى الشاشة الرئيسية». على Android: القائمة ⋮ ← «تثبيت».',
       days: 'الأيام القادمة', positionDenied: 'تم رفض الموقع — يُعرض طقس بروكسل.', loading: 'جارٍ تحميل العدد…',
       sampleWx: 'معاينة: طقس تجريبي. في التطبيق المثبّت يظهر الطقس الحقيقي لموقعك.', newsroom: 'هيئة التحرير', basedOn: 'استنادًا إلى {n} وسائل إعلام', basedOnOne: 'استنادًا إلى {s}', readTime: 'قراءة في {n} دقائق', keyPoints: 'أهم النقاط', pressReview: 'ماذا تقول الصحافة', sourcesTitle: 'المصادر', alsoRead: 'اقرأ أيضًا', nextArticle: 'المقال التالي', back: 'رجوع', fresh: 'أخبار جديدة', importance: 'الأهمية {n}/5', major: 'خبر رئيسي', photo: 'صورة: {s}', updatedAgo: 'حُدّث {t}',
+      fullTitle: 'المقالات الكاملة', fullHelp: 'أدخل كلمة المرور المحفوظة على GitHub (السر JOURNAL_KEY) لقراءة المقالات كاملة داخل التطبيق. تبقى على هذا الهاتف.', fullPlaceholder: 'كلمة المرور', unlock: 'فتح', unlocked: 'المقالات الكاملة مفعّلة', wrongPass: 'كلمة المرور غير صحيحة', lockedNote: 'المقال الكامل متاح: أدخل كلمة المرور في الإعدادات لقراءته هنا.', loadingArticle: 'جارٍ تحميل المقال…', textBy: 'النص: {s}', fullUnavailable: 'تعذّر تحميل النص الكامل. إليك ما تقوله الصحافة.', lock: 'قفل', fullNotReady: 'لم يُنشر بعد أول عدد يتضمن المقالات الكاملة.',
       refresh: 'تحديث', editionOf: 'عدد {d}',
     },
   };
