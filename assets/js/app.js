@@ -84,12 +84,12 @@
     html.dataset.theme = state.theme;
     html.style.setProperty('--scale', state.scale);
     const dark = state.theme === 'dark' || (state.theme === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
-    $('meta[name="theme-color"]')?.setAttribute('content', dark ? '#0f1012' : '#f6f4ef');
+    $('meta[name="theme-color"]')?.setAttribute('content', dark ? '#0f1012' : '#f7f5f2');
     $$('.tabbar [data-tab]').forEach((b) => {
       $('.tab-label', b).textContent = t(b.dataset.tab);
       b.setAttribute('aria-current', b.dataset.tab === state.tab ? 'page' : 'false');
     });
-    $('#lang-btn').textContent = state.lang.toUpperCase();
+    const lb = $('#lang-btn'); if (lb) lb.textContent = state.lang.toUpperCase();
   }
 
   // ———————————————————————————————————————— toasts & feuilles
@@ -140,6 +140,10 @@
     const cov = coverage && a.coverage > 1 ? `<span class="cov">${icon('layers')}${t('coverage', { n: a.coverage })}</span>` : '';
     return `<div class="meta"><span class="src">${esc(byline(a))}</span><span class="sep">·</span><time datetime="${esc(a.publishedAt)}">${esc(fmt.rel(a.publishedAt))}</time>${cov}</div>`;
   }
+  const saveBtn = (a) => {
+    const on = state.saved.some((x) => x.id === a.id);
+    return `<span role="button" tabindex="0" class="save-btn" data-action="save" data-id="${esc(a.id)}" aria-pressed="${on}" aria-label="${esc(t('save'))}">${icon(on ? 'bookmarkFill' : 'bookmark')}</span>`;
+  };
   const kicker = (a, withDots = false) => `<span class="kicker k-${esc(a.cat)}">${esc(catName(a.cat))}</span>${withDots ? dots(a) : ''}`;
   // les articles s'ouvrent dans l'application (lecteur intégré)
   const link = (a, cls, inner) => `<a class="${cls}" href="#lire-${esc(a.id)}" data-read="${esc(a.id)}">${inner}</a>`;
@@ -195,10 +199,11 @@
   function renderWeather() {
     const w = state.weather;
     const loc = state.loc || BRUSSELS;
-    $('#place').innerHTML = `${icon(loc.fallback ? 'pin' : 'locate')}<span>${esc(loc.name || '—')}</span>`;
+    $('#place').textContent = loc.name || '—';
     const box = $('#weather');
     if (!w) {
-      box.innerHTML = `<div class="wx-empty">${esc(t('locating'))}</div>`;
+      $('#wx-mini').innerHTML = `<span class="wx-loading">${esc(t('locating'))}</span>`;
+      box.innerHTML = '';
       return;
     }
     const c = w.current;
@@ -238,12 +243,12 @@
         <span class="dmax">${Math.round(mx)}°</span></li>`;
     });
 
+    // la ligne compacte : icône, température, ciel
+    $('#wx-mini').innerHTML = `${icon(info.icon)}<strong class="wx-t">${Math.round(c.temperature_2m)}°</strong>
+      <span class="wx-l">${esc(wxLabel(info.key))}</span><span class="wx-hl">↑${Math.round(d.temperature_2m_max[0])}° ↓${Math.round(d.temperature_2m_min[0])}°</span>`;
     box.innerHTML = `
       <div class="wx-now">
-        <div class="wx-icon">${icon(info.icon)}</div>
-        <div class="wx-temp">${Math.round(c.temperature_2m)}<sup>°</sup></div>
         <div class="wx-desc">
-          <strong>${esc(wxLabel(info.key))}</strong>
           <span>${esc(t('feels'))} ${Math.round(c.apparent_temperature)}° · ↑${Math.round(d.temperature_2m_max[0])}° ↓${Math.round(d.temperature_2m_min[0])}°</span>
         </div>
       </div>
@@ -354,7 +359,8 @@
       html += `<header class="section-head"><h2>${esc(t('home'))}</h2><span>${esc(t('updated', { t: fmt.time(gen) }))}</span></header>`;
       if (lead) {
         html += link(lead, 'lead', `${media(lead, 'media media-lead')}
-          <div class="lead-body">${kicker(lead, true)}<h3>${esc(titleOf(lead))}</h3><p>${esc(summaryOf(lead))}</p>${meta(lead, { coverage: true })}</div>`);
+          <div class="lead-body">${kicker(lead, true)}<h3>${esc(titleOf(lead))}</h3><p>${esc(summaryOf(lead))}</p>
+          <div class="card-foot">${meta(lead, { coverage: true })}${saveBtn(lead)}</div></div>`);
       }
       if (essentials.length) {
         html += `<h2 class="sub-head">${esc(t('essentials'))}</h2><ol class="essentials">${essentials
@@ -380,7 +386,7 @@
       html += `<section class="cat-block">
         <header class="cat-head k-${cat}"><h2>${icon(cat)}${esc(catName(cat))}</h2>
           <button class="see-all" data-action="see-all" data-cat="${cat}">${esc(t('flux'))}${icon('arrowRight', 'class="arrow-flip"')}</button></header>
-        ${first ? link(first, 'card', `${media(first)}${kicker(first, true)}<h3>${esc(titleOf(first))}</h3><p>${esc(summaryOf(first))}</p>${meta(first, { coverage: true })}`) : `<p class="muted">${esc(t('catEmpty'))}</p>`}
+        ${first ? link(first, 'card', `${media(first)}<div class="card-body">${kicker(first, true)}<h3>${esc(titleOf(first))}</h3><p>${esc(summaryOf(first))}</p><div class="card-foot">${meta(first, { coverage: true })}${saveBtn(first)}</div></div>`) : `<p class="muted">${esc(t('catEmpty'))}</p>`}
         <div class="cat-rows">${others.map((a) => link(a, 'row row-compact', `<div class="row-body">${dots(a)}<h4>${esc(titleOf(a))}</h4>${meta(a)}</div>${media(a, 'thumb')}`)).join('')}</div>
       </section>`;
     }
@@ -689,6 +695,35 @@
     if (origin === 'flux') return fluxList().map((x) => x.id);
     if (origin === 'saved') return state.saved.map((x) => x.id);
     return editorialOrder(visible()).map((x) => x.id);
+  }
+
+  // ———————————————————————————————————————— menu et recherche
+  function renderMenu() {
+    $('#menu-title').textContent = t('tagline');
+    const cats = CAT_ORDER.filter((c) => !state.hidden.includes(c));
+    $('#menu-list').innerHTML = `
+      <p class="menu-label">${esc(t('categories'))}</p>
+      <button class="menu-item" data-action="menu-cat" data-cat="all">${esc(t('home'))}</button>
+      ${cats.map((c) => `<button class="menu-item" data-action="menu-cat" data-cat="${c}">${esc(catName(c))}</button>`).join('')}
+      <p class="menu-label">K-NEWS</p>
+      <button class="menu-item" data-action="menu-tab" data-tab="flux">${icon('flux')}${esc(t('flux'))}</button>
+      <button class="menu-item" data-action="menu-tab" data-tab="saved">${icon('bookmark')}${esc(t('saved'))}</button>
+      <button class="menu-item" data-action="open-lang">${icon('globe')}${esc(t('language'))} · ${state.lang.toUpperCase()}</button>
+      <button class="menu-item" data-action="menu-tab" data-tab="settings">${icon('settings')}${esc(t('settings'))}</button>`;
+  }
+
+  const norm = (x) => (x || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  function renderSearch(q) {
+    $('#search-input').placeholder = t('searchPh');
+    const box = $('#search-results');
+    const words = norm(q).split(/\s+/).filter((w) => w.length > 1);
+    if (!words.length) { box.innerHTML = ''; return; }
+    const found = editorialOrder(state.news?.articles || [])
+      .filter((a) => { const hay = norm(`${titleOf(a)} ${summaryOf(a)} ${a.source} ${catName(a.cat)}`); return words.every((w) => hay.includes(w)); })
+      .slice(0, 30);
+    box.innerHTML = found.length
+      ? found.map((a) => link(a, 'row row-compact', `${media(a, 'thumb')}<div class="row-body">${kicker(a)}<h4>${esc(titleOf(a))}</h4>${meta(a)}</div>`)).join('')
+      : `<p class="muted">${esc(t('noResults'))}</p>`;
   }
 
   // ———————————————————————————————————————— favoris
@@ -1074,8 +1109,10 @@
 
   document.addEventListener('click', async (e) => {
     const readEl = e.target.closest('[data-read]');
-    if (readEl) {
+    const inner = e.target.closest('[data-action]');
+    if (readEl && !(inner && readEl.contains(inner))) {
       e.preventDefault();
+      if (readEl.closest('#search-sheet')) closeSheet('search-sheet');
       const origin = readEl.closest('#reader') ? null : state.tab;
       openReader(readEl.dataset.read, origin ? listFor(origin) : null);
       return;
@@ -1099,7 +1136,7 @@
     const { action } = el.dataset;
     switch (action) {
       case 'set-lang': setLang(el.dataset.lang || el.dataset.value); break;
-      case 'open-lang': renderLangSheet(); openSheet('lang-sheet'); break;
+      case 'open-lang': if (!$('#menu-sheet').hidden) closeSheet('menu-sheet'); renderLangSheet(); openSheet('lang-sheet'); break;
       case 'close-sheet': closeSheet(el.dataset.sheet); break;
       case 'close-reader': closeReader(); break;
       case 'lock': fullKey.ok = false; fullKey.key = null; fullKey.pass = ''; store.set('key', ''); renderSettings(); break;
@@ -1126,6 +1163,23 @@
         sc.scrollBy({ top: (action === 'flux-next' ? 1 : -1) * sc.clientHeight, behavior: 'smooth' });
         break;
       }
+      case 'toggle-wx': {
+        const open = !$('#cover').classList.contains('wx-open');
+        $('#cover').classList.toggle('wx-open', open);
+        el.setAttribute('aria-expanded', open);
+        store.set('wxOpen', open);
+        break;
+      }
+      case 'open-menu': renderMenu(); openSheet('menu-sheet'); break;
+      case 'open-search': openSheet('search-sheet'); setTimeout(() => $('#search-input').focus(), 60); renderSearch(''); break;
+      case 'menu-cat':
+        closeSheet('menu-sheet');
+        if (state.tab !== 'home') setTab('home');
+        state.homeCat = el.dataset.cat;
+        renderHome();
+        $('#view-home').scrollTo({ top: Math.max(0, ($('#chips-anchor')?.offsetTop || 0) - 60), behavior: 'smooth' });
+        break;
+      case 'menu-tab': closeSheet('menu-sheet'); setTab(el.dataset.tab); break;
       case 'toggle-live': state.liveOpen = !state.liveOpen; renderHome(); break;
       case 'flux-top': $('#flux-scroller').scrollTo({ top: 0, behavior: 'smooth' }); break;
       case 'refresh': state.news = null; renderHome(); await loadNews(); updateWeather(); break;
@@ -1177,6 +1231,7 @@
   });
 
   document.addEventListener('input', (e) => {
+    if (e.target.id === 'search-input') { renderSearch(e.target.value); return; }
     if (e.target.id === 'city-search') {
       clearTimeout(searchTimer);
       searchTimer = setTimeout(() => searchCity(e.target.value), 300);
@@ -1185,7 +1240,8 @@
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      if (!$('#lang-sheet').hidden) closeSheet('lang-sheet');
+      const open = ['lang-sheet', 'search-sheet', 'menu-sheet'].find((id) => !$('#' + id).hidden);
+      if (open) closeSheet(open);
       else closeReader();
       return;
     }
@@ -1196,7 +1252,9 @@
     if (e.key === 'Enter') { const id = currentReelId(); if (id) openReader(id, listFor('flux')); }
   });
 
-  $('#lang-sheet').addEventListener('click', (e) => { if (e.target.id === 'lang-sheet') closeSheet('lang-sheet'); });
+  for (const id of ['lang-sheet', 'menu-sheet', 'search-sheet']) {
+    $('#' + id).addEventListener('click', (e) => { if (e.target.id === id) closeSheet(id); });
+  }
 
   // L'indicateur "faites défiler" disparaît dès qu'on descend
   $('#view-home').addEventListener('scroll', (e) => {
@@ -1221,6 +1279,7 @@
 
   // ———————————————————————————————————————— démarrage
   function start() {
+    if (store.get('wxOpen', false)) $('#cover').classList.add('wx-open');
     const initial = location.hash.slice(1);
     const last = store.get('view', null);
     const recent = last && Date.now() - last.at < 30 * 60 * 1000;

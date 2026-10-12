@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>K-NEWS</title>
   <meta name="description" content="L'actualité belge et internationale, la météo et les marchés — sur une seule page.">
-  <meta name="theme-color" content="#f6f4ef">
+  <meta name="theme-color" content="#f7f5f2">
   <meta name="color-scheme" content="light dark">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
@@ -16,7 +16,7 @@
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..600&family=Noto+Naskh+Arabic:wght@400..700&family=Noto+Sans+Arabic:wght@300..700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&family=Playfair+Display:wght@500..800&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..600&family=Noto+Naskh+Arabic:wght@400..700&family=Noto+Sans+Arabic:wght@300..700&display=swap">
   <link rel="stylesheet" href="assets/css/app.css">
 </head>
 <body data-view="home">
@@ -24,23 +24,23 @@
 
   <!-- ——— À la une ——— -->
   <main id="view-home" class="view">
-    <section id="cover" class="cover" data-sky="cloud">
-      <div class="cover-inner">
-        <div class="masthead">
-          <div class="brand"><svg class="logo" viewBox="0 0 512 512" aria-hidden="true"><defs><pattern id="ku" width="15" height="15" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="15" height="6.5" fill="#fff"/></pattern><pattern id="kd" width="15" height="15" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="15" height="6.5" fill="#fff"/></pattern></defs><rect width="512" height="512" rx="112" fill="#0b0b0c"/><rect x="146" y="116" width="66" height="280" fill="#fff"/><polygon points="212,212 308,116 400,116 212,306" fill="url(#ku)"/><polygon points="262,255 400,396 318,396 224,294" fill="url(#kd)"/></svg><span>K-NEWS</span></div>
-          <button id="lang-btn" class="lang-pill" data-action="open-lang" aria-label="Langue">FR</button>
-        </div>
-        <div class="dateline"><span id="today" class="today"></span><span id="greeting" class="greeting"></span></div>
-        <div class="clock-row">
-          <div class="clock" aria-live="off"><span id="clock-hm">--:--</span><span id="clock-s" class="clock-s">--</span></div>
-          <p id="place" class="place"></p>
-        </div>
-        <div id="weather" class="weather"></div>
-        <section id="markets" class="markets" hidden>
-          <h2 id="markets-title" class="mini-title"></h2>
-          <ul id="markets-list"></ul>
-        </section>
-      </div>
+    <header class="appbar">
+      <button class="icon-btn" data-action="open-menu" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <div class="wordmark" aria-label="K-NEWS"><span class="kmark" data-k="K">K</span>-NEWS</div>
+      <button class="icon-btn" data-action="open-search" aria-label="Rechercher"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></button>
+    </header>
+    <section id="cover" class="wxbar" data-sky="cloud">
+      <button class="wx-summary" data-action="toggle-wx" aria-expanded="false">
+        <span id="wx-mini" class="wx-mini"></span>
+        <span class="wx-right"><span class="wx-clock"><span id="clock-hm">--:--</span><span id="clock-s" class="clock-s">--</span></span>
+          <svg class="wx-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+      </button>
+      <div class="wx-line"><span id="today" class="today"></span><span class="dot">·</span><span id="place" class="place"></span><span id="greeting" class="greeting"></span></div>
+      <div id="weather" class="weather"></div>
+      <section id="markets" class="markets" hidden>
+        <h2 id="markets-title" class="mini-title"></h2>
+        <ul id="markets-list"></ul>
+      </section>
     </section>
     <div id="news" class="news"></div>
   </main>
@@ -90,6 +90,20 @@
   </section>
 
   <button id="fresh" class="fresh" data-action="apply-fresh" hidden></button>
+
+  <div id="menu-sheet" class="sheet sheet-side" hidden>
+    <div class="sheet-panel" role="dialog" aria-modal="true" aria-labelledby="menu-title">
+      <div class="menu-brand"><div class="wordmark"><span class="kmark" data-k="K">K</span>-NEWS</div><p class="tagline" id="menu-title">Comprendre le monde</p></div>
+      <div id="menu-list"></div>
+    </div>
+  </div>
+
+  <div id="search-sheet" class="sheet sheet-top" hidden>
+    <div class="sheet-panel" role="dialog" aria-modal="true" aria-label="Recherche">
+      <div class="search search-big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><input id="search-input" type="search" autocomplete="off" enterkeyhint="search"><button class="icon-btn" data-action="close-sheet" data-sheet="search-sheet" aria-label="Fermer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
 
   <div id="lang-sheet" class="sheet" hidden>
     <div class="sheet-panel" role="dialog" aria-modal="true" aria-labelledby="lang-title">

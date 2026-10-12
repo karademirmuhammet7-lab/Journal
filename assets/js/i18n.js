@@ -32,6 +32,7 @@ window.I18N = (() => {
       fullTitle: 'Articles complets', fullHelp: "Entre le mot de passe enregistré sur GitHub (secret JOURNAL_KEY) pour lire les articles en entier dans l'appli. Il reste sur ce téléphone.", fullPlaceholder: 'Mot de passe', unlock: 'Déverrouiller', unlocked: 'Articles complets activés', wrongPass: 'Mot de passe incorrect', lockedNote: "L'article complet est disponible : entre ton mot de passe dans Réglages pour le lire ici.", loadingArticle: "Chargement de l'article…", textBy: 'Texte : {s}', fullUnavailable: "Le texte complet n'a pas pu être chargé. Voici ce qu'en disent les médias.", lock: 'Verrouiller', fullNotReady: "La première édition avec les articles complets n'est pas encore publiée.",
       passSaved: "Mot de passe enregistré. Les articles complets s'afficheront dès la prochaine mise à jour (10 min), si le même mot de passe est enregistré sur GitHub (JOURNAL_KEY).",
       briefTitle: 'Le brief du matin', briefSub: 'Les infos les plus importantes entre 0 h et 9 h', briefRecentTitle: 'Le brief', briefRecentSub: 'Les infos les plus importantes des dernières heures', moreNews: 'Les autres infos', showMore: 'Voir plus', showLess: 'Voir moins', catEmpty: 'Rien de neuf dans cette rubrique pour le moment.',
+      tagline: 'Comprendre le monde', searchPh: 'Rechercher un sujet, une ville, un média…', noResults: 'Aucun article trouvé.',
       refresh: 'Actualiser', editionOf: 'Édition du {d}',
     },
     en: {
@@ -57,6 +58,7 @@ window.I18N = (() => {
       fullTitle: 'Full articles', fullHelp: 'Enter the password saved on GitHub (JOURNAL_KEY secret) to read full articles in the app. It stays on this phone.', fullPlaceholder: 'Password', unlock: 'Unlock', unlocked: 'Full articles enabled', wrongPass: 'Wrong password', lockedNote: 'The full article is available: enter your password in Settings to read it here.', loadingArticle: 'Loading the article…', textBy: 'Text: {s}', fullUnavailable: 'The full text could not be loaded. Here is what the press says.', lock: 'Lock', fullNotReady: 'The first edition with full articles has not been published yet.',
       passSaved: 'Password saved. Full articles will appear with the next update (10 min), if the same password is saved on GitHub (JOURNAL_KEY).',
       briefTitle: 'Morning brief', briefSub: 'The most important news between midnight and 9 am', briefRecentTitle: 'The brief', briefRecentSub: 'The most important news of the last hours', moreNews: 'More news', showMore: 'Show more', showLess: 'Show less', catEmpty: 'Nothing new in this section for now.',
+      tagline: 'Understand the world', searchPh: 'Search a topic, a city, an outlet…', noResults: 'No article found.',
       refresh: 'Refresh', editionOf: 'Edition of {d}',
     },
     nl: {
@@ -82,6 +84,7 @@ window.I18N = (() => {
       fullTitle: 'Volledige artikels', fullHelp: 'Voer het wachtwoord in dat op GitHub is opgeslagen (secret JOURNAL_KEY) om volledige artikels in de app te lezen. Het blijft op deze telefoon.', fullPlaceholder: 'Wachtwoord', unlock: 'Ontgrendelen', unlocked: 'Volledige artikels ingeschakeld', wrongPass: 'Onjuist wachtwoord', lockedNote: 'Het volledige artikel is beschikbaar: voer je wachtwoord in bij Instellingen om het hier te lezen.', loadingArticle: 'Artikel laden…', textBy: 'Tekst: {s}', fullUnavailable: 'De volledige tekst kon niet worden geladen. Dit schrijven de media.', lock: 'Vergrendelen', fullNotReady: 'De eerste uitgave met volledige artikels is nog niet gepubliceerd.',
       passSaved: 'Wachtwoord opgeslagen. Volledige artikels verschijnen bij de volgende update (10 min), als hetzelfde wachtwoord op GitHub staat (JOURNAL_KEY).',
       briefTitle: 'De ochtendbrief', briefSub: 'Het belangrijkste nieuws tussen 0 en 9 uur', briefRecentTitle: 'De brief', briefRecentSub: 'Het belangrijkste nieuws van de laatste uren', moreNews: 'Ander nieuws', showMore: 'Meer tonen', showLess: 'Minder tonen', catEmpty: 'Momenteel niets nieuws in deze rubriek.',
+      tagline: 'De wereld begrijpen', searchPh: 'Zoek een onderwerp, stad of medium…', noResults: 'Geen artikel gevonden.',
       refresh: 'Vernieuwen', editionOf: 'Uitgave van {d}',
     },
     tr: {
@@ -107,6 +110,7 @@ window.I18N = (() => {
       fullTitle: 'Tam makaleler', fullHelp: 'Haberleri uygulamada tam okumak için GitHub’a kaydedilen şifreyi (JOURNAL_KEY) girin. Şifre bu telefonda kalır.', fullPlaceholder: 'Şifre', unlock: 'Kilidi aç', unlocked: 'Tam makaleler etkin', wrongPass: 'Şifre yanlış', lockedNote: 'Haberin tamamı mevcut: burada okumak için Ayarlar’dan şifrenizi girin.', loadingArticle: 'Haber yükleniyor…', textBy: 'Metin: {s}', fullUnavailable: 'Tam metin yüklenemedi. Basında yazılanlar:', lock: 'Kilitle', fullNotReady: 'Tam makaleli ilk baskı henüz yayımlanmadı.',
       passSaved: 'Şifre kaydedildi. Aynı şifre GitHub’a (JOURNAL_KEY) kaydedildiyse tam makaleler bir sonraki güncellemede (10 dk) görünecek.',
       briefTitle: 'Sabah bülteni', briefSub: 'Gece 00.00 ile 09.00 arasındaki en önemli haberler', briefRecentTitle: 'Bülten', briefRecentSub: 'Son saatlerin en önemli haberleri', moreNews: 'Diğer haberler', showMore: 'Daha fazla', showLess: 'Daha az', catEmpty: 'Bu bölümde şimdilik yeni bir şey yok.',
+      tagline: 'Dünyayı anlamak', searchPh: 'Konu, şehir veya kaynak ara…', noResults: 'Haber bulunamadı.',
       refresh: 'Yenile', editionOf: '{d} baskısı',
     },
     ar: {
@@ -132,6 +136,7 @@ window.I18N = (() => {
       fullTitle: 'المقالات الكاملة', fullHelp: 'أدخل كلمة المرور المحفوظة على GitHub (السر JOURNAL_KEY) لقراءة المقالات كاملة داخل التطبيق. تبقى على هذا الهاتف.', fullPlaceholder: 'كلمة المرور', unlock: 'فتح', unlocked: 'المقالات الكاملة مفعّلة', wrongPass: 'كلمة المرور غير صحيحة', lockedNote: 'المقال الكامل متاح: أدخل كلمة المرور في الإعدادات لقراءته هنا.', loadingArticle: 'جارٍ تحميل المقال…', textBy: 'النص: {s}', fullUnavailable: 'تعذّر تحميل النص الكامل. إليك ما تقوله الصحافة.', lock: 'قفل', fullNotReady: 'لم يُنشر بعد أول عدد يتضمن المقالات الكاملة.',
       passSaved: 'تم حفظ كلمة المرور. ستظهر المقالات الكاملة مع التحديث القادم (10 دقائق) إذا حُفظت كلمة المرور نفسها على GitHub (JOURNAL_KEY).',
       briefTitle: 'موجز الصباح', briefSub: 'أهم الأخبار بين منتصف الليل والتاسعة صباحًا', briefRecentTitle: 'الموجز', briefRecentSub: 'أهم أخبار الساعات الأخيرة', moreNews: 'أخبار أخرى', showMore: 'عرض المزيد', showLess: 'عرض أقل', catEmpty: 'لا جديد في هذا القسم حاليًا.',
+      tagline: 'لفهم العالم', searchPh: 'ابحث عن موضوع أو مدينة أو وسيلة إعلام…', noResults: 'لم يتم العثور على أي مقال.',
       refresh: 'تحديث', editionOf: 'عدد {d}',
     },
   };
