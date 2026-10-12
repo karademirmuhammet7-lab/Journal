@@ -1,5 +1,5 @@
 // Service worker : l'application s'ouvre même hors connexion avec la dernière édition.
-const VERSION = 'journal-v1';
+const VERSION = 'journal-v2';
 const SHELL = [
   './',
   'index.html',
