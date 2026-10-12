@@ -13,6 +13,7 @@ import { XMLParser } from 'fast-xml-parser';
 import { FEEDS, MARKETS, CATEGORY_HINTS, STRONG_HINTS, PRIORITY, LOCAL } from './feeds.mjs';
 import { planWriting, writeArticles, writingEnabled } from './writer.mjs';
 import { fetchFullTexts, publishFullTexts, ogImage } from './fulltext.mjs';
+import { summarize } from './summarize.mjs';
 
 const OUT = new URL('../data/news.json', import.meta.url);
 const CACHE_DIR = process.env.JOURNAL_CACHE_DIR ? new URL(`file://${process.env.JOURNAL_CACHE_DIR}/`) : new URL('../.cache/', import.meta.url);
@@ -376,6 +377,12 @@ async function translateArticles(articles) {
       x.fr = true;
     });
   }
+  // résumé en 3 à 5 phrases, à partir de ce qu'écrivent les médias
+  for (const a of articles) {
+    if (a.body?.fr || a.brief?.fr) continue;
+    const lines = summarize([a.summary.fr, ...(a.sources || []).map((x) => x.summary)].filter(Boolean));
+    if (lines.length >= 2) a.brief = { fr: lines };
+  }
   // 2. du français vers les autres langues (titre, résumé et article complet)
   for (const tl of LANGS.filter((l) => l !== 'fr')) {
     const subset = articles.filter((a) => !a.title[tl]);
@@ -386,6 +393,17 @@ async function translateArticles(articles) {
         if (res[2 * k]) a.title[tl] = res[2 * k];
         if (res[2 * k + 1]) a.summary[tl] = res[2 * k + 1];
       });
+    }
+    const briefs = articles.filter((a) => a.brief?.fr && !a.brief[tl]);
+    if (briefs.length) {
+      const flat = briefs.flatMap((a) => a.brief.fr);
+      const res = await translateAll(flat, 'fr', tl);
+      let k = 0;
+      for (const a of briefs) {
+        const part = res.slice(k, k + a.brief.fr.length);
+        k += a.brief.fr.length;
+        if (part.every(Boolean)) a.brief[tl] = part;
+      }
     }
     const bodies = articles.filter((a) => a.body?.fr && !a.body[tl]);
     if (bodies.length) {

@@ -4,6 +4,7 @@
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { webcrypto as crypto } from 'node:crypto';
+import { summarize } from './summarize.mjs';
 
 const CACHE_DIR = process.env.JOURNAL_CACHE_DIR ? new URL(`file://${process.env.JOURNAL_CACHE_DIR}/`) : new URL('../.cache/', import.meta.url);
 const CACHE = new URL('texts.json', CACHE_DIR);
@@ -204,7 +205,8 @@ export async function publishFullTexts(articles, outDir, passphrase) {
   for (const a of articles) {
     if (!a.full) continue;
     const { source, url, blocks, translatedFrom } = a.full;
-    await writeFile(new URL(`${a.id}.json`, outDir), JSON.stringify(await encrypt(key, { source, url, blocks, translatedFrom })));
+    const summary = summarize(blocks.filter((b) => b.p).map((b) => b.p));
+    await writeFile(new URL(`${a.id}.json`, outDir), JSON.stringify(await encrypt(key, { source, url, blocks, summary, translatedFrom })));
     const words = blocks.reduce((n, b) => n + (b.p || b.h).split(/\s+/).length, 0);
     a.full = { source, minutes: Math.max(1, Math.round(words / 220)) };
   }

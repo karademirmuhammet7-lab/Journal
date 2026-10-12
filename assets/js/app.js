@@ -6,7 +6,7 @@
 
   // ordre des rubriques : les priorités (Belgique, économie, marchés, monde) d'abord
   // ordre des rubriques : chez nous (Châtelet, Charleroi), puis les priorités
-  const CAT_ORDER = ['chatelet', 'charleroi', 'belgique', 'economie', 'finance', 'monde', 'sante', 'faits-divers', 'tech', 'sport', 'culture'];
+  const CAT_ORDER = ['economie', 'finance', 'monde', 'belgique', 'chatelet', 'charleroi', 'sante', 'faits-divers', 'tech', 'sport', 'culture'];
   const PRIORITY_CATS = ['chatelet', 'charleroi', 'belgique', 'economie', 'finance', 'monde'];
   const BRUSSELS = { lat: 50.8503, lon: 4.3517, name: 'Bruxelles', fallback: true };
   const NEWS_URL = 'data/news.json';
@@ -36,6 +36,8 @@
     newsLoadedAt: 0,
     tab: 'home',
     fluxFilter: 'all',
+    homeCat: 'all',
+    liveOpen: false,
     fluxBuiltFor: '',
     readerId: null,
     readerList: [],
@@ -282,71 +284,104 @@
   }
 
   // ———————————————————————————————————————— page d'accueil : les infos
+  // le brief : les sujets les plus importants publiés entre 0 h et 9 h
+  function briefItems(ordered) {
+    const now = new Date();
+    const start = new Date(now); start.setHours(0, 0, 0, 0);
+    const end = new Date(start); end.setHours(9);
+    let items = ordered.filter((a) => { const d = new Date(a.publishedAt); return d >= start && d < end; });
+    let morning = true;
+    if (items.length < 3) {
+      // trop tôt ou nuit calme : les dernières heures
+      morning = false;
+      items = ordered.filter((a) => Date.now() - new Date(a.publishedAt) < 12 * 3600e3);
+    }
+    return { morning, items: items.slice(0, 5) };
+  }
+  const firstSentence = (text) => {
+    const m = (text || '').match(/^.{40,180}?[.!?](\s|$)/);
+    return m ? m[0].trim() : (text || '').length > 160 ? text.slice(0, 157).replace(/\s+\S*$/, '') + '…' : text || '';
+  };
+
+  function renderHomeChips() {
+    const cats = CAT_ORDER.filter((c) => !state.hidden.includes(c) && visible().some((a) => a.cat === c));
+    return `<nav class="home-chips" aria-label="${esc(t('categories'))}">${['all', ...cats]
+      .map((c) => `<button class="hchip${state.homeCat === c ? ' active' : ''}${c !== 'all' ? ' k-' + c : ''}" data-action="home-cat" data-cat="${c}">${esc(c === 'all' ? t('all') : catName(c))}</button>`)
+      .join('')}</nav>`;
+  }
+
+  const timeOf = (a) => esc(isToday(a.publishedAt) ? fmt.time(new Date(a.publishedAt)) : fmt.dayMonth(new Date(a.publishedAt)));
+  function timelineHTML(list, n) {
+    const latest = [...list].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+    const shown = latest.slice(0, state.liveOpen ? 30 : n);
+    return `<section class="timeline"><h2 class="sub-head">${esc(t('live'))}</h2><ul>
+      ${shown.map((a) => `<li>${link(a, 'tl-item', `<time>${timeOf(a)}</time>
+        <div><span class="kicker k-${esc(a.cat)}">${esc(catName(a.cat))}</span><h4>${esc(titleOf(a))}</h4></div>`)}</li>`).join('')}
+    </ul>${latest.length > n ? `<button class="more-btn" data-action="toggle-live">${esc(t(state.liveOpen ? 'showLess' : 'showMore'))}${icon(state.liveOpen ? 'chevronUp' : 'chevronDown')}</button>` : ''}</section>`;
+  }
+
   function renderHome() {
     const box = $('#news');
     if (!state.news) { box.innerHTML = `<div class="loading">${esc(t('loading'))}</div>`; return; }
     const list = visible();
     const ordered = editorialOrder(list);
-    const used = new Set();
-    const take = (a) => (used.add(a.id), a);
-
-    // la manchette : le sujet le plus important qui a une photo, parmi les trois premiers
-    const lead = take(ordered.slice(0, 3).find((a) => a.image) || ordered[0]);
-    const essentials = ordered.filter((a) => !used.has(a.id)).slice(0, 6).map(take);
-
+    if (state.homeCat !== 'all' && !ordered.some((a) => a.cat === state.homeCat)) state.homeCat = 'all';
     const gen = new Date(state.news.generatedAt);
-    let html = `
-      <header class="section-head" id="news-top">
-        <h2>${esc(t('home'))}</h2>
-        <span>${esc(t('updated', { t: fmt.time(gen) }))}</span>
-      </header>`;
+    let html = '';
 
-    if (lead) {
-      html += link(lead, 'lead', `
-        ${media(lead, 'media media-lead')}
-        <div class="lead-body">
-          ${kicker(lead, true)}
-          <h3>${esc(titleOf(lead))}</h3>
-          <p>${esc(summaryOf(lead))}</p>
-          ${meta(lead, { coverage: true })}
-        </div>`);
+    // 1. le brief
+    const brief = briefItems(ordered);
+    if (brief.items.length) {
+      html += `<section class="brief" id="news-top">
+        <header><h2>${esc(t(brief.morning ? 'briefTitle' : 'briefRecentTitle'))}</h2><p>${esc(t(brief.morning ? 'briefSub' : 'briefRecentSub'))}</p></header>
+        <ol>${brief.items.map((a) => `<li>${link(a, 'brief-item', `<span class="kicker k-${esc(a.cat)}">${esc(catName(a.cat))}</span>
+          <strong>${esc(titleOf(a))}</strong><span class="brief-line">${esc(firstSentence(summaryOf(a)))}</span>`)}</li>`).join('')}</ol>
+      </section>`;
     }
 
-    if (essentials.length) {
-      html += `<h2 class="sub-head">${esc(t('essentials'))}</h2><ol class="essentials">`;
-      html += essentials
-        .map((a, i) => `<li>${link(a, 'row', `
-          <span class="num">${i + 2}</span>
-          <div class="row-body">${kicker(a, true)}<h4>${esc(titleOf(a))}</h4>${meta(a)}</div>
-          ${media(a, 'thumb')}`)}</li>`)
-        .join('');
-      html += '</ol>';
-    }
+    // 2. les rubriques, en onglets
+    html += `<div id="chips-anchor"></div>${renderHomeChips()}`;
 
-    for (const cat of CAT_ORDER) {
-      if (state.hidden.includes(cat)) continue;
-      const items = ordered.filter((a) => a.cat === cat && !used.has(a.id)).slice(0, PRIORITY_CATS.includes(cat) ? 6 : 3);
-      if (!items.length) continue;
-      items.forEach(take);
-      // la carte principale de la rubrique prend une photo si l'un des sujets en a une
+    if (state.homeCat === 'all') {
+      const used = new Set();
+      const take = (a) => (used.add(a.id), a);
+      // 3. le fil heure par heure
+      html += timelineHTML(list, 6);
+      // 4. à la une
+      const lead = take(ordered.slice(0, 3).find((a) => a.image) || ordered[0]);
+      const essentials = ordered.filter((a) => !used.has(a.id)).slice(0, 6).map(take);
+      html += `<header class="section-head"><h2>${esc(t('home'))}</h2><span>${esc(t('updated', { t: fmt.time(gen) }))}</span></header>`;
+      if (lead) {
+        html += link(lead, 'lead', `${media(lead, 'media media-lead')}
+          <div class="lead-body">${kicker(lead, true)}<h3>${esc(titleOf(lead))}</h3><p>${esc(summaryOf(lead))}</p>${meta(lead, { coverage: true })}</div>`);
+      }
+      if (essentials.length) {
+        html += `<h2 class="sub-head">${esc(t('essentials'))}</h2><ol class="essentials">${essentials
+          .map((a, i) => `<li>${link(a, 'row', `<span class="num">${i + 2}</span>
+            <div class="row-body">${kicker(a, true)}<h4>${esc(titleOf(a))}</h4>${meta(a)}</div>${media(a, 'thumb')}`)}</li>`)
+          .join('')}</ol>`;
+      }
+      // 5. la suite, par ordre d'importance
+      const more = ordered.filter((a) => !used.has(a.id)).slice(0, 20);
+      if (more.length) {
+        html += `<h2 class="sub-head">${esc(t('moreNews'))}</h2>${more
+          .map((a) => link(a, 'row row-compact', `<div class="row-body">${kicker(a)}<h4>${esc(titleOf(a))}</h4>${meta(a)}</div>${media(a, 'thumb')}`))
+          .join('')}`;
+      }
+    } else {
+      // une rubrique : tous ses sujets, du plus important au moins important
+      const cat = state.homeCat;
+      const items = ordered.filter((a) => a.cat === cat);
       const withImage = items.findIndex((a) => a.image);
       if (withImage > 0) items.unshift(items.splice(withImage, 1)[0]);
       const [first, ...others] = items;
       html += `<section class="cat-block">
-        <header class="cat-head k-${cat}">
-          <h2>${icon(cat)}${esc(catName(cat))}</h2>
-          <button class="see-all" data-action="see-all" data-cat="${cat}">${esc(t('seeAll'))}${icon('arrowRight')}</button>
-        </header>
-        ${link(first, 'card', `${media(first)}<h3>${esc(titleOf(first))}</h3><p>${esc(summaryOf(first))}</p>${meta(first, { coverage: true })}`)}
-        ${others.map((a) => link(a, 'row row-compact', `<div class="row-body"><h4>${esc(titleOf(a))}</h4>${meta(a)}</div>${media(a, 'thumb')}`)).join('')}
+        <header class="cat-head k-${cat}"><h2>${icon(cat)}${esc(catName(cat))}</h2>
+          <button class="see-all" data-action="see-all" data-cat="${cat}">${esc(t('flux'))}${icon('arrowRight', 'class="arrow-flip"')}</button></header>
+        ${first ? link(first, 'card', `${media(first)}${kicker(first, true)}<h3>${esc(titleOf(first))}</h3><p>${esc(summaryOf(first))}</p>${meta(first, { coverage: true })}`) : `<p class="muted">${esc(t('catEmpty'))}</p>`}
+        ${others.map((a) => link(a, 'row row-compact', `<div class="row-body">${dots(a)}<h4>${esc(titleOf(a))}</h4>${meta(a)}</div>${media(a, 'thumb')}`)).join('')}
       </section>`;
     }
-
-    const latest = [...list].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)).slice(0, 12);
-    html += `<section class="timeline"><h2 class="sub-head">${esc(t('live'))}</h2><ul>
-      ${latest.map((a) => `<li>${link(a, 'tl-item', `<time>${esc(isToday(a.publishedAt) ? fmt.time(new Date(a.publishedAt)) : fmt.dayMonth(new Date(a.publishedAt)))}</time>
-        <div><span class="kicker k-${esc(a.cat)}">${esc(catName(a.cat))}</span><h4>${esc(titleOf(a))}</h4></div>`)}</li>`).join('')}
-    </ul></section>`;
 
     const seed = state.news.edition === 'seed';
     html += `<footer class="colophon">
@@ -358,7 +393,6 @@
     </footer>`;
 
     box.innerHTML = html;
-    $('#scroll-hint-label').textContent = t('scrollHint');
   }
   const isToday = (iso) => new Date(iso).toDateString() === new Date().toDateString();
 
@@ -499,7 +533,9 @@
     if (!box || box.dataset.id !== a.id) return;
     const show = (blocks, src) => {
       if (state.readerId !== a.id) return;
-      box.innerHTML = blocks.map((x) => (x.h ? `<h2>${esc(x.h)}</h2>` : `<p>${esc(x.p)}</p>`)).join('') +
+      const sum = $('#r-summary');
+      if (sum) sum.outerHTML = summaryBox(blocks.filter((x) => x.s).map((x) => x.s));
+      box.innerHTML = blocks.filter((x) => !x.s).map((x) => (x.h ? `<h2>${esc(x.h)}</h2>` : `<p>${esc(x.p)}</p>`)).join('') +
         `<p class="r-textby">${esc(t('textBy', { s: src }))}</p>`;
     };
     try {
@@ -507,14 +543,14 @@
       const r = await fetch(`data/articles/${encodeURIComponent(a.id)}.json`);
       if (!r.ok) throw new Error('absent');
       const doc = await openBox(fullKey.key, await r.json());
-      let blocks = doc.blocks;
+      let blocks = doc.summary?.length ? [...doc.summary.map((p) => ({ s: p })), ...doc.blocks] : doc.blocks;
       if (state.lang !== 'fr') {
         const cacheKey = state.lang + ':' + a.id;
         if (trFull[cacheKey]) blocks = trFull[cacheKey];
         else {
           try {
-            const tr = await translateTexts(blocks.map((x) => x.p || x.h), state.lang);
-            blocks = blocks.map((x, i) => (x.p ? { p: tr[i] } : { h: tr[i] }));
+            const tr = await translateTexts(blocks.map((x) => x.p || x.h || x.s), state.lang);
+            blocks = blocks.map((x, i) => (x.p ? { p: tr[i] } : x.h ? { h: tr[i] } : { s: tr[i] }));
             trFull[cacheKey] = blocks;
             const keys = Object.keys(trFull);
             keys.slice(0, Math.max(0, keys.length - 15)).forEach((k) => delete trFull[k]);
@@ -539,6 +575,9 @@
     const text = b ? [b.lede, ...b.keyPoints, ...b.sections.flatMap((x) => x.paragraphs)].join(' ') : summaryOf(a) + (a.sources || []).map((x) => x.summary).join(' ');
     return Math.max(1, Math.round(text.split(/\s+/).length / 220));
   };
+
+  const summaryBox = (lines) =>
+    lines?.length ? `<aside class="r-points"><h2>${esc(t('keyPoints'))}</h2><ul>${lines.map((p) => `<li>${esc(p)}</li>`).join('')}</ul></aside>` : '';
 
   function readerHTML(a) {
     const b = bodyOf(a);
@@ -569,11 +608,13 @@
       </header>`;
 
     if (b) {
-      if (b.keyPoints?.length) html += `<aside class="r-points"><h2>${esc(t('keyPoints'))}</h2><ul>${b.keyPoints.map((p) => `<li>${esc(p)}</li>`).join('')}</ul></aside>`;
+      html += summaryBox(b.keyPoints);
       html += `<div class="r-body">${b.sections.map((sec) => `${sec.heading ? `<h2>${esc(sec.heading)}</h2>` : ''}${sec.paragraphs.map((p) => `<p>${esc(p)}</p>`).join('')}`).join('')}</div>`;
     } else if (full) {
-      html += `<div id="r-full" class="r-body" data-id="${esc(a.id)}"><p class="r-loading">${esc(t('loadingArticle'))}</p></div>`;
+      html += `<div id="r-summary"></div><div id="r-full" class="r-body" data-id="${esc(a.id)}"><p class="r-loading">${esc(t('loadingArticle'))}</p></div>`;
     } else {
+      const brief = a.brief ? a.brief[state.lang] || a.brief.fr : null;
+      html += summaryBox(brief);
       if (a.full && state.news?.crypto) html += `<button class="r-lock" data-action="goto-unlock">${icon('lock')}<span>${esc(t('lockedNote'))}</span></button>`;
       // pas de texte complet : revue de presse des médias qui couvrent le sujet
       html += `<section class="r-press"><h2>${esc(t('pressReview'))}</h2>${sources
@@ -1068,6 +1109,17 @@
       case 'share': share(el.dataset.id); break;
       case 'see-all': state.fluxFilter = el.dataset.cat; setTab('flux'); renderFlux(); break;
       case 'flux-filter': state.fluxFilter = el.dataset.cat; renderFlux(); break;
+      case 'home-cat': {
+        state.homeCat = el.dataset.cat;
+        renderHome();
+        // on garde les onglets en haut de l'écran
+        const chips = $('.home-chips');
+        const active = $('.hchip.active', chips);
+        if (active) chips.scrollLeft = active.offsetLeft - chips.clientWidth / 2 + active.offsetWidth / 2;
+        $('#view-home').scrollTo({ top: $('#chips-anchor').offsetTop - 4, behavior: 'smooth' });
+        break;
+      }
+      case 'toggle-live': state.liveOpen = !state.liveOpen; renderHome(); break;
       case 'flux-top': $('#flux-scroller').scrollTo({ top: 0, behavior: 'smooth' }); break;
       case 'refresh': state.news = null; renderHome(); await loadNews(); updateWeather(); break;
       case 'scroll-news': $('#news-top')?.scrollIntoView({ behavior: 'smooth' }); break;

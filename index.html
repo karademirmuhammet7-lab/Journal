@@ -30,20 +30,17 @@
           <div class="brand"><svg class="logo" viewBox="0 0 512 512" aria-hidden="true"><defs><pattern id="ku" width="15" height="15" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="15" height="6.5" fill="#fff"/></pattern><pattern id="kd" width="15" height="15" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="15" height="6.5" fill="#fff"/></pattern></defs><rect width="512" height="512" rx="112" fill="#0b0b0c"/><rect x="146" y="116" width="66" height="280" fill="#fff"/><polygon points="212,212 308,116 400,116 212,306" fill="url(#ku)"/><polygon points="262,255 400,396 318,396 224,294" fill="url(#kd)"/></svg><span>K-NEWS</span></div>
           <button id="lang-btn" class="lang-pill" data-action="open-lang" aria-label="Langue">FR</button>
         </div>
-        <p id="today" class="today"></p>
-        <p id="greeting" class="greeting"></p>
-        <div class="clock" aria-live="off"><span id="clock-hm">--:--</span><span id="clock-s" class="clock-s">--</span></div>
-        <p id="place" class="place"></p>
+        <div class="dateline"><span id="today" class="today"></span><span id="greeting" class="greeting"></span></div>
+        <div class="clock-row">
+          <div class="clock" aria-live="off"><span id="clock-hm">--:--</span><span id="clock-s" class="clock-s">--</span></div>
+          <p id="place" class="place"></p>
+        </div>
         <div id="weather" class="weather"></div>
         <section id="markets" class="markets" hidden>
           <h2 id="markets-title" class="mini-title"></h2>
           <ul id="markets-list"></ul>
         </section>
       </div>
-      <button class="scroll-hint" data-action="scroll-news">
-        <span id="scroll-hint-label"></span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
     </section>
     <div id="news" class="news"></div>
   </main>
