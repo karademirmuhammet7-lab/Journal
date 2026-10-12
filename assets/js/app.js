@@ -82,7 +82,7 @@
     html.style.setProperty('--scale', state.scale);
     const dark = state.theme === 'dark' || (state.theme === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
     $('meta[name="theme-color"]')?.setAttribute('content', dark ? '#0f1012' : '#f6f4ef');
-    $$('[data-tab]').forEach((b) => {
+    $$('.tabbar [data-tab]').forEach((b) => {
       $('.tab-label', b).textContent = t(b.dataset.tab);
       b.setAttribute('aria-current', b.dataset.tab === state.tab ? 'page' : 'false');
     });
@@ -431,7 +431,8 @@
     h.hidden = false;
     const done = () => { h.hidden = true; store.set('hintSeen', true); };
     $('#flux-scroller').addEventListener('scroll', done, { once: true });
-    h.addEventListener('click', done, { once: true });
+    // l'aide laisse passer l'appui : la carte s'ouvre directement
+    document.addEventListener('click', done, { once: true, capture: true });
     setTimeout(done, 5000);
   }
 
@@ -720,10 +721,11 @@
         ${fullKey.ok
           ? `<div class="loc-current ok">${icon('check')}<span>${esc(t('unlocked'))}</span></div>
              <button class="btn-ghost wide" data-action="lock">${icon('lock')}${esc(t('lock'))}</button>`
-          : `<p class="muted">${esc(state.news?.crypto ? t('fullHelp') : t('fullNotReady'))}</p>
+          : `<p class="muted">${esc(t('fullHelp'))}</p>
+             ${fullKey.pass && !state.news?.crypto ? `<p class="muted">${esc(t('passSaved'))}</p>` : ''}
              <form class="unlock" data-form="unlock">
-               <div class="search">${icon('lock')}<input id="full-pass" type="password" autocomplete="current-password" placeholder="${esc(t('fullPlaceholder'))}" ${state.news?.crypto ? '' : 'disabled'}></div>
-               <button class="btn" type="submit" ${state.news?.crypto ? '' : 'disabled'}>${esc(t('unlock'))}</button>
+               <div class="search">${icon('lock')}<input id="full-pass" type="password" autocomplete="current-password" placeholder="${esc(t('fullPlaceholder'))}"></div>
+               <button class="btn" type="submit">${esc(t('unlock'))}</button>
                <p class="form-error" id="full-error" hidden>${esc(t('wrongPass'))}</p>
              </form>`}
       </section>
@@ -978,7 +980,7 @@
   function setTab(tab) {
     state.tab = tab;
     $$('.view').forEach((v) => (v.hidden = v.id !== 'view-' + tab));
-    document.body.dataset.tab = tab;
+    document.body.dataset.view = tab;
     applyChrome();
     if (tab === 'flux') {
       const key = state.lang + state.fluxFilter + (state.news?.generatedAt || '') + state.hidden.join();
@@ -1034,7 +1036,7 @@
       openReader(readEl.dataset.read, origin ? listFor(origin) : null);
       return;
     }
-    const el = e.target.closest('[data-action], [data-tab]');
+    const el = e.target.closest('[data-action], .tabbar [data-tab]');
     if (el?.dataset.tab) {
       closeReader();
       if (state.tab === el.dataset.tab) {
@@ -1095,7 +1097,16 @@
   document.addEventListener('submit', async (e) => {
     if (e.target.dataset.form !== 'unlock') return;
     e.preventDefault();
-    const pass = $('#full-pass').value;
+    const pass = $('#full-pass').value.trim();
+    if (!pass) return;
+    if (!state.news?.crypto) {
+      // pas encore d'édition chiffrée : on garde le mot de passe pour la suivante
+      fullKey.pass = pass;
+      store.set('key', pass);
+      toast(t('passSaved'));
+      renderSettings();
+      return;
+    }
     if (await unlockFull(pass)) {
       store.set('key', pass);
       toast(t('unlocked'));
