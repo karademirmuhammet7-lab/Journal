@@ -132,6 +132,8 @@ window.I18N = (() => {
   };
 
   const CATS = {
+    chatelet: { fr: 'Châtelet', en: 'Châtelet', nl: 'Châtelet', tr: 'Châtelet', ar: 'شاتليه' },
+    charleroi: { fr: 'Charleroi', en: 'Charleroi', nl: 'Charleroi', tr: 'Charleroi', ar: 'شارلروا' },
     belgique: { fr: 'Belgique', en: 'Belgium', nl: 'België', tr: 'Belçika', ar: 'بلجيكا' },
     monde: { fr: 'Monde', en: 'World', nl: 'Wereld', tr: 'Dünya', ar: 'العالم' },
     economie: { fr: 'Économie', en: 'Economy', nl: 'Economie', tr: 'Ekonomi', ar: 'الاقتصاد' },

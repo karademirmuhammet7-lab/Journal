@@ -5,8 +5,9 @@
   const { icon } = window.ICONS;
 
   // ordre des rubriques : les priorités (Belgique, économie, marchés, monde) d'abord
-  const CAT_ORDER = ['belgique', 'economie', 'finance', 'monde', 'sante', 'faits-divers', 'tech', 'sport', 'culture'];
-  const PRIORITY_CATS = ['belgique', 'economie', 'finance', 'monde'];
+  // ordre des rubriques : chez nous (Châtelet, Charleroi), puis les priorités
+  const CAT_ORDER = ['chatelet', 'charleroi', 'belgique', 'economie', 'finance', 'monde', 'sante', 'faits-divers', 'tech', 'sport', 'culture'];
+  const PRIORITY_CATS = ['chatelet', 'charleroi', 'belgique', 'economie', 'finance', 'monde'];
   const BRUSSELS = { lat: 50.8503, lon: 4.3517, name: 'Bruxelles', fallback: true };
   const NEWS_URL = 'data/news.json';
   const REFRESH_MS = 10 * 60 * 1000;

@@ -17,6 +17,8 @@
   --outside: #e9e6df;
   --shadow: 0 1px 2px rgba(20, 20, 20, .06), 0 8px 24px rgba(20, 20, 20, .06);
 
+  --c-chatelet: #0e7490;
+  --c-charleroi: #7c5c1e;
   --c-belgique: #a1262b;
   --c-monde: #1e4c7a;
   --c-economie: #136058;
@@ -394,6 +396,8 @@ body.scrolled .scroll-hint { opacity: 0; }
   color: var(--c);
 }
 [dir="rtl"] .kicker { letter-spacing: 0; font-size: .8rem; }
+.k-chatelet { --c: var(--c-chatelet); }
+.k-charleroi { --c: var(--c-charleroi); }
 .k-belgique { --c: var(--c-belgique); }
 .k-monde { --c: var(--c-monde); }
 .k-economie { --c: var(--c-economie); }
@@ -450,6 +454,8 @@ body.scrolled .scroll-hint { opacity: 0; }
     linear-gradient(150deg, color-mix(in srgb, var(--c) 92%, white), color-mix(in srgb, var(--c) 70%, black));
   color: rgba(255, 255, 255, .88);
 }
+.art-chatelet { --c: var(--c-chatelet); }
+.art-charleroi { --c: var(--c-charleroi); }
 .art-belgique { --c: var(--c-belgique); }
 .art-monde { --c: var(--c-monde); }
 .art-economie { --c: var(--c-economie); }

@@ -47,6 +47,10 @@ window.ICONS = (() => {
     snow: `<path d="${cloudTop}"/><path d="M8 19h.01M12 18.5h.01M16 19h.01M10 21.5h.01M14 21.5h.01" stroke-width="2.6"/>`,
     storm: `<path d="${cloudTop}"/><path d="M12.5 16l-2.2 3.2h3.4l-2.2 3.3"/>`,
     // rubriques
+    // hôtel de ville avec beffroi
+    chatelet: '<path d="M3.5 20.5h17M5.5 20.5V11h13v9.5M12 3v4M12 3l3 1.5L12 6M8.5 11V8.5h7V11M9 20.5v-4h6v4M8 14h.01M16 14h.01"/>',
+    // terril et cheminée (pays noir)
+    charleroi: '<path d="M2.5 20.5h19M3.5 20.5l6-9 4 5 2-3 5 7"/><path d="M17 20.5V6.5h2.5v14M17.5 4.5c.8-.9 2-1.2 3-.8"/>',
     belgique: '<path d="M3.5 20.5h17M5 20.5v-9M9.5 20.5v-9M14.5 20.5v-9M19 20.5v-9M3 11.5h18L12 4z"/>',
     monde: '<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.5 3.5 5.3 3.5 8.5s-1.1 6-3.5 8.5c-2.4-2.5-3.5-5.3-3.5-8.5s1.1-6 3.5-8.5z"/>',
     economie: '<rect x="3.5" y="7.5" width="17" height="12" rx="1.5"/><path d="M9 7.5V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5v2M3.5 12.5h17"/>',

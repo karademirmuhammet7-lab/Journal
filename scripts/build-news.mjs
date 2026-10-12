@@ -10,7 +10,7 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { XMLParser } from 'fast-xml-parser';
-import { FEEDS, MARKETS, CATEGORY_HINTS, STRONG_HINTS, PRIORITY } from './feeds.mjs';
+import { FEEDS, MARKETS, CATEGORY_HINTS, STRONG_HINTS, PRIORITY, LOCAL } from './feeds.mjs';
 import { planWriting, writeArticles, writingEnabled } from './writer.mjs';
 import { fetchFullTexts, publishFullTexts, ogImage } from './fulltext.mjs';
 
@@ -143,6 +143,7 @@ export function parseFeed(xml, feed) {
       source,
       cat: feed.cat,
       region: feed.region || null,
+      maxAgeH: feed.maxAgeH || MAX_AGE_H,
       lang: feed.lang,
       weight: feed.weight,
       top: !!feed.top,
@@ -174,6 +175,30 @@ function similarity(a, b) {
   let inter = 0;
   for (const w of a) if (b.has(w)) inter++;
   return inter / Math.min(a.size, b.size) * (inter >= 3 ? 1 : inter >= 2 ? 0.8 : 0.4);
+}
+
+// ———————————————————————————————————————— rubriques locales (Châtelet, Charleroi)
+
+const placeRe = (name) => new RegExp(`(^|[^\\p{L}\\-])${name.replace(/[-]/g, '[- ]')}(?![\\p{L}])`, 'u');
+const LOCAL_RE = Object.fromEntries(
+  Object.entries(LOCAL).map(([cat, { places, exclude }]) => [cat, { places: places.map((p) => [p, placeRe(p)]), exclude }]),
+);
+const BELGIAN = /Belgique|belge|Wallonie|wallon|Hainaut|Charleroi|Bruxelles|TEC|SNCB/;
+
+/** 'chatelet', 'charleroi' ou null, d'après les communes citées dans le texte. */
+export function localCategory(text, belgian = false) {
+  if (!text) return null;
+  if (!belgian && !BELGIAN.test(text)) return null;
+  for (const cat of ['chatelet', 'charleroi']) {
+    const { places, exclude } = LOCAL_RE[cat];
+    let cleaned = text;
+    for (const re of exclude) cleaned = cleaned.replace(new RegExp(re.source, re.flags.includes('g') ? re.flags : re.flags + 'g'), ' ');
+    const hits = places.filter(([name, re]) => re.test(cleaned)).map(([name]) => name);
+    // « Roux » est aussi un nom de famille ou une couleur : il faut une autre commune, ou « à Roux »
+    const strong = hits.filter((h) => h !== 'Roux');
+    if (strong.length || (hits.includes('Roux') && /(^|\s)(à|de|d'|sur) Roux(?![\p{L}])/u.test(cleaned))) return cat;
+  }
+  return null;
 }
 
 export function guessCategory(a, min = 2) {
@@ -436,7 +461,7 @@ export async function build() {
   let articles = results.flat().filter((a) => {
     if (!a.title || !a.url || !/^https?:/.test(a.url) || !a.publishedAt) return false;
     const age = (now - +new Date(a.publishedAt)) / 3.6e6;
-    if (age > MAX_AGE_H || age < -2) return false;
+    if (age > a.maxAgeH || age < -2) return false;
     const key = a.url.split('?')[0] + '|' + a.title.toLowerCase();
     if (seen.has(key)) return false;
     seen.add(key);
@@ -457,7 +482,8 @@ export async function build() {
   const clusters = cluster(articles);
   for (const c of clusters) {
     const lead = pickLead(c);
-    const cats = c.items.map((a) => a.cat).filter(Boolean);
+    // les rubriques locales ne se décident que sur le texte (voir plus bas)
+    const cats = c.items.map((a) => a.cat).filter((x) => x && !LOCAL[x]);
     const voted = cats.sort((x, y) => cats.filter((v) => v === y).length - cats.filter((v) => v === x).length)[0];
     const hinted = guessCategory(lead);
     const sure = guessCategory(lead, 3); // mot distinctif dans le titre
@@ -466,13 +492,19 @@ export async function build() {
     // un sujet d'actualité générale mais clairement thématique est reclassé
     if ((cat === 'belgique' || cat === 'monde') && sure && sure !== 'economie') cat = sure;
     if (cat === 'monde' && sure === 'economie') cat = 'economie';
+    const localText = c.items.map((a) => `${a.title} ${a.summary || ''}`).join(' \n ');
+    const local = localCategory(localText, belgian);
+    if (local) cat = local;
     c.lead = lead;
     c.cat = cat;
     c.score = scoreCluster(c, now, cat);
   }
   clusters.sort((a, b) => b.score - a.score);
 
-  const picked = clusters.slice(0, MAX_ARTICLES).map((c, rank) => {
+  // l'actu locale est toujours gardée, même si elle est moins reprise
+  const chosen = [...clusters.slice(0, MAX_ARTICLES), ...clusters.slice(MAX_ARTICLES).filter((c) => LOCAL[c.cat]).slice(0, 40)];
+  log(`${chosen.filter((c) => c.cat === 'charleroi').length} sujets Charleroi, ${chosen.filter((c) => c.cat === 'chatelet').length} sujets Châtelet`);
+  const picked = chosen.map((c, rank) => {
     const lead = c.lead;
     const direct = c.items.filter((a) => !a.aggregator);
     // identifiant stable d'un sujet : son plus ancien article
@@ -542,7 +574,7 @@ export async function build() {
   const perCat = {};
   for (const a of picked) {
     if (top.length >= 8) break;
-    if ((perCat[a.cat] || 0) >= 3) continue;
+    if ((perCat[a.cat] || 0) >= (LOCAL[a.cat] ? 1 : 3)) continue;
     if (top.length === 0 && !a.image) continue; // la manchette doit avoir une photo
     top.push(a.id);
     perCat[a.cat] = (perCat[a.cat] || 0) + 1;

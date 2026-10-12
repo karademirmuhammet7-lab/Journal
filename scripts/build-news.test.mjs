@@ -76,3 +76,18 @@ test('classement thématique des titres de flux généralistes', async () => {
   assert.equal(g('Wall Street termine en hausse, le Nasdaq au plus haut'), 'finance');
   assert.equal(g('Le chef militaire de l’OTAN dévoile sa stratégie face à la Russie'), null);
 });
+
+test('rubriques locales : Châtelet et Charleroi', async () => {
+  const { localCategory } = await import('./build-news.mjs');
+  assert.equal(localCategory('Châtelineau : une école inondée après les orages', true), 'chatelet');
+  assert.equal(localCategory('Bouffioulx : les derniers potiers', true), 'chatelet');
+  assert.equal(localCategory('Conseil communal de Châtelet : les jeunes prennent la parole', true), 'chatelet');
+  assert.equal(localCategory('Gosselies : un incendie dans un entrepôt', true), 'charleroi');
+  assert.equal(localCategory('Le Sporting de Charleroi s’impose face au Standard'), 'charleroi');
+  assert.equal(localCategory('Marchienne-au-Pont : travaux sur le ring', true), 'charleroi');
+  assert.equal(localCategory('Accident à Roux ce matin', true), 'charleroi');
+  assert.equal(localCategory('Pierre Roux remporte le concours', true), null);
+  assert.equal(localCategory('Paris : incident à la station Châtelet-les-Halles'), null);
+  assert.equal(localCategory('Concert au théâtre du Châtelet à Paris'), null);
+  assert.equal(localCategory('Jumetière et Gillyane', true), null);
+});

@@ -3,6 +3,8 @@
 // top    : flux "à la une" d'un média — ses articles reçoivent un bonus d'importance.
 // Les flux qui ne répondent pas sont simplement ignorés lors de la génération.
 
+const GNQ = (q) => `https://news.google.com/rss/search?q=${encodeURIComponent(q)}&hl=fr&gl=BE&ceid=BE:fr`;
+
 const GN = (topic) =>
   topic
     ? `https://news.google.com/rss/headlines/section/topic/${topic}?hl=fr&gl=BE&ceid=BE:fr`
@@ -19,6 +21,15 @@ export const FEEDS = [
   { source: 'VRT NWS', cat: null, region: 'be', lang: 'nl', weight: 0.85, url: 'https://www.vrt.be/vrtnws/nl.rss.articles.xml' },
   { source: 'Google Actualités', cat: null, region: 'be', lang: 'fr', weight: 0.6, top: true, aggregator: true, url: GN('NATION') },
   { source: 'Google Actualités', cat: null, lang: 'fr', weight: 0.6, top: true, aggregator: true, url: GN() },
+
+  // ——— Local : Charleroi et Châtelet (articles gardés 7 jours, l'actu locale est plus rare) ———
+  { source: 'Google Actualités', cat: 'charleroi', region: 'be', local: true, lang: 'fr', weight: 0.7, aggregator: true, maxAgeH: 168, url: GNQ('Charleroi when:7d') },
+  { source: 'Google Actualités', cat: 'charleroi', region: 'be', local: true, lang: 'fr', weight: 0.7, aggregator: true, maxAgeH: 168, url: GNQ('Gosselies OR Marcinelle OR Jumet OR Gilly OR Montignies-sur-Sambre OR Marchienne-au-Pont OR Couillet OR Ransart OR Lodelinsart OR Dampremy when:7d') },
+  { source: 'Google Actualités', cat: 'chatelet', region: 'be', local: true, lang: 'fr', weight: 0.7, aggregator: true, maxAgeH: 168, url: GNQ('Châtelet Charleroi OR Châtelineau OR Bouffioulx when:7d') },
+  { source: 'La DH', cat: 'charleroi', region: 'be', local: true, lang: 'fr', weight: 0.85, maxAgeH: 168, url: 'https://www.dhnet.be/arc/outboundfeeds/rss/section/regions/charleroi/?outputType=xml' },
+  { source: 'La Nouvelle Gazette', cat: 'charleroi', region: 'be', local: true, lang: 'fr', weight: 0.85, maxAgeH: 168, url: 'https://www.lanouvellegazette.be/rss2/2/cible_principale' },
+  { source: 'Télésambre', cat: 'charleroi', region: 'be', local: true, lang: 'fr', weight: 0.85, maxAgeH: 168, url: 'https://www.telesambre.be/rss.xml' },
+  { source: 'RTBF', cat: 'charleroi', region: 'be', local: true, lang: 'fr', weight: 0.9, maxAgeH: 168, url: 'https://rss.rtbf.be/article/rss/highlight_rtbf_regions_hainaut.xml' },
 
   // ——— Monde ———
   { source: 'Le Monde', cat: null, lang: 'fr', weight: 1.0, top: true, url: 'https://www.lemonde.fr/rss/une.xml' },
@@ -86,6 +97,8 @@ export const FEEDS = [
 // Rubriques prioritaires : multiplicateur appliqué au score d'importance.
 // Belgique, économie, finance et monde passent devant le reste.
 export const PRIORITY = {
+  chatelet: 1.5,
+  charleroi: 1.45,
   belgique: 1.4,
   economie: 1.35,
   finance: 1.35,
@@ -129,4 +142,23 @@ export const CATEGORY_HINTS = {
   sport: ['football', 'diables rouges', 'ligue des champions', 'tennis', 'cyclisme', 'formule 1', 'jupiler pro league', 'anderlecht', 'standard', 'club brugge', 'tour de france', 'basket', 'jeux olympiques'],
   tech: ['intelligence artificielle', ' ia ', 'openai', 'apple', 'google', 'smartphone', 'espace', 'nasa', 'esa', 'climat', 'scientifiques', 'chercheurs', 'cyberattaque', 'tech'],
   culture: ['film', 'cinéma', 'festival', 'musique', 'concert', 'livre', 'exposition', 'musée', 'série', 'chanteur', 'théâtre'],
+};
+
+// ——— Communes locales ———
+// Châtelet (entité) : Châtelet, Châtelineau, Bouffioulx.
+// Charleroi (entité) : les 15 anciennes communes fusionnées en 1977.
+export const LOCAL = {
+  chatelet: {
+    places: ['Châtelet', 'Châtelineau', 'Bouffioulx'],
+    // le Châtelet parisien n'a rien à voir
+    exclude: [/du Châtelet/i, /Châtelet[- ]les[- ]Halles/i, /Châtelet[- ]en[- ]Brie/i, /Le Châtelet\b/],
+  },
+  charleroi: {
+    places: [
+      'Charleroi', 'Carolo', 'Carolos', 'Couillet', 'Dampremy', 'Gilly', 'Gosselies', 'Goutroux', 'Jumet',
+      'Lodelinsart', 'Marchienne-au-Pont', 'Marchienne', 'Marcinelle', 'Monceau-sur-Sambre',
+      'Montignies-sur-Sambre', 'Mont-sur-Marchienne', 'Ransart', 'Roux', 'Spiroudome',
+    ],
+    exclude: [],
+  },
 };
