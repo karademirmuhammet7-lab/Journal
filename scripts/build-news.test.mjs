@@ -65,3 +65,14 @@ test('regroupe les titres qui parlent du même sujet', () => {
 test('stripHtml', () => {
   assert.equal(stripHtml('&lt;p&gt;Bonjour&amp;nbsp;<b>toi</b>&lt;/p&gt;'), 'Bonjour toi');
 });
+
+test('classement thématique des titres de flux généralistes', async () => {
+  const { guessCategory } = await import('./build-news.mjs');
+  const g = (title, summary = '') => guessCategory({ title, summary });
+  assert.equal(g('Énorme exploit belge en tennis : Zizou Bergs élimine Carlos Alcaraz'), 'sport');
+  assert.equal(g('France : un principal de collège et une professeure blessés par balles, un jeune interpellé'), 'faits-divers');
+  assert.equal(g('"Je m’appelle Alain, je suis un homme et j’ai eu un cancer du sein"'), 'sante');
+  assert.equal(g('Le Nobel d’économie décerné aux Américains Michael Woodford et Robert Hall'), 'economie');
+  assert.equal(g('Wall Street termine en hausse, le Nasdaq au plus haut'), 'finance');
+  assert.equal(g('Le chef militaire de l’OTAN dévoile sa stratégie face à la Russie'), null);
+});

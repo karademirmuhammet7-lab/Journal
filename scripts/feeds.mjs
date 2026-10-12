@@ -10,27 +10,22 @@ const GN = (topic) =>
 
 export const FEEDS = [
   // ——— Belgique ———
-  { source: 'RTBF', cat: 'belgique', lang: 'fr', weight: 1.0, top: true, url: 'https://rss.rtbf.be/article/rss/highlight_rtbf_info.xml' },
+  { source: 'RTBF', cat: null, region: 'be', lang: 'fr', weight: 1.0, top: true, url: 'https://rss.rtbf.be/article/rss/highlight_rtbf_info.xml' },
   { source: 'La Libre', cat: 'belgique', lang: 'fr', weight: 0.95, url: 'https://www.lalibre.be/arc/outboundfeeds/rss/section/belgique/?outputType=xml' },
-  { source: 'La Libre', cat: 'belgique', lang: 'fr', weight: 0.95, top: true, url: 'https://www.lalibre.be/arc/outboundfeeds/rss/?outputType=xml' },
-  { source: "L'Avenir", cat: 'belgique', lang: 'fr', weight: 0.85, url: 'https://www.lavenir.net/arc/outboundfeeds/rss/?outputType=xml' },
-  { source: 'La DH', cat: 'belgique', lang: 'fr', weight: 0.8, url: 'https://www.dhnet.be/arc/outboundfeeds/rss/?outputType=xml' },
+  { source: 'La Libre', cat: null, region: 'be', lang: 'fr', weight: 0.95, top: true, url: 'https://www.lalibre.be/arc/outboundfeeds/rss/?outputType=xml' },
+  { source: "L'Avenir", cat: null, region: 'be', lang: 'fr', weight: 0.85, url: 'https://www.lavenir.net/arc/outboundfeeds/rss/?outputType=xml' },
+  { source: 'La DH', cat: null, region: 'be', lang: 'fr', weight: 0.8, url: 'https://www.dhnet.be/arc/outboundfeeds/rss/?outputType=xml' },
   { source: '7sur7', cat: 'belgique', lang: 'fr', weight: 0.75, url: 'https://www.7sur7.be/belgique/rss.xml' },
-  { source: 'VRT NWS', cat: 'belgique', lang: 'nl', weight: 0.85, url: 'https://www.vrt.be/vrtnws/nl.rss.articles.xml' },
-  { source: 'Le Soir', cat: 'belgique', lang: 'fr', weight: 1.0, top: true, url: 'https://www.lesoir.be/rss2/2/cible_principale' },
-  { source: 'Sudinfo', cat: 'belgique', lang: 'fr', weight: 0.8, url: 'https://www.sudinfo.be/rss2/2/cible_principale' },
-  { source: 'RTBF', cat: 'belgique', lang: 'fr', weight: 1.0, url: 'https://rss.rtbf.be/article/rss/highlight_rtbf_info_belgique.xml' },
-  { source: 'Belga', cat: 'belgique', lang: 'en', weight: 0.9, url: 'https://www.belganewsagency.eu/feed' },
-  { source: 'De Standaard', cat: 'belgique', lang: 'nl', weight: 0.85, url: 'https://www.standaard.be/rss/section/1f2838d4-99ea-49f0-9102-138784c7ea7c' },
-  { source: 'Google Actualités', cat: 'belgique', lang: 'fr', weight: 0.6, top: true, aggregator: true, url: GN('NATION') },
+  { source: 'VRT NWS', cat: null, region: 'be', lang: 'nl', weight: 0.85, url: 'https://www.vrt.be/vrtnws/nl.rss.articles.xml' },
+  { source: 'Google Actualités', cat: null, region: 'be', lang: 'fr', weight: 0.6, top: true, aggregator: true, url: GN('NATION') },
   { source: 'Google Actualités', cat: null, lang: 'fr', weight: 0.6, top: true, aggregator: true, url: GN() },
 
   // ——— Monde ———
-  { source: 'Le Monde', cat: 'monde', lang: 'fr', weight: 1.0, top: true, url: 'https://www.lemonde.fr/rss/une.xml' },
+  { source: 'Le Monde', cat: null, lang: 'fr', weight: 1.0, top: true, url: 'https://www.lemonde.fr/rss/une.xml' },
   { source: 'Le Monde', cat: 'monde', lang: 'fr', weight: 1.0, url: 'https://www.lemonde.fr/international/rss_full.xml' },
   { source: 'France 24', cat: 'monde', lang: 'fr', weight: 0.9, url: 'https://www.france24.com/fr/rss' },
   { source: 'franceinfo', cat: 'monde', lang: 'fr', weight: 0.9, url: 'https://www.francetvinfo.fr/monde.rss' },
-  { source: 'franceinfo', cat: 'monde', lang: 'fr', weight: 0.9, top: true, url: 'https://www.francetvinfo.fr/titres.rss' },
+  { source: 'franceinfo', cat: null, lang: 'fr', weight: 0.9, top: true, url: 'https://www.francetvinfo.fr/titres.rss' },
   { source: 'La Libre', cat: 'monde', lang: 'fr', weight: 0.9, url: 'https://www.lalibre.be/arc/outboundfeeds/rss/section/international/?outputType=xml' },
   { source: 'BBC News', cat: 'monde', lang: 'en', weight: 0.95, top: true, url: 'https://feeds.bbci.co.uk/news/world/rss.xml' },
   { source: 'Le Figaro', cat: 'monde', lang: 'fr', weight: 0.9, url: 'https://www.lefigaro.fr/rss/figaro_international.xml' },
@@ -49,7 +44,6 @@ export const FEEDS = [
   { source: 'The Guardian', cat: 'economie', lang: 'en', weight: 0.85, url: 'https://www.theguardian.com/business/rss' },
   { source: 'Euronews', cat: 'economie', lang: 'fr', weight: 0.8, url: 'https://fr.euronews.com/rss?level=theme&name=business' },
   { source: 'La DH', cat: 'economie', lang: 'fr', weight: 0.75, url: 'https://www.dhnet.be/arc/outboundfeeds/rss/section/actu/economie/?outputType=xml' },
-  { source: "L'Avenir", cat: 'economie', lang: 'fr', weight: 0.8, url: 'https://www.lavenir.net/arc/outboundfeeds/rss/section/actu/economie/?outputType=xml' },
   { source: 'Google Actualités', cat: 'economie', lang: 'fr', weight: 0.6, aggregator: true, url: GN('BUSINESS') },
 
   // ——— Finance & marchés ———
@@ -116,7 +110,17 @@ export const MARKETS = [
   { id: 'btc', label: 'Bitcoin', symbol: 'BTC-EUR', kind: 'crypto', unit: '€' },
 ];
 
-// Mots-clés permettant de reclasser un article venu d'un flux généraliste.
+// Mots-clés permettant de classer un article venu d'un flux généraliste.
+// Un mot « fort » compte double : un seul suffit à classer l'article.
+export const STRONG_HINTS = {
+  sport: ['football', 'tennis', 'cycliste', 'cyclisme', 'diables rouges', 'red flames', 'ligue des champions', 'formule 1', 'grand prix', 'pro league', 'mondial de football', 'sélectionneur', 'buteur', 'tour de france', 'roland-garros', 'atp', 'wta', 'jeux olympiques', 'basket', 'hockey', 'rugby', 'marathon', 'champion du monde', 'anderlecht', 'club brugge', 'standard de liège'],
+  'faits-divers': ['blessé par balle', 'blessés par balles', 'blessé par balles', 'meurtre', 'assassinat', 'fusillade', 'poignardé', 'coup de couteau', 'incendie', 'cambriolage', 'braquage', 'homicide', 'féminicide', 'disparition inquiétante', 'retrouvé mort', 'retrouvée morte', 'cour d\'assises', 'arrestations judiciaires', 'interpellé', 'interpellés', 'garde à vue', 'violé', 'viol', 'accident de la route', 'collision'],
+  sante: ['cancer', 'vaccin', 'vaccination', 'hôpital', 'hôpitaux', 'épidémie', 'maladie', 'médecins', 'patients', 'grippe', 'covid', 'alzheimer', 'santé mentale', 'diabète', 'infirmiers'],
+  finance: ['bourse', 'cac 40', 'bel 20', 'wall street', 'nasdaq', 's&p 500', 'dow jones', 'bitcoin', 'cryptomonnaie', 'bce', 'banque centrale', 'réserve fédérale', 'taux directeur', 'obligations', 'actionnaires', 'introduction en bourse', 'stoxx'],
+  economie: ["nobel d'économie", 'inflation', 'pib', 'chômage', 'licenciements', 'faillite', 'droits de douane', 'prix de l\'essence', 'prix du gasoil', 'pouvoir d\'achat', 'salaires', 'croissance économique', 'récession', 'budget'],
+  culture: ['festival de', 'cinéma', 'exposition', 'musée'],
+};
+
 export const CATEGORY_HINTS = {
   'faits-divers': ['meurtre', 'assassinat', 'agression', 'incendie', 'accident', 'fusillade', 'interpellé', 'suspect', 'parquet', 'braquage', 'disparition', 'poignard', 'tué', 'blessé grave', 'police judiciaire', 'cambriolage', 'procès', 'cour d\'assises', 'noyade', 'collision'],
   sante: ['santé', 'hôpital', 'médecin', 'vaccin', 'cancer', 'virus', 'épidémie', 'maladie', 'patients', 'soins', 'grippe', 'covid', 'oms', 'inami', 'mutuelle', 'sciensano', 'alzheimer', 'diabète'],

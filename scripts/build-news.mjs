@@ -10,7 +10,7 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { XMLParser } from 'fast-xml-parser';
-import { FEEDS, MARKETS, CATEGORY_HINTS, PRIORITY } from './feeds.mjs';
+import { FEEDS, MARKETS, CATEGORY_HINTS, STRONG_HINTS, PRIORITY } from './feeds.mjs';
 import { planWriting, writeArticles, extractText, writingEnabled } from './writer.mjs';
 
 const OUT = new URL('../data/news.json', import.meta.url);
@@ -139,6 +139,7 @@ export function parseFeed(xml, feed) {
       publishedAt: isNaN(date) ? null : date.toISOString(),
       source,
       cat: feed.cat,
+      region: feed.region || null,
       lang: feed.lang,
       weight: feed.weight,
       top: !!feed.top,
@@ -172,14 +173,17 @@ function similarity(a, b) {
   return inter / Math.min(a.size, b.size) * (inter >= 3 ? 1 : inter >= 2 ? 0.8 : 0.4);
 }
 
-function guessCategory(a) {
-  const hay = ` ${a.title} ${a.summary} `.toLowerCase();
-  let best = null, bestHits = 0;
-  for (const [cat, words] of Object.entries(CATEGORY_HINTS)) {
-    const hits = words.reduce((n, w) => n + (hay.includes(w) ? 1 : 0), 0);
-    if (hits > bestHits) { best = cat; bestHits = hits; }
+export function guessCategory(a, min = 2) {
+  const hay = ` ${a.titleFr || a.title} ${a.summary} `.toLowerCase().replace(/[’`]/g, "'");
+  const title = ` ${a.titleFr || a.title} `.toLowerCase().replace(/[’`]/g, "'");
+  let best = null, bestScore = 0;
+  for (const cat of new Set([...Object.keys(CATEGORY_HINTS), ...Object.keys(STRONG_HINTS)])) {
+    let score = 0;
+    for (const w of STRONG_HINTS[cat] || []) if (hay.includes(w)) score += title.includes(w) ? 3 : 2;
+    for (const w of CATEGORY_HINTS[cat] || []) if (hay.includes(w)) score += 1;
+    if (score > bestScore) { best = cat; bestScore = score; }
   }
-  return bestHits >= 2 ? best : null;
+  return bestScore >= min ? best : null;
 }
 
 export function cluster(articles) {
@@ -388,7 +392,7 @@ function rebuildBody(b, t) {
 async function fetchMarkets() {
   const out = await pool(MARKETS, 4, async (m) => {
     const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(m.symbol)}?range=1mo&interval=1d`;
-    const data = JSON.parse(await fetchText(url, { timeout: 10000 }));
+    const data = JSON.parse(await fetchText(url, { timeout: 10000, headers: { 'user-agent': 'Mozilla/5.0 (compatible; JournalBot/1.0)', accept: 'application/json' } }));
     const r = data.chart.result[0];
     const closes = (r.indicators.quote[0].close || []).filter((x) => x != null);
     const price = r.meta.regularMarketPrice ?? closes.at(-1);
@@ -408,7 +412,7 @@ export async function build() {
   log(`${FEEDS.length} flux à lire…`);
   const results = await pool(FEEDS, 8, async (feed) => {
     try {
-      const items = parseFeed(await fetchText(feed.url), feed);
+      const items = parseFeed(await fetchText(feed.url, { headers: { accept: 'application/rss+xml, application/atom+xml, application/xml;q=0.9, text/xml;q=0.9, */*;q=0.5' } }), feed);
       log(`✓ ${feed.source} (${feed.cat ?? 'une'}) : ${items.length}`);
       return items;
     } catch (e) {
@@ -445,9 +449,12 @@ export async function build() {
     const cats = c.items.map((a) => a.cat).filter(Boolean);
     const voted = cats.sort((x, y) => cats.filter((v) => v === y).length - cats.filter((v) => v === x).length)[0];
     const hinted = guessCategory(lead);
-    let cat = voted || hinted || 'monde';
-    // un sujet repris par un flux généraliste mais clairement thématique est reclassé
-    if ((cat === 'belgique' || cat === 'monde') && hinted && ['faits-divers', 'sante', 'finance', 'economie', 'sport'].includes(hinted)) cat = hinted;
+    const sure = guessCategory(lead, 3); // mot distinctif dans le titre
+    const belgian = c.items.some((a) => a.region === 'be' || a.cat === 'belgique');
+    let cat = voted || hinted || (belgian ? 'belgique' : 'monde');
+    // un sujet d'actualité générale mais clairement thématique est reclassé
+    if ((cat === 'belgique' || cat === 'monde') && sure && sure !== 'economie') cat = sure;
+    if (cat === 'monde' && sure === 'economie') cat = 'economie';
     c.lead = lead;
     c.cat = cat;
     c.score = scoreCluster(c, now, cat);
