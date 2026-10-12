@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="fr" dir="ltr" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Le Journal</title>
+  <meta name="description" content="L'actualité belge et internationale, la météo et les marchés — sur une seule page.">
+  <meta name="theme-color" content="#f6f4ef">
+  <meta name="color-scheme" content="light dark">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Le Journal">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..600&family=Noto+Naskh+Arabic:wght@400..700&family=Noto+Sans+Arabic:wght@300..700&display=swap">
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body data-tab="home">
+  <div id="offline" class="offline" hidden></div>
+
+  <!-- ——— À la une ——— -->
+  <main id="view-home" class="view">
+    <section id="cover" class="cover" data-sky="cloud">
+      <div class="cover-inner">
+        <div class="masthead">
+          <div class="brand">Le Journal</div>
+          <button id="lang-btn" class="lang-pill" data-action="open-lang" aria-label="Langue">FR</button>
+        </div>
+        <p id="today" class="today"></p>
+        <p id="greeting" class="greeting"></p>
+        <div class="clock" aria-live="off"><span id="clock-hm">--:--</span><span id="clock-s" class="clock-s">--</span></div>
+        <p id="place" class="place"></p>
+        <div id="weather" class="weather"></div>
+        <section id="markets" class="markets" hidden>
+          <h2 id="markets-title" class="mini-title"></h2>
+          <ul id="markets-list"></ul>
+        </section>
+      </div>
+      <button class="scroll-hint" data-action="scroll-news">
+        <span id="scroll-hint-label"></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+    </section>
+    <div id="news" class="news"></div>
+  </main>
+
+  <!-- ——— Flux ——— -->
+  <main id="view-flux" class="view" hidden>
+    <div class="flux-bar"><div id="flux-chips" class="chips"></div></div>
+    <div id="flux-scroller" class="flux-scroller"></div>
+    <div id="swipe-hint" class="swipe-hint" hidden>
+      <div class="swipe-hand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></div>
+      <strong id="swipe-hint-title"></strong>
+      <span id="swipe-hint-sub"></span>
+    </div>
+  </main>
+
+  <!-- ——— Favoris ——— -->
+  <main id="view-saved" class="view page" hidden>
+    <h1 id="saved-title" class="page-title"></h1>
+    <div id="saved-list"></div>
+  </main>
+
+  <!-- ——— Réglages ——— -->
+  <main id="view-settings" class="view page" hidden>
+    <h1 id="settings-title" class="page-title"></h1>
+    <div id="settings-body"></div>
+  </main>
+
+  <nav class="tabbar" aria-label="Navigation">
+    <button data-tab="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h13a1.5 1.5 0 0 1 1.5 1.5v11.5a2 2 0 0 0 2-2V9"/><path d="M4 5.5v12A1.5 1.5 0 0 0 5.5 19h15"/><path d="M7.5 9h7M7.5 12.5h7M7.5 16h4"/></svg><span class="tab-label"></span></button>
+    <button data-tab="flux"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="3" width="12" height="18" rx="2.5"/><path d="M10.5 9.5l4 2.5-4 2.5z" fill="currentColor" stroke="none"/></svg><span class="tab-label"></span></button>
+    <button data-tab="saved"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3.5h10a1 1 0 0 1 1 1V20.5l-6-4-6 4V4.5a1 1 0 0 1 1-1z"/></svg><span class="tab-label"></span></button>
+    <button data-tab="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg><span class="tab-label"></span></button>
+  </nav>
+
+  <div id="lang-sheet" class="sheet" hidden>
+    <div class="sheet-panel" role="dialog" aria-modal="true" aria-labelledby="lang-title">
+      <div class="sheet-grip"></div>
+      <h2 id="lang-title"></h2>
+      <div id="lang-list"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status"></div>
+
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

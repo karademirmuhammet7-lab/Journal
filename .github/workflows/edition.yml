@@ -1,0 +1,66 @@
+name: Édition automatique
+
+# Toutes les 30 minutes : on récupère les journaux, on classe, on traduit
+# et on publie l'application sur GitHub Pages.
+on:
+  push:
+  schedule:
+    - cron: '7,37 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm test
+
+      - name: Cache des traductions
+        uses: actions/cache@v4
+        with:
+          path: .cache
+          key: translations-${{ github.run_id }}
+          restore-keys: translations-
+
+      - name: Générer l'édition
+        # si les sources sont injoignables, l'édition déjà présente est conservée
+        continue-on-error: true
+        run: node scripts/build-news.mjs
+
+      - name: Préparer le site
+        run: |
+          mkdir -p _site
+          cp -r index.html manifest.webmanifest sw.js assets data _site/
+          touch _site/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

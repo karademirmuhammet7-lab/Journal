@@ -1,0 +1,17 @@
+{
+  "name": "journal",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Le Journal — l'actualité belge et internationale sur mobile",
+  "type": "module",
+  "scripts": {
+    "news": "node scripts/build-news.mjs",
+    "translate": "node scripts/build-news.mjs --translate",
+    "preview": "node scripts/bundle-preview.mjs",
+    "test": "node --test scripts/*.test.mjs",
+    "start": "python3 -m http.server 8080"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^5.11.2"
+  }
+}
