@@ -1,5 +1,5 @@
 // Service worker : l'application s'ouvre même hors connexion avec la dernière édition.
-const VERSION = 'knews-v7';
+const VERSION = 'knews-v8';
 const SHELL = [
   './',
   'index.html',

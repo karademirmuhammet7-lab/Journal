@@ -296,6 +296,7 @@
       morning = false;
       items = ordered.filter((a) => Date.now() - new Date(a.publishedAt) < 12 * 3600e3);
     }
+    if (items.length < 3) items = ordered; // nuit très calme : les plus importantes de l'édition
     return { morning, items: items.slice(0, 5) };
   }
   const firstSentence = (text) => {
@@ -345,8 +346,8 @@
     if (state.homeCat === 'all') {
       const used = new Set();
       const take = (a) => (used.add(a.id), a);
-      // 3. le fil heure par heure
-      html += timelineHTML(list, 6);
+      // 3. le fil heure par heure (à droite sur grand écran)
+      html += `<div class="home-grid"><aside class="home-side">${timelineHTML(list, 6)}</aside><div class="home-main">`;
       // 4. à la une
       const lead = take(ordered.slice(0, 3).find((a) => a.image) || ordered[0]);
       const essentials = ordered.filter((a) => !used.has(a.id)).slice(0, 6).map(take);
@@ -364,10 +365,11 @@
       // 5. la suite, par ordre d'importance
       const more = ordered.filter((a) => !used.has(a.id)).slice(0, 20);
       if (more.length) {
-        html += `<h2 class="sub-head">${esc(t('moreNews'))}</h2>${more
+        html += `<h2 class="sub-head">${esc(t('moreNews'))}</h2><div class="more-rows">${more
           .map((a) => link(a, 'row row-compact', `<div class="row-body">${kicker(a)}<h4>${esc(titleOf(a))}</h4>${meta(a)}</div>${media(a, 'thumb')}`))
-          .join('')}`;
+          .join('')}</div>`;
       }
+      html += '</div></div>';
     } else {
       // une rubrique : tous ses sujets, du plus important au moins important
       const cat = state.homeCat;
@@ -379,7 +381,7 @@
         <header class="cat-head k-${cat}"><h2>${icon(cat)}${esc(catName(cat))}</h2>
           <button class="see-all" data-action="see-all" data-cat="${cat}">${esc(t('flux'))}${icon('arrowRight', 'class="arrow-flip"')}</button></header>
         ${first ? link(first, 'card', `${media(first)}${kicker(first, true)}<h3>${esc(titleOf(first))}</h3><p>${esc(summaryOf(first))}</p>${meta(first, { coverage: true })}`) : `<p class="muted">${esc(t('catEmpty'))}</p>`}
-        ${others.map((a) => link(a, 'row row-compact', `<div class="row-body">${dots(a)}<h4>${esc(titleOf(a))}</h4>${meta(a)}</div>${media(a, 'thumb')}`)).join('')}
+        <div class="cat-rows">${others.map((a) => link(a, 'row row-compact', `<div class="row-body">${dots(a)}<h4>${esc(titleOf(a))}</h4>${meta(a)}</div>${media(a, 'thumb')}`)).join('')}</div>
       </section>`;
     }
 
@@ -1117,6 +1119,11 @@
         const active = $('.hchip.active', chips);
         if (active) chips.scrollLeft = active.offsetLeft - chips.clientWidth / 2 + active.offsetWidth / 2;
         $('#view-home').scrollTo({ top: $('#chips-anchor').offsetTop - 4, behavior: 'smooth' });
+        break;
+      }
+      case 'flux-next': case 'flux-prev': {
+        const sc = $('#flux-scroller');
+        sc.scrollBy({ top: (action === 'flux-next' ? 1 : -1) * sc.clientHeight, behavior: 'smooth' });
         break;
       }
       case 'toggle-live': state.liveOpen = !state.liveOpen; renderHome(); break;

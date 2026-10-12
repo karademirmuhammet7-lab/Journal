@@ -1379,3 +1379,132 @@ body[data-view="flux"] .tabbar [aria-current="page"] { color: #fff; }
 .wx-meta dd { font-size: .76rem; }
 .wx-hours li:first-child { box-shadow: none; }
 .wx-hours .hp:empty { display: none; }
+
+/* ————————————————————————————————————————————————————————————
+   Tablette et ordinateur
+   ———————————————————————————————————————————————————————————— */
+.home-grid { display: flex; flex-direction: column; }
+.home-side { min-width: 0; }
+.home-main { min-width: 0; }
+
+@media (hover: hover) {
+  a.lead:hover h3, a.card:hover h3, a.row:hover h4, a.tl-item:hover h4, a.brief-item:hover strong { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  .hchip:hover, .chip:hover { filter: brightness(.95); }
+}
+
+/* ——— tablette (≥ 768 px) ——— */
+@media (min-width: 768px) {
+  :root { --gutter: 28px; }
+  body { max-width: none; box-shadow: none; }
+  .cover, .news { padding-inline: max(var(--gutter), calc((100% - 1180px) / 2)); }
+  .home-chips { margin-inline: 0; padding-inline: 0; }
+  .page { padding-inline: max(var(--gutter), calc((100% - 760px) / 2)); }
+
+  /* le brief en colonnes */
+  .brief { padding: 20px 22px 10px; }
+  .brief ol { display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 24px; }
+  .brief li:nth-child(-n+2) { border-top: 1px solid color-mix(in srgb, var(--b-fg) 18%, transparent); }
+
+  /* manchette : photo à gauche, texte à droite */
+  .lead { display: grid; grid-template-columns: 1.25fr 1fr; gap: 26px; align-items: center; }
+  .lead:not(:has(.media)) { grid-template-columns: 1fr; }
+  .lead-body { padding-top: 0; }
+  .lead h3 { font-size: 2.1rem; }
+  .essentials { display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 28px; }
+  .essentials li + li { border-top: 0; }
+  .essentials li { border-bottom: 1px solid var(--rule); }
+  .more-rows, .cat-rows { display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 28px; }
+  .cat-block .card { display: grid; grid-template-columns: 1.2fr 1fr; column-gap: 24px; align-items: start; }
+  .cat-block .card > .media { grid-row: span 5; }
+  .cat-block .card:not(:has(.media)) { display: block; }
+
+  /* lecture : une colonne confortable */
+  .reader-body { max-width: 760px; margin-inline: auto; }
+  .r-hero { margin: 18px var(--gutter) 0; border-radius: 12px; max-height: 460px; }
+  .r-credit { padding-inline: calc(var(--gutter) + 4px); }
+  .r-head h1 { font-size: 2.5rem; }
+
+  /* flux : une colonne centrée, comme sur un téléphone */
+  .flux-scroller { left: 50%; right: auto; width: min(100%, 600px); transform: translateX(-50%); }
+  .flux-bar .chips { justify-content: center; }
+  .swipe-hint { left: 50%; right: auto; width: min(100%, 600px); transform: translateX(-50%); }
+}
+
+/* ——— ordinateur (≥ 1024 px) ——— */
+@media (min-width: 1024px) {
+  :root { --rail: 92px; --tabbar: 0px; }
+
+  /* les onglets deviennent une barre verticale à gauche */
+  .tabbar {
+    top: 0;
+    bottom: 0;
+    inset-inline-start: 0;
+    inset-inline-end: auto;
+    width: var(--rail);
+    height: auto;
+    padding: 24px 0;
+    grid-template-columns: none;
+    grid-auto-rows: 76px;
+    align-content: start;
+    border-top: 0;
+    border-inline-end: 1px solid var(--rule);
+  }
+  .tabbar svg { width: 26px; height: 26px; }
+  .view { inset: 0 0 0 0; inset-inline-start: var(--rail); }
+  .toast { bottom: 24px; }
+  .fresh { left: calc(50% + var(--rail) / 2); }
+
+  /* en-tête : heure, météo et prévisions côte à côte */
+  .cover { padding-top: 18px; padding-bottom: 14px; }
+  .cover-inner {
+    display: grid;
+    grid-template-columns: minmax(240px, 1fr) minmax(280px, 1.1fr) minmax(320px, 1.5fr);
+    grid-template-areas:
+      'mast mast mast'
+      'date date date'
+      'clock now hours'
+      'clock meta days'
+      'clock note note'
+      'mkts mkts mkts';
+    column-gap: 36px;
+    align-items: start;
+  }
+  .masthead { grid-area: mast; }
+  .dateline { grid-area: date; }
+  .clock-row { grid-area: clock; flex-direction: column; align-items: flex-start; }
+  .clock-row .place { text-align: start; margin-top: 6px; }
+  .clock { font-size: 4.2rem; }
+  #weather { display: contents; }
+  .wx-now { grid-area: now; margin-top: 12px; }
+  .wx-meta { grid-area: meta; border-bottom: 0; }
+  .wx-sample { grid-area: note; }
+  .wx-hours { grid-area: hours; margin: 0; padding: 12px 0 0; }
+  .wx-days { grid-area: days; border-top: 0; }
+  .markets { grid-area: mkts; margin-top: 14px; }
+  .wx-empty { grid-area: now; }
+
+  /* accueil : le fil « En continu » à droite, toujours visible */
+  .brief ol { grid-template-columns: repeat(3, 1fr); }
+  .brief li:nth-child(-n+3) { border-top: 1px solid color-mix(in srgb, var(--b-fg) 18%, transparent); }
+  .home-grid { display: grid; grid-template-columns: minmax(0, 1fr) 340px; column-gap: 40px; align-items: start; }
+  .home-side { order: 2; position: sticky; top: 64px; max-height: calc(100vh - 80px); overflow-y: auto; scrollbar-width: thin; }
+  .home-main { order: 1; }
+  .home-main .section-head { margin-top: 18px; }
+  .cat-rows { grid-template-columns: repeat(3, 1fr); }
+
+  /* flux : boutons pour passer d'une carte à l'autre à la souris */
+  .flux-nav { display: flex; }
+}
+
+/* ——— grand écran (≥ 1400 px) ——— */
+@media (min-width: 1400px) {
+  .brief ol { grid-template-columns: repeat(5, 1fr); }
+  .brief li:nth-child(-n+5) { border-top: 1px solid color-mix(in srgb, var(--b-fg) 18%, transparent); }
+  .more-rows { grid-template-columns: repeat(3, 1fr); }
+}
+
+.flux-nav { display: none; position: absolute; z-index: 3; right: 28px; top: 50%; transform: translateY(-50%); flex-direction: column; gap: 12px; }
+.flux-nav button { width: 48px; height: 48px; border-radius: 50%; background: rgba(255, 255, 255, .14); color: #fff; display: grid; place-items: center; }
+.flux-nav button:hover { background: rgba(255, 255, 255, .26); }
+.flux-nav svg { width: 24px; height: 24px; }
+@media (min-width: 1024px) { .flux-nav { display: flex; } }
