@@ -24,3 +24,8 @@ test('résumé : texte court rendu tel quel, phrases trop courtes ignorées', ()
   assert.deepEqual(summarize(['Une seule phrase assez longue pour être un résumé correct.']), ['Une seule phrase assez longue pour être un résumé correct.']);
   assert.deepEqual(sentences('Oui. Non. Voici une phrase complète qui fait plus de quarante caractères.'), ['Voici une phrase complète qui fait plus de quarante caractères.']);
 });
+
+test('pas deux fois la même phrase (extrait repris par plusieurs médias)', () => {
+  const s = 'La macabre découverte a eu lieu ce jeudi 8 octobre dans un appartement. ...';
+  assert.deepEqual(summarize([s, s]), ['La macabre découverte a eu lieu ce jeudi 8 octobre dans un appartement.']);
+});

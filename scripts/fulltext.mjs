@@ -8,7 +8,7 @@ import { summarize } from './summarize.mjs';
 
 const CACHE_DIR = process.env.JOURNAL_CACHE_DIR ? new URL(`file://${process.env.JOURNAL_CACHE_DIR}/`) : new URL('../.cache/', import.meta.url);
 const CACHE = new URL('texts.json', CACHE_DIR);
-export const FULL_LIMIT = +(process.env.JOURNAL_FULL_LIMIT || 80); // nombre de sujets avec texte complet
+export const FULL_LIMIT = +(process.env.JOURNAL_FULL_LIMIT || 1000); // nombre de sujets avec texte complet
 const MIN_CHARS = 700; // en dessous : article réservé aux abonnés ou extraction ratée
 const ITERATIONS = 210000;
 const SALT = 'le-journal/articles/v1';
@@ -121,6 +121,9 @@ export function extractBlocks(html) {
 
 // ———————————————————————————————————————— récupération (avec cache)
 
+const RETRY_MS = 2 * 3.6e6; // une page illisible est retentée deux heures plus tard
+const SEARCH_MS = 3 * 3.6e6;
+
 let cache = {};
 async function loadCache() {
   try { cache = JSON.parse(await readFile(CACHE, 'utf8')); } catch { cache = {}; }
@@ -128,48 +131,135 @@ async function loadCache() {
 async function saveCache(keep) {
   await mkdir(CACHE_DIR, { recursive: true });
   const entries = Object.entries(cache).sort((a, b) => (b[1].at || 0) - (a[1].at || 0));
-  await writeFile(CACHE, JSON.stringify(Object.fromEntries(entries.filter(([url], i) => keep.has(url) || i < 300))));
+  await writeFile(CACHE, JSON.stringify(Object.fromEntries(entries.filter(([url], i) => keep.has(url) || i < 600))));
+}
+
+const isGoogle = (url) => /^https?:\/\/news\.google\./.test(url);
+
+/**
+ * Lien Google Actualités → adresse de l'article chez le média.
+ * Les anciens identifiants contiennent l'adresse en base64 ; les récents
+ * se résolvent par l'appel que fait la page Google Actualités elle-même.
+ */
+export async function resolveGoogleNews(url, fetchText) {
+  const id = new URL(url).pathname.split('/').pop();
+  try {
+    const raw = Buffer.from(id.replace(/-/g, '+').replace(/_/g, '/'), 'base64').toString('latin1');
+    const direct = raw.match(/https?:\/\/[\x21-\x7e]+/)?.[0];
+    if (direct && !raw.includes('AU_yq')) return direct;
+  } catch { /* identifiant récent */ }
+  const page = await fetchText(`https://news.google.com/rss/articles/${id}`, { timeout: 8000 });
+  const sig = page.match(/data-n-a-sg="([^"]+)"/)?.[1];
+  const ts = page.match(/data-n-a-ts="([^"]+)"/)?.[1];
+  if (!sig || !ts) return null;
+  const req = [[['Fbv4je', JSON.stringify(['garturlreq', [['X', 'X', ['X', 'X'], null, null, 1, 1, 'US:en', null, 1, null, null, null, null, null, 0, 1], 'X', 'X', 1, [1, 1, 1], 1, 1, null, 0, 0, null, 0], id, +ts, sig]), null, 'generic']]];
+  const res = await fetchText('https://news.google.com/_/DotsSplashUi/data/batchexecute', {
+    timeout: 8000,
+    method: 'POST',
+    headers: { 'content-type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+    body: 'f.req=' + encodeURIComponent(JSON.stringify(req)),
+  });
+  const m = res.match(/\["garturlres\\",\\"(https?:[^\\"]+)/);
+  if (m) return m[1];
+  try {
+    const json = JSON.parse(res.split('\n\n')[1]);
+    return JSON.parse(json[0][2])[1] || null;
+  } catch { return null; }
 }
 
 /**
- * Ajoute `full = { source, url, lang, blocks }` aux articles les plus importants,
- * en choisissant parmi leurs sources celle dont le texte est lisible en entier.
+ * Ajoute `full = { source, url, lang, blocks }` aux articles, en choisissant
+ * parmi leurs sources celle dont le texte est lisible en entier. Si aucune ne
+ * l'est (article réservé aux abonnés, page illisible), on cherche le même sujet
+ * chez d'autres médias avec `findMore(article)`.
  */
-export async function fetchFullTexts(articles, { fetchText, pool, translateBlocks }) {
+export async function fetchFullTexts(articles, { fetchText, pool, translateBlocks, findMore, budgetMs = 180000 }) {
   await loadCache();
+  const deadline = Date.now() + budgetMs;
   const top = articles.slice(0, FULL_LIMIT);
   let fetched = 0;
-  await pool(top, 6, async (a) => {
-    const candidates = [...(a.sources || [])]
-      .filter((s) => /^https?:/.test(s.url) && !/news\.google\./.test(s.url))
-      .sort((x, y) => (y.lang === 'fr') - (x.lang === 'fr'));
-    for (const s of candidates.slice(0, 4)) {
-      let entry = cache[s.url];
-      if (!entry) {
-        try {
-          const html = await fetchText(s.url, { timeout: 9000, headers: { accept: 'text/html' } });
-          entry = { blocks: extractBlocks(html), image: ogImage(html), at: Date.now() };
-        } catch {
-          entry = { blocks: null, at: Date.now() };
-        }
-        cache[s.url] = entry;
-        fetched++;
+  let resolved = 0;
+  let found = 0;
+
+  const resolve = async (url) => {
+    if (!isGoogle(url)) return url;
+    const key = 'gn:' + url;
+    if (cache[key] && (cache[key].to || Date.now() - cache[key].at < RETRY_MS)) return cache[key].to;
+    let to = null;
+    try { to = await resolveGoogleNews(url, fetchText); } catch { /* réessayé plus tard */ }
+    cache[key] = { to, at: Date.now() };
+    if (to) resolved++;
+    return to;
+  };
+
+  const read = async (url) => {
+    let entry = cache[url];
+    if (!entry || (!entry.blocks && Date.now() - entry.at > RETRY_MS)) {
+      if (Date.now() > deadline) return entry || null;
+      try {
+        const html = await fetchText(url, { timeout: 8000, headers: { accept: 'text/html' } });
+        entry = { blocks: extractBlocks(html), image: ogImage(html), at: Date.now() };
+      } catch {
+        entry = { blocks: null, at: Date.now() };
       }
-      if (!a.image && entry.image) a.image = entry.image;
-      if (entry.blocks) {
-        a.full = { source: s.source, url: s.url, lang: s.lang, blocks: entry.blocks };
-        break;
-      }
+      cache[url] = entry;
+      fetched++;
     }
+    return entry;
+  };
+
+  const tryCandidates = async (a, candidates) => {
+    const tried = new Set();
+    for (const s of candidates) {
+      if (a.full || Date.now() > deadline) return;
+      const url = await resolve(s.url);
+      if (!url || tried.has(url)) continue;
+      tried.add(url);
+      const entry = await read(url);
+      if (!entry) continue;
+      if (!a.image && entry.image) a.image = entry.image;
+      if (entry.blocks) a.full = { source: s.source, url, lang: s.lang, blocks: entry.blocks };
+    }
+  };
+
+  // 1. les sources de l'article (les médias francophones d'abord)
+  await pool(top, 8, async (a) => {
+    const candidates = [...(a.sources || [])]
+      .filter((s) => /^https?:/.test(s.url))
+      .sort((x, y) => (y.lang === 'fr') - (x.lang === 'fr') || isGoogle(x.url) - isGoogle(y.url));
+    await tryCandidates(a, candidates.slice(0, 5));
   });
+
+  // 2. le même sujet chez d'autres médias
+  if (findMore) {
+    await pool(top.filter((a) => !a.full), 6, async (a) => {
+      if (Date.now() > deadline) return;
+      const key = 'alt:' + a.id;
+      let alt = cache[key];
+      if (!alt || Date.now() - alt.at > SEARCH_MS) {
+        let list = [];
+        try { list = await findMore(a); } catch { /* recherche indisponible */ }
+        alt = cache[key] = { list, at: Date.now() };
+      }
+      const known = new Set((a.sources || []).map((s) => s.url));
+      await tryCandidates(a, alt.list.filter((s) => !known.has(s.url)).slice(0, 4));
+      if (a.full) found++;
+    });
+  }
+
   // texte étranger → français
   const foreign = top.filter((a) => a.full && a.full.lang !== 'fr');
   for (const a of foreign) {
     const fr = await translateBlocks(a.full.blocks, a.full.lang, 'fr');
     if (fr) { a.full.blocks = fr; a.full.translatedFrom = a.full.lang; a.full.lang = 'fr'; }
   }
-  await saveCache(new Set(articles.flatMap((a) => (a.sources || []).map((s) => s.url))));
-  log(`${top.filter((a) => a.full).length}/${top.length} articles complets (${fetched} pages lues)`);
+  const keep = new Set(articles.flatMap((a) => (a.sources || []).flatMap((s) => [s.url, 'gn:' + s.url, cache['gn:' + s.url]?.to])));
+  for (const a of articles) {
+    keep.add('alt:' + a.id);
+    for (const s of cache['alt:' + a.id]?.list || []) keep.add(s.url);
+  }
+  await saveCache(keep);
+  log(`${top.filter((a) => a.full).length}/${top.length} articles complets (${fetched} pages lues, ${resolved} liens Google résolus, ${found} trouvés chez un autre média${Date.now() > deadline ? ', temps écoulé' : ''})`);
 }
 
 // ———————————————————————————————————————— chiffrement

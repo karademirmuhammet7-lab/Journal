@@ -57,11 +57,51 @@ function clip(text, max = 300) {
 const hash = (s) => createHash('sha1').update(s).digest('hex').slice(0, 12);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-async function fetchText(url, { timeout = 15000, headers = {} } = {}) {
+// ———————————————————————————————————————— le même sujet chez d'autres médias
+
+const SKIP_HOSTS = /(^|\.)(msn\.com|bing\.com|youtube\.com|facebook\.com|x\.com|twitter\.com|instagram\.com|tiktok\.com)$/;
+
+/** Articles d'autres médias sur le même sujet (Bing Actualités et Google Actualités, gratuits). */
+export function parseSearch(xml, title) {
+  const want = tokens(title);
+  const out = [];
+  for (const m of xml.matchAll(/<item>([\s\S]*?)<\/item>/g)) {
+    const tag = (name) => decode(m[1].match(new RegExp(`<${name}[^>]*>([\\s\\S]*?)</${name}>`))?.[1]?.replace(/<!\[CDATA\[|\]\]>/g, '') || '').trim();
+    let url = tag('link');
+    const viaBing = url.match(/[?&]url=([^&]+)/);
+    if (viaBing) url = decodeURIComponent(viaBing[1]);
+    if (!/^https?:/.test(url)) continue;
+    let host = '';
+    try { host = new URL(url).hostname.replace(/^www\./, ''); } catch { continue; }
+    if (SKIP_HOSTS.test(host)) continue;
+    let t = stripHtml(tag('title'));
+    const source = tag('News:Source') || tag('source') || host;
+    if (t.endsWith(' - ' + source)) t = t.slice(0, -(source.length + 3));
+    if (similarity(want, tokens(t)) < 0.5) continue;
+    out.push({ source, url, title: t, lang: 'fr' });
+  }
+  return out;
+}
+
+async function findMore(a) {
+  const title = (a.title.fr || a.title[a.lang] || '').replace(/["«»“”]/g, ' ').split(/\s+/).slice(0, 14).join(' ');
+  if (!title) return [];
+  const q = encodeURIComponent(title);
+  const engines = [
+    `https://www.bing.com/news/search?q=${q}&format=rss&setmkt=fr-BE&setlang=fr`,
+    `https://news.google.com/rss/search?q=${q}&hl=fr&gl=BE&ceid=BE:fr`,
+  ];
+  const lists = await Promise.all(engines.map((u) => fetchText(u, { timeout: 8000 }).then((x) => parseSearch(x, title), () => [])));
+  const seen = new Set();
+  // Bing donne l'adresse directe : on l'essaie d'abord
+  return lists.flat().filter((s) => !seen.has(s.url) && seen.add(s.url));
+}
+
+async function fetchText(url, { timeout = 15000, headers = {}, method = 'GET', body } = {}) {
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), timeout);
   try {
-    const res = await fetch(url, { headers: { 'user-agent': UA, accept: '*/*', 'accept-language': 'fr-BE,fr;q=0.9,en;q=0.7', ...headers }, signal: ctrl.signal, redirect: 'follow' });
+    const res = await fetch(url, { method, body, headers: { 'user-agent': UA, accept: '*/*', 'accept-language': 'fr-BE,fr;q=0.9,en;q=0.7', ...headers }, signal: ctrl.signal, redirect: 'follow' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return await res.text();
   } finally {
@@ -527,7 +567,7 @@ export async function build() {
   // l'actu locale est toujours gardée, même si elle est moins reprise
   const chosen = [...clusters.slice(0, MAX_ARTICLES), ...clusters.slice(MAX_ARTICLES).filter((c) => LOCAL[c.cat]).slice(0, 40)];
   log(`${chosen.filter((c) => c.cat === 'charleroi').length} sujets Charleroi, ${chosen.filter((c) => c.cat === 'chatelet').length} sujets Châtelet`);
-  const picked = chosen.map((c, rank) => {
+  let picked = chosen.map((c, rank) => {
     const lead = c.lead;
     const direct = c.items.filter((a) => !a.aggregator);
     // identifiant stable d'un sujet : son plus ancien article
@@ -559,7 +599,15 @@ export async function build() {
   }
 
   // texte complet (lecture personnelle, chiffré) — récupère aussi des photos
-  if (FULL_KEY) await fetchFullTexts(picked, { fetchText, pool, translateBlocks });
+  if (FULL_KEY) {
+    await fetchFullTexts(picked, { fetchText, pool, translateBlocks, findMore });
+    // chaque article publié doit pouvoir se lire en entier dans l'application
+    const readable = picked.filter((a) => a.full);
+    if (readable.length >= MIN_ARTICLES) {
+      log(`${picked.length - readable.length} sujets écartés (texte complet introuvable)`);
+      picked = readable;
+    }
+  }
 
   // une vraie photo pour chaque article : on essaie toutes ses sources
   const needy = picked.filter((a) => !a.image || !a.summary[a.lang]).slice(0, 90);

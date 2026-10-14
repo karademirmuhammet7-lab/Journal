@@ -21,7 +21,10 @@ const words = (s) =>
  * @param {number} max  nombre de phrases (3 à 5 selon la longueur)
  */
 export function summarize(paragraphs, max) {
-  const list = paragraphs.flatMap((p, pi) => sentences(p).map((s, si) => ({ s, pi, si })));
+  const seen = new Set();
+  const list = paragraphs
+    .flatMap((p, pi) => sentences(p).map((s, si) => ({ s: s.replace(/\s*(\.\.\.|…|\[…\])$/, '').trim(), pi, si })))
+    .filter((x) => x.s.length >= 40 && !seen.has(x.s.toLowerCase()) && seen.add(x.s.toLowerCase()));
   if (!list.length) return [];
   const n = max || (list.length > 30 ? 5 : list.length > 14 ? 4 : 3);
   if (list.length <= n) return list.map((x) => x.s);
